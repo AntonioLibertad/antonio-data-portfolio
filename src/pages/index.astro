@@ -31,7 +31,7 @@ const siteDescription =
           <div class="hero-shell">
             <div class="hero-overlay"></div>
 
-            <div class="hero-content">
+            <div class="hero-content hero-entrance">
               <p class="hero-eyebrow">Data Science · Business Analytics · Data Analytics</p>
               <h1>Turning data into business decisions.</h1>
               <p class="hero-subtitle">
@@ -50,11 +50,11 @@ const siteDescription =
 
       <section id="about" class="section about-section">
         <div class="container about-grid">
-          <div class="about-photo-card">
+          <div class="about-photo-card reveal reveal-left">
             <img src="/profile.jpg" alt="Portrait of Antonio González Martín" loading="lazy" />
           </div>
 
-          <div class="about-copy">
+          <div class="about-copy reveal reveal-right">
             <p class="section-label">About me</p>
             <h2>Analytics with business context.</h2>
 
@@ -75,7 +75,8 @@ const siteDescription =
 
             <div class="about-actions">
               <a
-                class="button button-primary"
+                class="button button-primary reveal reveal-up"
+                style="--reveal-delay: 80ms;"
                 href="/resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -83,14 +84,19 @@ const siteDescription =
                 Download resume
               </a>
               <a
-                class="button button-secondary"
-                href="https://www.linkedin.com/in/REPLACE-WITH-YOUR-LINKEDIN/"
+                class="button button-secondary reveal reveal-up"
+                style="--reveal-delay: 140ms;"
+                href="https://www.linkedin.com/in/antonio-gonzalez-189963224"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 LinkedIn
               </a>
-              <a class="button button-secondary" href="mailto:your@email.com">
+              <a
+                class="button button-secondary reveal reveal-up"
+                style="--reveal-delay: 200ms;"
+                href="mailto:antonio.business444@gmail.com"
+              >
                 Email
               </a>
             </div>
@@ -100,7 +106,7 @@ const siteDescription =
 
       <section id="flagship" class="section case-section">
         <div class="container">
-          <div class="case-top-shell">
+          <div class="case-top-shell reveal reveal-up">
             <div class="case-top-overlay"></div>
 
             <div class="case-top-inner">
@@ -114,19 +120,19 @@ const siteDescription =
               </div>
 
               <div class="case-metrics-grid">
-                <article class="case-metric-card">
+                <article class="case-metric-card reveal reveal-up" style="--reveal-delay: 80ms;">
                   <span class="case-summary-label">Context</span>
                   <strong>Real SME use case</strong>
                   <p>Designed around an actual business problem rather than a purely academic exercise.</p>
                 </article>
 
-                <article class="case-metric-card">
+                <article class="case-metric-card reveal reveal-up" style="--reveal-delay: 150ms;">
                   <span class="case-summary-label">Build</span>
                   <strong>End-to-end workflow</strong>
                   <p>From raw data and validation to dashboarding, analytical outputs, and recommendations.</p>
                 </article>
 
-                <article class="case-metric-card">
+                <article class="case-metric-card reveal reveal-up" style="--reveal-delay: 220ms;">
                   <span class="case-summary-label">Outcome</span>
                   <strong>Business-facing decision support</strong>
                   <p>Created to improve visibility, support action, and make commercial decisions clearer.</p>
@@ -135,180 +141,186 @@ const siteDescription =
             </div>
           </div>
 
-          <div class="case-transition" aria-hidden="true">
-            <span class="case-transition-line"></span>
-            <span class="case-transition-label">Project foundation</span>
-            <span class="case-transition-line"></span>
-          </div>
-
-          <div class="case-problem-strip">
-            <div class="case-problem-copy">
-              <p class="case-kicker">The starting point</p>
-              <h3>Different channels, different data, no single decision-support layer.</h3>
-              <p>
-                Sales, customers, and product data were spread across multiple operational sources.
-                The challenge was not only to analyse the data, but to transform it into something
-                structured, reliable, and actually useful for business decisions.
-              </p>
+          <div class="case-lower-shell">
+            <div class="case-transition reveal reveal-up" aria-hidden="true">
+              <span class="case-transition-line"></span>
+              <span class="case-transition-label">Project foundation</span>
+              <span class="case-transition-line"></span>
             </div>
 
-            <div class="case-chip-row">
-              <span class="case-chip">WinOmega ERP</span>
-              <span class="case-chip">PrestaShop</span>
-              <span class="case-chip">eBay</span>
-              <span class="case-chip">Miravia</span>
-              <span class="case-chip">Commercial Reporting</span>
-            </div>
-          </div>
-
-          <div class="case-pipeline-grid">
-            <div class="case-pipeline-copy">
-              <p class="case-kicker">How the system works</p>
-              <h3>One pipeline, one analytical layer, multiple business-facing outputs.</h3>
-              <p>
-                The project combined data ingestion, cleaning, quality control, harmonisation, and
-                analytical modelling into a structured workflow capable of supporting reporting,
-                segmentation, recommendation logic, and decision-ready outputs.
-              </p>
-
-              <ul class="case-list">
-                <li>Data integration across multiple business sources</li>
-                <li>Validation and quality-control checks</li>
-                <li>Standardised analytical dataset creation</li>
-                <li>Customer and commercial analysis</li>
-                <li>Dashboard-ready and recommendation-ready outputs</li>
-              </ul>
-            </div>
-
-            <figure class="case-pipeline-image-card">
-              <button type="button" class="media-open-btn" id="open-pipeline-modal">
-                Open schema
-              </button>
-
-              <div class="case-pipeline-preview">
-                <img
-                  src="/pipeline-schema.png"
-                  alt="Pipeline schema of the analytical workflow"
-                  loading="lazy"
-                />
+            <div class="case-problem-strip reveal reveal-up">
+              <div class="case-problem-copy">
+                <p class="case-kicker">The starting point</p>
+                <h3>Different channels, different data, no single decision-support layer.</h3>
+                <p>
+                  Sales, customers, and product data were spread across multiple operational sources.
+                  The challenge was not only to analyse the data, but to transform it into something
+                  structured, reliable, and actually useful for business decisions.
+                </p>
               </div>
-            </figure>
-          </div>
 
-          <div class="case-visuals">
-            <div class="case-visuals-heading">
-              <p class="case-kicker">Visual proof</p>
-              <h3>What the system actually produces</h3>
-              <p>
-                Each dashboard view supports a different layer of decision-making: overview, diagnosis,
-                customer understanding, and next-best commercial action.
-              </p>
+              <div class="case-chip-row">
+                <span class="case-chip reveal reveal-up" style="--reveal-delay: 70ms;">WinOmega ERP</span>
+                <span class="case-chip reveal reveal-up" style="--reveal-delay: 120ms;">PrestaShop</span>
+                <span class="case-chip reveal reveal-up" style="--reveal-delay: 170ms;">eBay</span>
+                <span class="case-chip reveal reveal-up" style="--reveal-delay: 220ms;">Miravia</span>
+                <span class="case-chip reveal reveal-up" style="--reveal-delay: 270ms;">Commercial Reporting</span>
+              </div>
             </div>
 
-            <div class="case-gallery-shell">
-              <div class="case-gallery">
-                <div class="gallery-stage-wrap">
-                  <button type="button" class="gallery-arrow" id="gallery-prev" aria-label="Previous image">
-                    ←
-                  </button>
+            <div class="case-pipeline-grid">
+              <div class="case-pipeline-copy reveal reveal-left">
+                <p class="case-kicker">How the system works</p>
+                <h3>One pipeline, one analytical layer, multiple business-facing outputs.</h3>
+                <p>
+                  The project combined data ingestion, cleaning, quality control, harmonisation, and
+                  analytical modelling into a structured workflow capable of supporting reporting,
+                  segmentation, recommendation logic, and decision-ready outputs.
+                </p>
 
-                  <div class="gallery-stage">
-                    <img
-                      id="dashboard-gallery-image"
-                      src="/dashboard-overview.png"
-                      alt="General business overview dashboard"
-                    />
+                <ul class="case-list">
+                  <li>Data integration across multiple business sources</li>
+                  <li>Validation and quality-control checks</li>
+                  <li>Standardised analytical dataset creation</li>
+                  <li>Customer and commercial analysis</li>
+                  <li>Dashboard-ready and recommendation-ready outputs</li>
+                </ul>
+              </div>
+
+              <figure class="case-pipeline-image-card reveal reveal-right">
+                <button type="button" class="media-open-btn" id="open-pipeline-modal">
+                  Open schema
+                </button>
+
+                <div class="case-pipeline-preview">
+                  <img
+                    src="/pipeline-schema.png"
+                    alt="Pipeline schema of the analytical workflow"
+                    loading="lazy"
+                  />
+                </div>
+              </figure>
+            </div>
+
+            <div class="case-visuals">
+              <div class="case-visuals-heading reveal reveal-up">
+                <p class="case-kicker">Visual proof</p>
+                <h3>What the system actually produces</h3>
+                <p>
+                  Each dashboard view supports a different layer of decision-making: overview, diagnosis,
+                  customer understanding, and next-best commercial action.
+                </p>
+              </div>
+
+              <div class="case-gallery-shell reveal reveal-scale">
+                <div class="case-gallery">
+                  <div class="gallery-stage-wrap">
+                    <button type="button" class="gallery-arrow" id="gallery-prev" aria-label="Previous image">
+                      ←
+                    </button>
+
+                    <div class="gallery-stage">
+                      <img
+                        id="dashboard-gallery-image"
+                        src="/dashboard-overview.png"
+                        alt="General business overview dashboard"
+                      />
+                    </div>
+
+                    <button type="button" class="gallery-arrow" id="gallery-next" aria-label="Next image">
+                      →
+                    </button>
                   </div>
 
-                  <button type="button" class="gallery-arrow" id="gallery-next" aria-label="Next image">
-                    →
-                  </button>
-                </div>
+                  <div class="gallery-thumbs">
+                    <button
+                      type="button"
+                      class="gallery-thumb is-active reveal reveal-up"
+                      style="--reveal-delay: 70ms;"
+                      data-gallery-index="0"
+                      aria-pressed="true"
+                    >
+                      Overview
+                    </button>
+                    <button
+                      type="button"
+                      class="gallery-thumb reveal reveal-up"
+                      style="--reveal-delay: 120ms;"
+                      data-gallery-index="1"
+                      aria-pressed="false"
+                    >
+                      Segmentation
+                    </button>
+                    <button
+                      type="button"
+                      class="gallery-thumb reveal reveal-up"
+                      style="--reveal-delay: 170ms;"
+                      data-gallery-index="2"
+                      aria-pressed="false"
+                    >
+                      Trends
+                    </button>
+                    <button
+                      type="button"
+                      class="gallery-thumb reveal reveal-up"
+                      style="--reveal-delay: 220ms;"
+                      data-gallery-index="3"
+                      aria-pressed="false"
+                    >
+                      Recommendations
+                    </button>
+                  </div>
 
-                <div class="gallery-thumbs">
-                  <button
-                    type="button"
-                    class="gallery-thumb is-active"
-                    data-gallery-index="0"
-                    aria-pressed="true"
-                  >
-                    Overview
-                  </button>
-                  <button
-                    type="button"
-                    class="gallery-thumb"
-                    data-gallery-index="1"
-                    aria-pressed="false"
-                  >
-                    Segmentation
-                  </button>
-                  <button
-                    type="button"
-                    class="gallery-thumb"
-                    data-gallery-index="2"
-                    aria-pressed="false"
-                  >
-                    Trends
-                  </button>
-                  <button
-                    type="button"
-                    class="gallery-thumb"
-                    data-gallery-index="3"
-                    aria-pressed="false"
-                  >
-                    Recommendations
-                  </button>
-                </div>
-
-                <div class="gallery-meta" aria-live="polite">
-                  <strong id="dashboard-gallery-title">General business overview</strong>
-                  <p id="dashboard-gallery-caption">
-                    A high-level commercial view of revenue, customers, repeat purchasing, ticket size,
-                    and channel distribution.
-                  </p>
+                  <div class="gallery-meta" aria-live="polite">
+                    <strong id="dashboard-gallery-title">General business overview</strong>
+                    <p id="dashboard-gallery-caption">
+                      A high-level commercial view of revenue, customers, repeat purchasing, ticket size,
+                      and channel distribution.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div class="case-value-grid">
-            <div class="case-value-card">
-              <p class="case-kicker">Business problem</p>
-              <h3>Data existed, but visibility did not.</h3>
-              <p>
-                The project addressed a common SME problem: having commercial data available, but lacking
-                a structured system to convert it into useful visibility and decisions.
-              </p>
+            <div class="case-value-grid">
+              <div class="case-value-card reveal reveal-up" style="--reveal-delay: 60ms;">
+                <p class="case-kicker">Business problem</p>
+                <h3>Data existed, but visibility did not.</h3>
+                <p>
+                  The project addressed a common SME problem: having commercial data available, but lacking
+                  a structured system to convert it into useful visibility and decisions.
+                </p>
+              </div>
+
+              <div class="case-value-card reveal reveal-up" style="--reveal-delay: 130ms;">
+                <p class="case-kicker">Technical execution</p>
+                <h3>More than a dashboard.</h3>
+                <p>
+                  It required data engineering, validation logic, analytical modelling, dashboard design,
+                  and the creation of outputs that could actually be reused and scaled.
+                </p>
+              </div>
+
+              <div class="case-value-card reveal reveal-up" style="--reveal-delay: 200ms;">
+                <p class="case-kicker">Business value</p>
+                <h3>Designed for action.</h3>
+                <p>
+                  The final objective was not just insight generation, but helping a business see more clearly,
+                  prioritise better, and act with more confidence.
+                </p>
+              </div>
             </div>
 
-            <div class="case-value-card">
-              <p class="case-kicker">Technical execution</p>
-              <h3>More than a dashboard.</h3>
-              <p>
-                It required data engineering, validation logic, analytical modelling, dashboard design,
-                and the creation of outputs that could actually be reused and scaled.
-              </p>
+            <div class="tag-row flagship-tags reveal reveal-up">
+              <span>Python</span>
+              <span>SQL</span>
+              <span>Power BI</span>
+              <span>Data Pipeline</span>
+              <span>Customer Segmentation</span>
+              <span>Association Rules</span>
+              <span>Recommendation Logic</span>
+              <span>Decision Support</span>
             </div>
-
-            <div class="case-value-card">
-              <p class="case-kicker">Business value</p>
-              <h3>Designed for action.</h3>
-              <p>
-                The final objective was not just insight generation, but helping a business see more clearly,
-                prioritise better, and act with more confidence.
-              </p>
-            </div>
-          </div>
-
-          <div class="tag-row flagship-tags">
-            <span>Python</span>
-            <span>SQL</span>
-            <span>Power BI</span>
-            <span>Data Pipeline</span>
-            <span>Customer Segmentation</span>
-            <span>Association Rules</span>
-            <span>Recommendation Logic</span>
-            <span>Decision Support</span>
           </div>
         </div>
 
@@ -335,7 +347,7 @@ const siteDescription =
 
       <section id="contact" class="section contact-section">
         <div class="container">
-          <div class="contact-card">
+          <div class="contact-card reveal reveal-up">
             <div>
               <p class="section-label">Contact</p>
               <h2>Interested in my profile?</h2>
@@ -346,10 +358,13 @@ const siteDescription =
             </div>
 
             <div class="hero-actions contact-actions">
-              <a class="button button-primary" href="mailto:your@email.com">Email me</a>
+              <a class="button button-primary reveal reveal-up" style="--reveal-delay: 90ms;" href="mailto:antonio.business444@gmail.com">
+                Email me
+              </a>
               <a
-                class="button button-secondary"
-                href="https://www.linkedin.com/in/REPLACE-WITH-YOUR-LINKEDIN/"
+                class="button button-secondary reveal reveal-up"
+                style="--reveal-delay: 150ms;"
+                href="https://www.linkedin.com/in/antonio-gonzalez-189963224"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -394,6 +409,7 @@ const siteDescription =
       ];
 
       let currentGalleryIndex = 0;
+      let galleryTransitionTimeout;
 
       const galleryImage = document.getElementById("dashboard-gallery-image");
       const galleryTitle = document.getElementById("dashboard-gallery-title");
@@ -401,6 +417,8 @@ const siteDescription =
       const galleryPrev = document.getElementById("gallery-prev");
       const galleryNext = document.getElementById("gallery-next");
       const galleryThumbs = Array.from(document.querySelectorAll(".gallery-thumb"));
+      const galleryStage = document.querySelector(".gallery-stage");
+      const galleryMeta = document.querySelector(".gallery-meta");
       const openPipelineModalBtn = document.getElementById("open-pipeline-modal");
 
       const galleryModal = document.getElementById("gallery-modal");
@@ -409,7 +427,7 @@ const siteDescription =
       const galleryModalTitle = document.getElementById("gallery-modal-title");
       const galleryModalText = document.getElementById("gallery-modal-text");
 
-      function renderGallery(index) {
+      function applyGalleryContent(index) {
         currentGalleryIndex = index;
         const item = galleryItems[index];
 
@@ -436,6 +454,27 @@ const siteDescription =
         });
       }
 
+      function renderGallery(index, withTransition = true) {
+        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        if (!withTransition || prefersReducedMotion || !galleryStage || !galleryMeta) {
+          applyGalleryContent(index);
+          return;
+        }
+
+        galleryStage.classList.add("is-switching");
+        galleryMeta.classList.add("is-switching");
+        clearTimeout(galleryTransitionTimeout);
+
+        galleryTransitionTimeout = window.setTimeout(() => {
+          applyGalleryContent(index);
+          requestAnimationFrame(() => {
+            galleryStage.classList.remove("is-switching");
+            galleryMeta.classList.remove("is-switching");
+          });
+        }, 130);
+      }
+
       function openModal(modal) {
         if (!modal) return;
         modal.classList.add("is-open");
@@ -450,23 +489,23 @@ const siteDescription =
 
       function goToPreviousGalleryItem() {
         const nextIndex = (currentGalleryIndex - 1 + galleryItems.length) % galleryItems.length;
-        renderGallery(nextIndex);
+        renderGallery(nextIndex, true);
       }
 
       function goToNextGalleryItem() {
         const nextIndex = (currentGalleryIndex + 1) % galleryItems.length;
-        renderGallery(nextIndex);
+        renderGallery(nextIndex, true);
       }
 
       galleryPrev?.addEventListener("click", goToPreviousGalleryItem);
       galleryNext?.addEventListener("click", goToNextGalleryItem);
 
       galleryThumbs.forEach((thumb, index) => {
-        thumb.addEventListener("click", () => renderGallery(index));
+        thumb.addEventListener("click", () => renderGallery(index, true));
       });
 
       galleryImage?.addEventListener("click", () => {
-        renderGallery(currentGalleryIndex);
+        applyGalleryContent(currentGalleryIndex);
         openModal(galleryModal);
       });
 
@@ -494,16 +533,43 @@ const siteDescription =
           closeModal(pipelineModal);
         }
 
-        if (event.key === "ArrowLeft") {
+        if (event.key === "ArrowLeft" && !galleryModal?.classList.contains("is-open")) {
           goToPreviousGalleryItem();
         }
 
-        if (event.key === "ArrowRight") {
+        if (event.key === "ArrowRight" && !galleryModal?.classList.contains("is-open")) {
           goToNextGalleryItem();
         }
       });
 
-      renderGallery(0);
+      const revealItems = Array.from(document.querySelectorAll(".reveal"));
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+      function revealImmediately() {
+        revealItems.forEach((item) => item.classList.add("is-visible"));
+      }
+
+      if (prefersReducedMotion.matches) {
+        revealImmediately();
+      } else {
+        const revealObserver = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            });
+          },
+          {
+            threshold: 0.16,
+            rootMargin: "0px 0px -10% 0px",
+          }
+        );
+
+        revealItems.forEach((item) => revealObserver.observe(item));
+      }
+
+      renderGallery(0, false);
     </script>
   </body>
 </html>
@@ -519,6 +585,7 @@ const siteDescription =
     --shadow: 0 20px 55px rgba(0, 0, 0, 0.24);
     --shadow-soft: 0 12px 30px rgba(0, 0, 0, 0.18);
     --max: 1180px;
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   * {
@@ -568,6 +635,112 @@ const siteDescription =
   .site-header {
     position: relative;
     z-index: 1;
+  }
+
+  .about-section,
+  .case-section,
+  .contact-section {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .about-section::before,
+  .case-section::before,
+  .contact-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .about-section .container,
+  .case-section .container,
+  .contact-section .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  .about-section::before {
+    background:
+      radial-gradient(
+        circle at 18% 28%,
+        rgba(145, 169, 255, 0.16) 0%,
+        rgba(145, 169, 255, 0.07) 16%,
+        transparent 42%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.012) 0%,
+        rgba(255, 255, 255, 0) 100%
+      );
+    opacity: 0.95;
+  }
+
+  .case-section::before {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(8, 14, 24, 0.18) 0%,
+        rgba(8, 14, 24, 0.24) 22%,
+        rgba(10, 16, 28, 0.56) 36%,
+        rgba(10, 16, 28, 0.88) 52%,
+        rgba(10, 16, 28, 0.94) 100%
+      ),
+      radial-gradient(
+        circle at 78% 22%,
+        rgba(145, 169, 255, 0.16) 0%,
+        rgba(145, 169, 255, 0.08) 16%,
+        transparent 38%
+      ),
+      radial-gradient(
+        circle at 18% 68%,
+        rgba(111, 211, 255, 0.08) 0%,
+        transparent 28%
+      ),
+      url('/flagship-bg.png');
+    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+    background-size: auto, auto, auto, cover;
+    background-position: center, center, center, center center;
+    opacity: 0.42;
+    -webkit-mask-image: linear-gradient(
+      180deg,
+      transparent 0%,
+      transparent 22%,
+      rgba(0, 0, 0, 0.06) 28%,
+      rgba(0, 0, 0, 0.24) 34%,
+      rgba(0, 0, 0, 0.58) 42%,
+      rgba(0, 0, 0, 0.86) 52%,
+      #000 62%,
+      #000 100%
+    );
+    mask-image: linear-gradient(
+      180deg,
+      transparent 0%,
+      transparent 22%,
+      rgba(0, 0, 0, 0.06) 28%,
+      rgba(0, 0, 0, 0.24) 34%,
+      rgba(0, 0, 0, 0.58) 42%,
+      rgba(0, 0, 0, 0.86) 52%,
+      #000 62%,
+      #000 100%
+    );
+  }
+
+  .contact-section::before {
+    background:
+      radial-gradient(
+        circle at 22% 34%,
+        rgba(145, 169, 255, 0.14) 0%,
+        rgba(145, 169, 255, 0.06) 16%,
+        transparent 42%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.012) 0%,
+        rgba(255, 255, 255, 0) 100%
+      );
+    opacity: 0.9;
   }
 
   a {
@@ -677,6 +850,21 @@ const siteDescription =
     max-width: 920px;
     padding: 0 1.5rem;
     text-align: center;
+  }
+
+  .hero-entrance {
+    animation: heroEntrance 0.95s var(--ease-out) both;
+  }
+
+  @keyframes heroEntrance {
+    from {
+      opacity: 0;
+      transform: translate(-50%, calc(50% + 26px));
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, 50%);
+    }
   }
 
   .hero-eyebrow,
@@ -809,10 +997,10 @@ const siteDescription =
   .case-pipeline-image-card,
   .case-gallery-shell,
   .case-value-card {
-    border: 1px solid var(--line);
-    background: rgba(12, 20, 38, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    background: rgba(20, 31, 54, 0.8);
     box-shadow: var(--shadow);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(14px);
   }
 
   .about-photo-card {
@@ -840,15 +1028,16 @@ const siteDescription =
   .case-top-shell {
     position: relative;
     overflow: hidden;
-    border: 1px solid var(--line);
+    border: 1px solid rgba(255, 255, 255, 0.13);
     border-radius: 32px;
-    background:
-      linear-gradient(180deg, rgba(7, 16, 31, 0.42) 0%, rgba(7, 16, 31, 0.9) 100%),
-      url('/flagship-bg.jpg');
-    background-size: cover;
-    background-position: center center;
+    background: linear-gradient(
+      180deg,
+      rgba(18, 30, 54, 0.82) 0%,
+      rgba(18, 30, 54, 0.9) 100%
+    );
     box-shadow: var(--shadow);
     margin-bottom: 1.6rem;
+    backdrop-filter: blur(12px);
   }
 
   .case-top-shell::after {
@@ -882,6 +1071,58 @@ const siteDescription =
     padding: 2.6rem 2rem 1.95rem;
   }
 
+  .case-lower-shell {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    border-radius: 32px;
+    padding: 1.3rem 1.1rem 1.15rem;
+    margin-top: 0.15rem;
+  }
+
+  .case-lower-shell::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(
+        180deg,
+        rgba(14, 22, 38, 0.28) 0%,
+        rgba(14, 22, 38, 0.16) 100%
+      ),
+      radial-gradient(
+        circle at 14% 18%,
+        rgba(145, 169, 255, 0.07),
+        transparent 24%
+      ),
+      radial-gradient(
+        circle at 84% 30%,
+        rgba(111, 211, 255, 0.05),
+        transparent 22%
+      );
+    pointer-events: none;
+  }
+
+  .case-lower-shell::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 1px solid var(--line);
+    border-radius: inherit;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.015) 0%,
+      rgba(255, 255, 255, 0.008) 100%
+    );
+    box-shadow: var(--shadow-soft);
+    pointer-events: none;
+  }
+
+  .case-lower-shell > * {
+    position: relative;
+    z-index: 1;
+  }
+
   .case-header {
     max-width: 920px;
     margin: 0 auto 2rem;
@@ -903,7 +1144,7 @@ const siteDescription =
   .case-metric-card {
     border-radius: 22px;
     padding: 1rem 1.1rem;
-    background: rgba(5, 12, 26, 0.56);
+    background: rgba(22, 35, 61, 0.76);
     transition:
       transform 0.22s ease,
       border-color 0.22s ease,
@@ -929,6 +1170,7 @@ const siteDescription =
     font-size: 0.72rem;
     font-weight: 700;
     color: var(--accent-soft);
+    text-shadow: 0 0 18px rgba(145, 169, 255, 0.08);
   }
 
   .case-metric-card strong {
@@ -970,13 +1212,14 @@ const siteDescription =
     font-weight: 700;
     color: var(--accent-soft);
     opacity: 0.92;
+    text-shadow: 0 0 18px rgba(145, 169, 255, 0.08);
   }
 
   .case-problem-strip {
     border-radius: 28px;
     padding: 1.5rem;
     margin-bottom: 1.35rem;
-    background: rgba(9, 17, 34, 0.82);
+    background: rgba(23, 36, 62, 0.84);
     box-shadow: var(--shadow-soft);
   }
 
@@ -1028,6 +1271,7 @@ const siteDescription =
   .case-pipeline-image-card {
     border-radius: 28px;
     padding: 1.35rem;
+    background: rgba(18, 28, 48, 0.82);
     transition:
       transform 0.22s ease,
       border-color 0.22s ease;
@@ -1099,9 +1343,15 @@ const siteDescription =
   .case-gallery-shell {
     border-radius: 28px;
     padding: 1.05rem 1.05rem 1.15rem;
+    background: rgba(16, 27, 48, 0.86);
+    border: 1px solid rgba(145, 169, 255, 0.16);
+    box-shadow:
+      var(--shadow),
+      0 0 0 1px rgba(145, 169, 255, 0.04) inset;
     transition:
       transform 0.22s ease,
-      border-color 0.22s ease;
+      border-color 0.22s ease,
+      box-shadow 0.22s ease;
   }
 
   .case-gallery {
@@ -1117,7 +1367,17 @@ const siteDescription =
   .gallery-stage {
     border-radius: 20px;
     overflow: hidden;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.02));
+    background:
+      radial-gradient(
+        circle at 78% 30%,
+        rgba(145, 169, 255, 0.08),
+        transparent 26%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.06),
+        rgba(255, 255, 255, 0.03)
+      );
     padding: 1rem 4.75rem;
     text-align: center;
   }
@@ -1131,6 +1391,12 @@ const siteDescription =
     border-radius: 14px;
     cursor: zoom-in;
     margin: 0 auto;
+    transition: opacity 0.22s ease, transform 0.22s ease;
+  }
+
+  .gallery-stage.is-switching img {
+    opacity: 0.46;
+    transform: scale(0.992);
   }
 
   .gallery-arrow {
@@ -1215,6 +1481,12 @@ const siteDescription =
     text-align: center;
     max-width: 880px;
     margin: 0 auto;
+    transition: opacity 0.22s ease, transform 0.22s ease;
+  }
+
+  .gallery-meta.is-switching {
+    opacity: 0.58;
+    transform: translateY(4px);
   }
 
   .gallery-meta strong {
@@ -1222,12 +1494,13 @@ const siteDescription =
     margin-bottom: 0.35rem;
     font-size: 1rem;
     line-height: 1.2;
+    color: #f3f6ff;
   }
 
   .gallery-meta p {
     margin: 0;
     font-size: 0.96rem;
-    color: var(--muted);
+    color: #c7d2eb;
   }
 
   .case-value-grid {
@@ -1240,9 +1513,18 @@ const siteDescription =
   .case-value-card {
     border-radius: 24px;
     padding: 1.2rem;
+    background: rgba(18, 29, 50, 0.8);
     transition:
       transform 0.22s ease,
       border-color 0.22s ease;
+  }
+
+  .case-value-card:nth-child(2) {
+    background: rgba(21, 33, 56, 0.84);
+  }
+
+  .case-value-card:nth-child(3) {
+    background: rgba(17, 27, 46, 0.82);
   }
 
   .tag-row {
@@ -1350,6 +1632,33 @@ const siteDescription =
     margin: 0 auto;
   }
 
+  .reveal {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0);
+    transition:
+      opacity 0.72s var(--ease-out),
+      transform 0.72s var(--ease-out);
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, transform;
+  }
+
+  .reveal-left {
+    transform: translate3d(-36px, 0, 0);
+  }
+
+  .reveal-right {
+    transform: translate3d(36px, 0, 0);
+  }
+
+  .reveal-scale {
+    transform: translate3d(0, 28px, 0) scale(0.985);
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
   @media (max-width: 980px) {
     .case-metrics-grid,
     .case-value-grid,
@@ -1360,6 +1669,10 @@ const siteDescription =
 
     .case-top-inner {
       padding: 2rem 1.25rem 1.45rem;
+    }
+
+    .case-lower-shell {
+      padding: 1rem 0.8rem 0.95rem;
     }
 
     .case-pipeline-grid {
@@ -1381,6 +1694,33 @@ const siteDescription =
     .contact-card {
       flex-direction: column;
       align-items: flex-start;
+    }
+
+    .about-section::before,
+    .contact-section::before {
+      opacity: 0.78;
+    }
+
+    .case-section::before {
+      opacity: 0.32;
+      -webkit-mask-image: linear-gradient(
+        180deg,
+        transparent 0%,
+        transparent 28%,
+        rgba(0, 0, 0, 0.18) 38%,
+        rgba(0, 0, 0, 0.62) 50%,
+        #000 62%,
+        #000 100%
+      );
+      mask-image: linear-gradient(
+        180deg,
+        transparent 0%,
+        transparent 28%,
+        rgba(0, 0, 0, 0.18) 38%,
+        rgba(0, 0, 0, 0.62) 50%,
+        #000 62%,
+        #000 100%
+      );
     }
   }
 
@@ -1454,6 +1794,43 @@ const siteDescription =
 
     #pipeline-modal .media-modal-dialog img {
       width: 100%;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    .hero-entrance {
+      animation: none;
+    }
+
+    .reveal,
+    .reveal-left,
+    .reveal-right,
+    .reveal-scale {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+
+    .gallery-stage img,
+    .gallery-meta {
+      transition: none;
+    }
+
+    .button,
+    .gallery-thumb,
+    .gallery-arrow,
+    .media-open-btn,
+    .case-metric-card,
+    .case-value-card,
+    .case-pipeline-copy,
+    .case-pipeline-image-card,
+    .case-gallery-shell,
+    .case-problem-strip {
+      transition: none;
     }
   }
 </style>

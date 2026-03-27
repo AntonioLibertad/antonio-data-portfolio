@@ -1,48 +1,7 @@
 ---
-const siteTitle = "Antonio González Martín | Data Science & Business Analytics";
+const siteTitle = "Antonio González Martín | Data Portfolio";
 const siteDescription =
-  "Portfolio website focused on applied analytics, decision support, and business-facing data projects.";
-
-const proofPoints = [
-  "Data Science + Business Analytics background",
-  "Business-oriented analytical mindset",
-  "Python, SQL, Power BI",
-  "End-to-end SME decision-support project",
-];
-
-const capabilities = [
-  {
-    title: "Data preparation & quality",
-    text: "Cleaning, structuring, validating, and standardizing commercial data so analysis can be trusted and reused.",
-  },
-  {
-    title: "Analytics & modeling",
-    text: "Exploratory analysis, customer segmentation, association rules, and explainable recommendation logic.",
-  },
-  {
-    title: "BI & reporting",
-    text: "Clear dashboards, KPI-focused reporting, and outputs designed to support real business decisions.",
-  },
-  {
-    title: "Decision support",
-    text: "Turning data work into useful systems, not just isolated analyses: from inputs to actionable outputs.",
-  },
-];
-
-const roleFit = [
-  {
-    title: "Data Scientist",
-    text: "Applied analytical work with business context, structured data workflows, and practical model-driven outputs.",
-  },
-  {
-    title: "Business Analyst",
-    text: "Strong fit for translating data into decisions, commercial insights, reporting, and operational recommendations.",
-  },
-  {
-    title: "Data Analyst",
-    text: "Solid grounding in data preparation, KPI analysis, dashboarding, and insight generation for business use cases.",
-  },
-];
+  "Portfolio focused on applied analytics, decision support, and business-facing data projects.";
 ---
 
 <html lang="en">
@@ -59,9 +18,8 @@ const roleFit = [
         <a href="#" class="brand">Antonio González Martín</a>
 
         <nav class="nav-links">
-          <a href="#flagship">Project</a>
-          <a href="#capabilities">Capabilities</a>
-          <a href="#background">Background</a>
+          <a href="#about">About</a>
+          <a href="#flagship">Flagship Project</a>
           <a href="#contact">Contact</a>
         </nav>
       </div>
@@ -69,180 +27,498 @@ const roleFit = [
 
     <main>
       <section class="hero">
-        <div class="container hero-grid">
-          <div>
-            <p class="eyebrow">Data Science · Business Analytics · Data Analytics</p>
-            <h1>
-              Turning commercial data into decision-ready analysis, reporting, and practical business tools.
-            </h1>
-            <p class="hero-copy">
-              I build business-facing analytics projects that connect data preparation, structured analysis,
-              and clear outputs for decision-making.
-            </p>
-
-            <div class="hero-actions">
-              <a class="button button-primary" href="#flagship">View flagship project</a>
-              <a class="button button-secondary" href="#contact">Get in touch</a>
-            </div>
-          </div>
-
-          <aside class="hero-panel">
-            <p class="panel-label">Current focus</p>
-            <h2>Applied analytics for real business use cases</h2>
-            <p>
-              My strongest project centers on an SME decision-support system combining data integration,
-              quality control, customer analytics, explainable recommendations, dashboarding, and an automated pipeline.
-            </p>
-          </aside>
-        </div>
-      </section>
-
-      <section class="proof-strip">
-        <div class="container proof-grid">
-          {proofPoints.map((item) => (
-            <div class="proof-item">{item}</div>
-          ))}
-        </div>
-      </section>
-
-      <section id="flagship" class="section">
         <div class="container">
-          <div class="section-heading">
-            <p class="eyebrow">Flagship project</p>
-            <h2>Commercial Decision-Support System for SMEs</h2>
-            <p>
-              A business-focused data project designed to help SMEs turn fragmented commercial data into
-              usable analysis and decision-support outputs.
-            </p>
-          </div>
+          <div class="hero-shell">
+            <div class="hero-overlay"></div>
 
-          <div class="feature-card">
-            <div class="feature-copy">
-              <h3>What it includes</h3>
-              <ul class="feature-list">
-                <li>Data integration and preparation</li>
-                <li>Quality control and validation workflow</li>
-                <li>Exploratory analysis of sales and customer behavior</li>
-                <li>Customer segmentation and product association analysis</li>
-                <li>Explainable recommendation logic</li>
-                <li>Power BI dashboard and automated end-to-end pipeline</li>
-              </ul>
-            </div>
-
-            <div class="feature-copy">
-              <h3>Why it matters</h3>
-              <p>
-                This project reflects the kind of work I want to keep doing: building analytical systems
-                that are technically solid, commercially relevant, and useful for real decision-making.
+            <div class="hero-content">
+              <p class="hero-eyebrow">Data Science · Business Analytics · Data Analytics</p>
+              <h1>Turning data into business decisions.</h1>
+              <p class="hero-subtitle">
+                Applied analytics, decision support, and business-facing data projects built around
+                real commercial use cases.
               </p>
 
-              <div class="mini-tags">
-                <span>Python</span>
-                <span>SQL</span>
-                <span>Power BI</span>
-                <span>Analytics</span>
-                <span>Decision Support</span>
+              <div class="hero-actions">
+                <a class="button button-primary" href="#flagship">View flagship project</a>
+                <a class="button button-secondary" href="#about">About me</a>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="capabilities" class="section section-muted">
-        <div class="container">
-          <div class="section-heading">
-            <p class="eyebrow">Selected capabilities</p>
-            <h2>What I bring to analytical roles</h2>
-            <p>
-              A profile that combines structured analytical work with business context and decision-oriented thinking.
-            </p>
+      <section id="about" class="section about-section">
+        <div class="container about-grid">
+          <div class="about-photo-card">
+            <img src="/profile.jpg" alt="Portrait of Antonio González Martín" loading="lazy" />
           </div>
 
-          <div class="card-grid">
-            {capabilities.map((item) => (
-              <article class="card">
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
-              </article>
-            ))}
+          <div class="about-copy">
+            <p class="section-label">About me</p>
+            <h2>Analytics with business context.</h2>
+
+            <p class="lead">
+              I build business-facing analytics that turn commercial data into clearer decisions,
+              structured visibility, and more useful reporting.
+            </p>
+
+            <p>
+              My background combines recent training in Data Science and Business Analytics with a
+              strong interest in solving real business problems through structured analytical work.
+            </p>
+
+            <p>
+              I am especially interested in projects where data is not only explored, but translated
+              into tools, decision-support systems, and outputs that companies can actually use.
+            </p>
+
+            <div class="about-actions">
+              <a
+                class="button button-primary"
+                href="/resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Download resume
+              </a>
+              <a
+                class="button button-secondary"
+                href="https://www.linkedin.com/in/REPLACE-WITH-YOUR-LINKEDIN/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                LinkedIn
+              </a>
+              <a class="button button-secondary" href="mailto:your@email.com">
+                Email
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
-      <section class="section">
+      <section id="flagship" class="section case-section">
         <div class="container">
-          <div class="section-heading">
-            <p class="eyebrow">Where I fit</p>
-            <h2>One profile, multiple role fits</h2>
-            <p>
-              I do not see these as disconnected paths, but as different entry points into the same core value:
-              using data to support better business decisions.
-            </p>
+          <div class="case-top-shell">
+            <div class="case-top-overlay"></div>
+
+            <div class="case-top-inner">
+              <div class="case-header">
+                <p class="section-label">Flagship project</p>
+                <h2>From fragmented commercial data to a usable decision-support system for SMEs.</h2>
+                <p class="case-intro">
+                  This master’s project was built around a real business need: turning scattered
+                  commercial data into a practical system for visibility, analysis, and decision-making.
+                </p>
+              </div>
+
+              <div class="case-metrics-grid">
+                <article class="case-metric-card">
+                  <span class="case-summary-label">Context</span>
+                  <strong>Real SME use case</strong>
+                  <p>Designed around an actual business problem rather than a purely academic exercise.</p>
+                </article>
+
+                <article class="case-metric-card">
+                  <span class="case-summary-label">Build</span>
+                  <strong>End-to-end workflow</strong>
+                  <p>From raw data and validation to dashboarding, analytical outputs, and recommendations.</p>
+                </article>
+
+                <article class="case-metric-card">
+                  <span class="case-summary-label">Outcome</span>
+                  <strong>Business-facing decision support</strong>
+                  <p>Created to improve visibility, support action, and make commercial decisions clearer.</p>
+                </article>
+              </div>
+            </div>
           </div>
 
-          <div class="card-grid">
-            {roleFit.map((item) => (
-              <article class="card">
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
-              </article>
-            ))}
+          <div class="case-transition" aria-hidden="true">
+            <span class="case-transition-line"></span>
+            <span class="case-transition-label">Project foundation</span>
+            <span class="case-transition-line"></span>
+          </div>
+
+          <div class="case-problem-strip">
+            <div class="case-problem-copy">
+              <p class="case-kicker">The starting point</p>
+              <h3>Different channels, different data, no single decision-support layer.</h3>
+              <p>
+                Sales, customers, and product data were spread across multiple operational sources.
+                The challenge was not only to analyse the data, but to transform it into something
+                structured, reliable, and actually useful for business decisions.
+              </p>
+            </div>
+
+            <div class="case-chip-row">
+              <span class="case-chip">WinOmega ERP</span>
+              <span class="case-chip">PrestaShop</span>
+              <span class="case-chip">eBay</span>
+              <span class="case-chip">Miravia</span>
+              <span class="case-chip">Commercial Reporting</span>
+            </div>
+          </div>
+
+          <div class="case-pipeline-grid">
+            <div class="case-pipeline-copy">
+              <p class="case-kicker">How the system works</p>
+              <h3>One pipeline, one analytical layer, multiple business-facing outputs.</h3>
+              <p>
+                The project combined data ingestion, cleaning, quality control, harmonisation, and
+                analytical modelling into a structured workflow capable of supporting reporting,
+                segmentation, recommendation logic, and decision-ready outputs.
+              </p>
+
+              <ul class="case-list">
+                <li>Data integration across multiple business sources</li>
+                <li>Validation and quality-control checks</li>
+                <li>Standardised analytical dataset creation</li>
+                <li>Customer and commercial analysis</li>
+                <li>Dashboard-ready and recommendation-ready outputs</li>
+              </ul>
+            </div>
+
+            <figure class="case-pipeline-image-card">
+              <button type="button" class="media-open-btn" id="open-pipeline-modal">
+                Open schema
+              </button>
+
+              <div class="case-pipeline-preview">
+                <img
+                  src="/pipeline-schema.png"
+                  alt="Pipeline schema of the analytical workflow"
+                  loading="lazy"
+                />
+              </div>
+            </figure>
+          </div>
+
+          <div class="case-visuals">
+            <div class="case-visuals-heading">
+              <p class="case-kicker">Visual proof</p>
+              <h3>What the system actually produces</h3>
+              <p>
+                Each dashboard view supports a different layer of decision-making: overview, diagnosis,
+                customer understanding, and next-best commercial action.
+              </p>
+            </div>
+
+            <div class="case-gallery-shell">
+              <div class="case-gallery">
+                <div class="gallery-stage-wrap">
+                  <button type="button" class="gallery-arrow" id="gallery-prev" aria-label="Previous image">
+                    ←
+                  </button>
+
+                  <div class="gallery-stage">
+                    <img
+                      id="dashboard-gallery-image"
+                      src="/dashboard-overview.png"
+                      alt="General business overview dashboard"
+                    />
+                  </div>
+
+                  <button type="button" class="gallery-arrow" id="gallery-next" aria-label="Next image">
+                    →
+                  </button>
+                </div>
+
+                <div class="gallery-thumbs">
+                  <button
+                    type="button"
+                    class="gallery-thumb is-active"
+                    data-gallery-index="0"
+                    aria-pressed="true"
+                  >
+                    Overview
+                  </button>
+                  <button
+                    type="button"
+                    class="gallery-thumb"
+                    data-gallery-index="1"
+                    aria-pressed="false"
+                  >
+                    Segmentation
+                  </button>
+                  <button
+                    type="button"
+                    class="gallery-thumb"
+                    data-gallery-index="2"
+                    aria-pressed="false"
+                  >
+                    Trends
+                  </button>
+                  <button
+                    type="button"
+                    class="gallery-thumb"
+                    data-gallery-index="3"
+                    aria-pressed="false"
+                  >
+                    Recommendations
+                  </button>
+                </div>
+
+                <div class="gallery-meta" aria-live="polite">
+                  <strong id="dashboard-gallery-title">General business overview</strong>
+                  <p id="dashboard-gallery-caption">
+                    A high-level commercial view of revenue, customers, repeat purchasing, ticket size,
+                    and channel distribution.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="case-value-grid">
+            <div class="case-value-card">
+              <p class="case-kicker">Business problem</p>
+              <h3>Data existed, but visibility did not.</h3>
+              <p>
+                The project addressed a common SME problem: having commercial data available, but lacking
+                a structured system to convert it into useful visibility and decisions.
+              </p>
+            </div>
+
+            <div class="case-value-card">
+              <p class="case-kicker">Technical execution</p>
+              <h3>More than a dashboard.</h3>
+              <p>
+                It required data engineering, validation logic, analytical modelling, dashboard design,
+                and the creation of outputs that could actually be reused and scaled.
+              </p>
+            </div>
+
+            <div class="case-value-card">
+              <p class="case-kicker">Business value</p>
+              <h3>Designed for action.</h3>
+              <p>
+                The final objective was not just insight generation, but helping a business see more clearly,
+                prioritise better, and act with more confidence.
+              </p>
+            </div>
+          </div>
+
+          <div class="tag-row flagship-tags">
+            <span>Python</span>
+            <span>SQL</span>
+            <span>Power BI</span>
+            <span>Data Pipeline</span>
+            <span>Customer Segmentation</span>
+            <span>Association Rules</span>
+            <span>Recommendation Logic</span>
+            <span>Decision Support</span>
           </div>
         </div>
-      </section>
 
-      <section id="background" class="section section-muted">
-        <div class="container narrow">
-          <div class="section-heading">
-            <p class="eyebrow">Background</p>
-            <h2>Analytics with commercial context</h2>
+        <div class="media-modal" id="pipeline-modal">
+          <div class="media-modal-dialog media-modal-dialog--large">
+            <button type="button" class="media-modal-close" data-close-modal>×</button>
+            <img src="/pipeline-schema.png" alt="Pipeline schema of the analytical workflow" />
           </div>
+        </div>
 
-          <p class="body-large">
-            My background combines recent training in Data Science and Business Analytics with previous
-            exposure to marketing, growth, performance, and applied business analysis.
-          </p>
-          <p>
-            That combination shapes how I approach projects: not as isolated technical exercises, but as
-            tools to answer relevant business questions, improve visibility, and support action.
-          </p>
+        <div class="media-modal" id="gallery-modal">
+          <div class="media-modal-dialog media-modal-dialog--large">
+            <button type="button" class="media-modal-close" data-close-modal>×</button>
+            <img id="gallery-modal-image" src="/dashboard-overview.png" alt="General business overview dashboard" />
+            <div class="media-modal-caption">
+              <strong id="gallery-modal-title">General business overview</strong>
+              <p id="gallery-modal-text">
+                A high-level commercial view of revenue, customers, repeat purchasing, ticket size, and channel distribution.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
       <section id="contact" class="section contact-section">
-        <div class="container contact-card">
-          <div>
-            <p class="eyebrow">Contact</p>
-            <h2>Interested in my profile?</h2>
-            <p>
-              I am building this portfolio to showcase applied analytics work with real business relevance.
-            </p>
-          </div>
+        <div class="container">
+          <div class="contact-card">
+            <div>
+              <p class="section-label">Contact</p>
+              <h2>Interested in my profile?</h2>
+              <p>
+                I am currently positioning myself for Data Scientist, Business Analyst, and Data Analyst
+                roles focused on applied analytics, business understanding, and decision support.
+              </p>
+            </div>
 
-          <div class="contact-actions">
-            <a class="button button-primary" href="mailto:antonio.business444@gmail.com">Email me</a>
-            <a class="button button-secondary" href="www.linkedin.com/in/antonio-gonzalez-189963224">LinkedIn</a>
+            <div class="hero-actions contact-actions">
+              <a class="button button-primary" href="mailto:your@email.com">Email me</a>
+              <a
+                class="button button-secondary"
+                href="https://www.linkedin.com/in/REPLACE-WITH-YOUR-LINKEDIN/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                LinkedIn
+              </a>
+            </div>
           </div>
         </div>
       </section>
     </main>
+
+    <script is:inline>
+      const galleryItems = [
+        {
+          src: "/dashboard-overview.png",
+          alt: "General business overview dashboard",
+          title: "General business overview",
+          caption:
+            "A high-level commercial view of revenue, customers, repeat purchasing, ticket size, and channel distribution.",
+        },
+        {
+          src: "/dashboard-segmentation.png",
+          alt: "Customer segmentation dashboard",
+          title: "Customer segmentation",
+          caption:
+            "Segment-level visibility to understand revenue concentration, customer mix, and reactivation opportunities.",
+        },
+        {
+          src: "/dashboard-trends.png",
+          alt: "Trend analysis dashboard",
+          title: "Trends and drivers",
+          caption:
+            "Month-over-month and year-over-year performance tracking to explain changes and identify commercial drivers.",
+        },
+        {
+          src: "/dashboard-recommendations.png",
+          alt: "Recommendation system dashboard",
+          title: "Recommendations and actionability",
+          caption:
+            "An explainable recommendation layer designed to move the project beyond reporting and towards practical decision support.",
+        },
+      ];
+
+      let currentGalleryIndex = 0;
+
+      const galleryImage = document.getElementById("dashboard-gallery-image");
+      const galleryTitle = document.getElementById("dashboard-gallery-title");
+      const galleryCaption = document.getElementById("dashboard-gallery-caption");
+      const galleryPrev = document.getElementById("gallery-prev");
+      const galleryNext = document.getElementById("gallery-next");
+      const galleryThumbs = Array.from(document.querySelectorAll(".gallery-thumb"));
+      const openPipelineModalBtn = document.getElementById("open-pipeline-modal");
+
+      const galleryModal = document.getElementById("gallery-modal");
+      const pipelineModal = document.getElementById("pipeline-modal");
+      const galleryModalImage = document.getElementById("gallery-modal-image");
+      const galleryModalTitle = document.getElementById("gallery-modal-title");
+      const galleryModalText = document.getElementById("gallery-modal-text");
+
+      function renderGallery(index) {
+        currentGalleryIndex = index;
+        const item = galleryItems[index];
+
+        if (galleryImage) {
+          galleryImage.src = item.src;
+          galleryImage.alt = item.alt;
+        }
+
+        if (galleryTitle) galleryTitle.textContent = item.title;
+        if (galleryCaption) galleryCaption.textContent = item.caption;
+
+        if (galleryModalImage) {
+          galleryModalImage.src = item.src;
+          galleryModalImage.alt = item.alt;
+        }
+
+        if (galleryModalTitle) galleryModalTitle.textContent = item.title;
+        if (galleryModalText) galleryModalText.textContent = item.caption;
+
+        galleryThumbs.forEach((thumb, thumbIndex) => {
+          const isActive = thumbIndex === index;
+          thumb.classList.toggle("is-active", isActive);
+          thumb.setAttribute("aria-pressed", isActive ? "true" : "false");
+        });
+      }
+
+      function openModal(modal) {
+        if (!modal) return;
+        modal.classList.add("is-open");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeModal(modal) {
+        if (!modal) return;
+        modal.classList.remove("is-open");
+        document.body.style.overflow = "";
+      }
+
+      function goToPreviousGalleryItem() {
+        const nextIndex = (currentGalleryIndex - 1 + galleryItems.length) % galleryItems.length;
+        renderGallery(nextIndex);
+      }
+
+      function goToNextGalleryItem() {
+        const nextIndex = (currentGalleryIndex + 1) % galleryItems.length;
+        renderGallery(nextIndex);
+      }
+
+      galleryPrev?.addEventListener("click", goToPreviousGalleryItem);
+      galleryNext?.addEventListener("click", goToNextGalleryItem);
+
+      galleryThumbs.forEach((thumb, index) => {
+        thumb.addEventListener("click", () => renderGallery(index));
+      });
+
+      galleryImage?.addEventListener("click", () => {
+        renderGallery(currentGalleryIndex);
+        openModal(galleryModal);
+      });
+
+      openPipelineModalBtn?.addEventListener("click", () => {
+        openModal(pipelineModal);
+      });
+
+      document.querySelectorAll("[data-close-modal]").forEach((button) => {
+        button.addEventListener("click", () => {
+          closeModal(button.closest(".media-modal"));
+        });
+      });
+
+      document.querySelectorAll(".media-modal").forEach((modal) => {
+        modal.addEventListener("click", (event) => {
+          if (event.target === modal) {
+            closeModal(modal);
+          }
+        });
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          closeModal(galleryModal);
+          closeModal(pipelineModal);
+        }
+
+        if (event.key === "ArrowLeft") {
+          goToPreviousGalleryItem();
+        }
+
+        if (event.key === "ArrowRight") {
+          goToNextGalleryItem();
+        }
+      });
+
+      renderGallery(0);
+    </script>
   </body>
 </html>
 
 <style>
   :root {
-    --bg: #0b1020;
-    --bg-soft: #121933;
-    --panel: #161f3f;
+    --bg: #07101f;
     --text: #edf2ff;
-    --muted: #aeb9d6;
-    --line: rgba(255, 255, 255, 0.08);
-    --accent: #7c9cff;
-    --accent-2: #c9d5ff;
-    --white: #ffffff;
-    --shadow: 0 20px 60px rgba(0, 0, 0, 0.28);
-    --radius: 22px;
-    --max: 1120px;
+    --muted: #b5c1dc;
+    --line: rgba(255, 255, 255, 0.1);
+    --accent: #91a9ff;
+    --accent-soft: #d8e0ff;
+    --shadow: 0 20px 55px rgba(0, 0, 0, 0.24);
+    --shadow-soft: 0 12px 30px rgba(0, 0, 0, 0.18);
+    --max: 1180px;
   }
 
   * {
@@ -256,11 +532,42 @@ const roleFit = [
   body {
     margin: 0;
     font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    background:
-      radial-gradient(circle at top left, rgba(124, 156, 255, 0.18), transparent 32%),
-      linear-gradient(180deg, #0a0f1e 0%, #0d1327 100%);
     color: var(--text);
-    line-height: 1.6;
+    background:
+      radial-gradient(circle at top left, rgba(145, 169, 255, 0.1), transparent 28%),
+      linear-gradient(180deg, #06101d 0%, #08111f 55%, #08111f 100%);
+    line-height: 1.65;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 1450px;
+    background-image:
+      linear-gradient(
+        180deg,
+        rgba(6, 16, 29, 0.06) 0%,
+        rgba(6, 16, 29, 0.14) 28%,
+        rgba(6, 16, 29, 0.34) 48%,
+        rgba(6, 16, 29, 0.72) 68%,
+        rgba(6, 16, 29, 0.94) 82%,
+        rgba(6, 16, 29, 1) 100%
+      ),
+      url('/hero-bg.png');
+    background-repeat: no-repeat, no-repeat;
+    background-size: auto, cover;
+    background-position: center top, center -360px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  main,
+  .site-header {
+    position: relative;
+    z-index: 1;
   }
 
   a {
@@ -268,29 +575,30 @@ const roleFit = [
     text-decoration: none;
   }
 
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
   .container {
     width: min(var(--max), calc(100% - 2rem));
     margin: 0 auto;
   }
 
-  .narrow {
-    max-width: 760px;
-  }
-
   .site-header {
     position: sticky;
     top: 0;
-    z-index: 20;
+    z-index: 30;
     backdrop-filter: blur(16px);
-    background: rgba(10, 15, 30, 0.72);
+    background: rgba(6, 16, 29, 0.7);
     border-bottom: 1px solid var(--line);
   }
 
   .nav {
+    min-height: 78px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    min-height: 76px;
     gap: 1rem;
   }
 
@@ -301,56 +609,105 @@ const roleFit = [
 
   .nav-links {
     display: flex;
-    gap: 1.25rem;
+    gap: 1.5rem;
     color: var(--muted);
     font-size: 0.95rem;
   }
 
+  .nav-links a {
+    transition: color 0.18s ease;
+  }
+
   .nav-links a:hover {
-    color: var(--white);
+    color: var(--text);
+  }
+
+  .nav-links a:focus-visible,
+  .brand:focus-visible,
+  .button:focus-visible,
+  .gallery-thumb:focus-visible,
+  .gallery-arrow:focus-visible,
+  .media-open-btn:focus-visible,
+  .media-modal-close:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
   }
 
   .hero {
-    padding: 5.5rem 0 3rem;
+    padding: 0.2rem 0 1.2rem;
   }
 
-  .hero-grid {
-    display: grid;
-    grid-template-columns: 1.3fr 0.7fr;
-    gap: 1.5rem;
-    align-items: stretch;
+  .hero-shell {
+    position: relative;
+    min-height: 560px;
+    border-radius: 0;
+    overflow: visible;
+    background: none;
+    box-shadow: none;
+    border: none;
   }
 
-  .eyebrow {
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(
+        90deg,
+        rgba(6, 13, 28, 0.88) 0%,
+        rgba(8, 16, 33, 0.66) 28%,
+        rgba(8, 16, 33, 0.28) 52%,
+        rgba(8, 16, 33, 0.06) 72%,
+        rgba(8, 16, 33, 0) 100%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(6, 13, 28, 0.1) 0%,
+        rgba(6, 13, 28, 0.18) 60%,
+        rgba(6, 13, 28, 0.34) 100%
+      );
+  }
+
+  .hero-content {
+    position: absolute;
+    left: 50%;
+    bottom: 50%;
+    transform: translate(-50%, 50%);
+    z-index: 2;
+    width: 100%;
+    max-width: 920px;
+    padding: 0 1.5rem;
+    text-align: center;
+  }
+
+  .hero-eyebrow,
+  .section-label {
     margin: 0 0 0.9rem;
-    color: var(--accent-2);
     text-transform: uppercase;
     letter-spacing: 0.12em;
-    font-size: 0.78rem;
+    font-size: 0.76rem;
     font-weight: 700;
+    color: var(--accent-soft);
   }
 
   h1,
-  h2,
-  h3 {
+  h2 {
     margin: 0;
-    letter-spacing: -0.03em;
-    line-height: 1.08;
+    line-height: 1.05;
+    letter-spacing: -0.04em;
   }
 
   h1 {
-    font-size: clamp(2.7rem, 6vw, 4.8rem);
-    max-width: 12ch;
+    font-size: clamp(2.8rem, 5.6vw, 4.8rem);
+    max-width: 9.5ch;
+    margin-left: auto;
+    margin-right: auto;
+    text-wrap: balance;
   }
 
   h2 {
-    font-size: clamp(1.8rem, 3vw, 2.8rem);
-    margin-bottom: 0.9rem;
-  }
-
-  h3 {
-    font-size: 1.15rem;
-    margin-bottom: 0.7rem;
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 1rem;
+    text-wrap: balance;
   }
 
   p {
@@ -358,54 +715,58 @@ const roleFit = [
     color: var(--muted);
   }
 
-  .hero-copy {
+  .hero-subtitle {
+    font-size: 1.05rem;
+    max-width: 700px;
+    margin: 1rem auto 0;
+  }
+
+  .hero-content h1,
+  .hero-content p,
+  .hero-content .hero-eyebrow {
+    text-shadow: 0 8px 30px rgba(0, 0, 0, 0.28);
+  }
+
+  .lead {
     font-size: 1.1rem;
-    max-width: 62ch;
-    margin-top: 1.25rem;
-  }
-
-  .hero-panel,
-  .feature-card,
-  .card,
-  .contact-card,
-  .proof-item {
-    border: 1px solid var(--line);
-    background: rgba(22, 31, 63, 0.7);
-    box-shadow: var(--shadow);
-  }
-
-  .hero-panel {
-    padding: 1.4rem;
-    border-radius: var(--radius);
-    align-self: end;
-  }
-
-  .panel-label {
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--accent-2);
-    font-weight: 700;
-    margin-bottom: 0.65rem;
+    color: var(--text);
   }
 
   .hero-actions,
+  .about-actions,
   .contact-actions {
     display: flex;
+    align-items: center;
+    gap: 0.9rem;
     flex-wrap: wrap;
-    gap: 0.85rem;
-    margin-top: 1.6rem;
+  }
+
+  .hero-actions {
+    margin-top: 1.2rem;
+    justify-content: center;
+  }
+
+  .about-actions {
+    margin-top: 1.35rem;
+  }
+
+  .contact-actions {
+    justify-content: flex-start;
   }
 
   .button {
+    min-height: 50px;
+    padding: 0 1.2rem;
+    border-radius: 999px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 46px;
-    padding: 0 1rem;
-    border-radius: 999px;
     font-weight: 700;
-    transition: transform 0.18s ease, opacity 0.18s ease, border-color 0.18s ease;
+    transition:
+      transform 0.18s ease,
+      background 0.18s ease,
+      border-color 0.18s ease,
+      box-shadow 0.18s ease;
   }
 
   .button:hover {
@@ -414,123 +775,612 @@ const roleFit = [
 
   .button-primary {
     background: var(--accent);
-    color: #0a1024;
+    color: #081122;
+    box-shadow: 0 10px 24px rgba(145, 169, 255, 0.18);
+  }
+
+  .button-primary:hover {
+    box-shadow: 0 14px 30px rgba(145, 169, 255, 0.24);
   }
 
   .button-secondary {
-    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.16);
     color: var(--text);
-    background: rgba(255, 255, 255, 0.03);
-  }
-
-  .proof-strip {
-    padding: 1rem 0 0;
-  }
-
-  .proof-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0.85rem;
-  }
-
-  .proof-item {
-    border-radius: 18px;
-    padding: 1rem;
-    text-align: center;
-    color: var(--accent-2);
-    font-weight: 600;
-    font-size: 0.95rem;
   }
 
   .section {
-    padding: 5.25rem 0;
+    padding: 4.5rem 0;
+    scroll-margin-top: 100px;
   }
 
-  .section-muted {
-    background: rgba(255, 255, 255, 0.02);
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-  }
-
-  .section-heading {
-    max-width: 760px;
-    margin-bottom: 2rem;
-  }
-
-  .feature-card {
-    border-radius: 28px;
-    padding: 1.5rem;
+  .about-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.4rem;
+    grid-template-columns: 260px 1fr;
+    gap: 2.8rem;
+    align-items: start;
   }
 
-  .feature-list {
-    margin: 1rem 0 0;
-    padding-left: 1.1rem;
-    color: var(--muted);
+  .about-photo-card,
+  .contact-card,
+  .case-metric-card,
+  .case-problem-strip,
+  .case-pipeline-copy,
+  .case-pipeline-image-card,
+  .case-gallery-shell,
+  .case-value-card {
+    border: 1px solid var(--line);
+    background: rgba(12, 20, 38, 0.72);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(10px);
   }
 
-  .feature-list li {
-    margin-bottom: 0.65rem;
+  .about-photo-card {
+    border-radius: 24px;
+    overflow: hidden;
+    max-width: 260px;
   }
 
-  .mini-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.65rem;
-    margin-top: 1rem;
+  .about-photo-card img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
   }
 
-  .mini-tags span {
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 999px;
-    padding: 0.45rem 0.8rem;
-    color: var(--accent-2);
-    font-size: 0.9rem;
+  .about-copy {
+    max-width: 820px;
+    padding-top: 0.6rem;
   }
 
-  .card-grid {
+  .case-section {
+    padding-top: 5.4rem;
+    padding-bottom: 5.4rem;
+  }
+
+  .case-top-shell {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 32px;
+    background:
+      linear-gradient(180deg, rgba(7, 16, 31, 0.42) 0%, rgba(7, 16, 31, 0.9) 100%),
+      url('/flagship-bg.jpg');
+    background-size: cover;
+    background-position: center center;
+    box-shadow: var(--shadow);
+    margin-bottom: 1.6rem;
+  }
+
+  .case-top-shell::after {
+    content: "";
+    position: absolute;
+    inset: auto -10% -30% auto;
+    width: 380px;
+    height: 380px;
+    background: radial-gradient(circle, rgba(145, 169, 255, 0.16), transparent 68%);
+    pointer-events: none;
+    filter: blur(8px);
+  }
+
+  .case-top-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(
+        180deg,
+        rgba(5, 11, 24, 0.18) 0%,
+        rgba(6, 13, 28, 0.34) 28%,
+        rgba(6, 13, 28, 0.7) 64%,
+        rgba(6, 13, 28, 0.92) 100%
+      );
+    pointer-events: none;
+  }
+
+  .case-top-inner {
+    position: relative;
+    z-index: 1;
+    padding: 2.6rem 2rem 1.95rem;
+  }
+
+  .case-header {
+    max-width: 920px;
+    margin: 0 auto 2rem;
+    text-align: center;
+  }
+
+  .case-intro {
+    max-width: 780px;
+    margin: 0 auto;
+    font-size: 1.08rem;
+  }
+
+  .case-metrics-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
   }
 
-  .card {
+  .case-metric-card {
     border-radius: 22px;
+    padding: 1rem 1.1rem;
+    background: rgba(5, 12, 26, 0.56);
+    transition:
+      transform 0.22s ease,
+      border-color 0.22s ease,
+      background 0.22s ease;
+  }
+
+  .case-metric-card:hover,
+  .case-value-card:hover,
+  .case-pipeline-copy:hover,
+  .case-pipeline-image-card:hover,
+  .case-gallery-shell:hover,
+  .case-problem-strip:hover {
+    transform: translateY(-2px);
+    border-color: rgba(145, 169, 255, 0.24);
+  }
+
+  .case-summary-label,
+  .case-kicker {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--accent-soft);
+  }
+
+  .case-metric-card strong {
+    display: block;
+    margin-bottom: 0.35rem;
+    font-size: 1.05rem;
+    line-height: 1.2;
+  }
+
+  .case-metric-card p {
+    margin: 0;
+    font-size: 0.95rem;
+  }
+
+  .case-transition {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    margin: 0 auto 1.45rem;
+    max-width: 760px;
+  }
+
+  .case-transition-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0),
+      rgba(145, 169, 255, 0.28),
+      rgba(255, 255, 255, 0)
+    );
+  }
+
+  .case-transition-label {
+    flex: none;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: var(--accent-soft);
+    opacity: 0.92;
+  }
+
+  .case-problem-strip {
+    border-radius: 28px;
+    padding: 1.5rem;
+    margin-bottom: 1.35rem;
+    background: rgba(9, 17, 34, 0.82);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .case-problem-copy {
+    max-width: 840px;
+    margin-bottom: 1rem;
+  }
+
+  .case-problem-copy h3,
+  .case-pipeline-copy h3,
+  .case-visuals-heading h3,
+  .case-value-card h3 {
+    margin: 0 0 0.8rem;
+    font-size: 1.45rem;
+    line-height: 1.14;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+  }
+
+  .case-chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .case-chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    padding: 0 0.9rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--accent-soft);
+    font-weight: 600;
+    font-size: 0.92rem;
+  }
+
+  .case-pipeline-grid {
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 1.2rem;
+    margin-bottom: 1.6rem;
+    align-items: start;
+  }
+
+  .case-pipeline-copy,
+  .case-pipeline-image-card {
+    border-radius: 28px;
     padding: 1.35rem;
+    transition:
+      transform 0.22s ease,
+      border-color 0.22s ease;
   }
 
-  .body-large {
-    font-size: 1.12rem;
+  .case-list {
+    margin: 1rem 0 0;
+    padding-left: 1.1rem;
+    color: var(--muted);
+  }
+
+  .case-list li {
+    margin-bottom: 0.55rem;
+  }
+
+  .case-pipeline-image-card {
+    position: relative;
+  }
+
+  .media-open-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    min-height: 38px;
+    padding: 0 0.85rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(7, 16, 31, 0.74);
+    backdrop-filter: blur(12px);
     color: var(--text);
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+      background 0.18s ease,
+      border-color 0.18s ease,
+      transform 0.18s ease;
   }
 
-  .contact-section {
-    padding-top: 4.5rem;
+  .media-open-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(145, 169, 255, 0.24);
+    transform: translateY(-1px);
+  }
+
+  .case-pipeline-preview {
+    border-radius: 18px;
+    padding: 0.5rem;
+    background: transparent;
+  }
+
+  .case-pipeline-preview img {
+    width: 100%;
+    max-height: 320px;
+    object-fit: contain;
+    border-radius: 14px;
+    background: transparent;
+  }
+
+  .case-visuals {
+    margin-bottom: 1.6rem;
+  }
+
+  .case-visuals-heading {
+    max-width: 760px;
+    margin: 0 auto 1.05rem;
+    text-align: center;
+  }
+
+  .case-gallery-shell {
+    border-radius: 28px;
+    padding: 1.05rem 1.05rem 1.15rem;
+    transition:
+      transform 0.22s ease,
+      border-color 0.22s ease;
+  }
+
+  .case-gallery {
+    display: block;
+    width: 100%;
+  }
+
+  .gallery-stage-wrap {
+    position: relative;
+    width: 100%;
+  }
+
+  .gallery-stage {
+    border-radius: 20px;
+    overflow: hidden;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.02));
+    padding: 1rem 4.75rem;
+    text-align: center;
+  }
+
+  .gallery-stage img {
+    display: block;
+    width: 82%;
+    max-width: 100%;
+    max-height: 420px;
+    object-fit: contain;
+    border-radius: 14px;
+    cursor: zoom-in;
+    margin: 0 auto;
+  }
+
+  .gallery-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    width: 56px;
+    height: 56px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(7, 16, 31, 0.78);
+    backdrop-filter: blur(14px);
+    color: var(--text);
+    font-size: 1.35rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+    transition:
+      background 0.18s ease,
+      border-color 0.18s ease,
+      transform 0.18s ease;
+  }
+
+  #gallery-prev {
+    left: 0.85rem;
+  }
+
+  #gallery-next {
+    right: 0.85rem;
+  }
+
+  .gallery-arrow:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(145, 169, 255, 0.24);
+    transform: translateY(-50%) scale(1.03);
+  }
+
+  .gallery-arrow:active {
+    transform: translateY(-50%) scale(0.98);
+  }
+
+  .gallery-thumbs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+
+  .gallery-thumb {
+    min-height: 38px;
+    padding: 0 0.9rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--accent-soft);
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+      background 0.18s ease,
+      border-color 0.18s ease,
+      transform 0.18s ease,
+      color 0.18s ease;
+  }
+
+  .gallery-thumb:hover {
+    transform: translateY(-1px);
+    border-color: rgba(145, 169, 255, 0.22);
+  }
+
+  .gallery-thumb.is-active {
+    background: var(--accent);
+    color: #081122;
+    border-color: transparent;
+  }
+
+  .gallery-meta {
+    padding: 1rem 0 0.2rem;
+    text-align: center;
+    max-width: 880px;
+    margin: 0 auto;
+  }
+
+  .gallery-meta strong {
+    display: block;
+    margin-bottom: 0.35rem;
+    font-size: 1rem;
+    line-height: 1.2;
+  }
+
+  .gallery-meta p {
+    margin: 0;
+    font-size: 0.96rem;
+    color: var(--muted);
+  }
+
+  .case-value-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .case-value-card {
+    border-radius: 24px;
+    padding: 1.2rem;
+    transition:
+      transform 0.22s ease,
+      border-color 0.22s ease;
+  }
+
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+  }
+
+  .tag-row span {
+    padding: 0.46rem 0.8rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: var(--accent-soft);
+    background: rgba(255, 255, 255, 0.03);
+    font-size: 0.92rem;
+    font-weight: 600;
+  }
+
+  .flagship-tags {
+    margin-top: 0.35rem;
+    justify-content: center;
   }
 
   .contact-card {
     border-radius: 28px;
-    padding: 1.5rem;
+    padding: 1.6rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 1.5rem;
   }
 
-  @media (max-width: 960px) {
-    .hero-grid,
-    .feature-card,
-    .card-grid,
-    .proof-grid,
-    .contact-card {
+  .media-modal {
+    position: fixed;
+    top: 78px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(5, 10, 22, 0.82);
+    backdrop-filter: blur(10px);
+    display: none;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 1rem 1.5rem 1.5rem;
+    overflow-y: auto;
+    z-index: 120;
+  }
+
+  .media-modal.is-open {
+    display: flex;
+  }
+
+  .media-modal-dialog {
+    position: relative;
+    width: min(100%, 960px);
+    max-height: none;
+    overflow: auto;
+    border-radius: 24px;
+    border: 1px solid var(--line);
+    background: rgba(10, 17, 32, 0.96);
+    box-shadow: var(--shadow);
+    padding: 1rem;
+    margin-top: 0;
+  }
+
+  .media-modal-dialog--large img {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+  }
+
+  .media-modal-close {
+    position: sticky;
+    top: 0;
+    margin-left: auto;
+    display: block;
+    width: 42px;
+    height: 42px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text);
+    font-size: 1.25rem;
+    cursor: pointer;
+    z-index: 2;
+  }
+
+  .media-modal-caption {
+    padding-top: 0.9rem;
+  }
+
+  .media-modal-caption strong {
+    display: block;
+    margin-bottom: 0.35rem;
+  }
+
+  #pipeline-modal .media-modal-dialog {
+    width: min(100%, 1200px);
+  }
+
+  #pipeline-modal .media-modal-dialog img {
+    width: 50%;
+    height: auto;
+    object-fit: contain;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 980px) {
+    .case-metrics-grid,
+    .case-value-grid,
+    .case-pipeline-grid,
+    .about-grid {
       grid-template-columns: 1fr;
-      display: grid;
+    }
+
+    .case-top-inner {
+      padding: 2rem 1.25rem 1.45rem;
+    }
+
+    .case-pipeline-grid {
+      gap: 1rem;
+    }
+
+    .gallery-arrow {
+      display: none;
+    }
+
+    .gallery-stage {
+      padding: 1rem;
+    }
+
+    .about-photo-card {
+      max-width: 220px;
     }
 
     .contact-card {
-      justify-content: initial;
+      flex-direction: column;
+      align-items: flex-start;
     }
   }
 
@@ -544,15 +1394,66 @@ const roleFit = [
 
     .nav-links {
       flex-wrap: wrap;
-      gap: 0.85rem;
+      gap: 0.9rem;
     }
 
     .hero {
-      padding-top: 4rem;
+      padding-top: 1.2rem;
+    }
+
+    .hero-shell {
+      min-height: 460px;
+    }
+
+    .hero-content {
+      left: 50%;
+      bottom: 50%;
+      transform: translate(-50%, 50%);
+      padding: 0 1rem;
+      max-width: 100%;
+      text-align: center;
     }
 
     h1 {
-      max-width: 100%;
+      max-width: 10ch;
+      font-size: clamp(2.2rem, 9vw, 3.3rem);
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-subtitle {
+      font-size: 0.98rem;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 10vw, 2.7rem);
+    }
+
+    .case-transition {
+      gap: 0.65rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .case-problem-strip,
+    .case-pipeline-copy,
+    .case-pipeline-image-card,
+    .case-gallery-shell,
+    .case-value-card {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    .about-photo-card {
+      max-width: 220px;
+    }
+
+    .gallery-stage img {
+      width: 100%;
+      max-height: 320px;
+    }
+
+    #pipeline-modal .media-modal-dialog img {
+      width: 100%;
     }
   }
 </style>

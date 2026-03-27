@@ -1,0 +1,558 @@
+---
+const siteTitle = "Antonio González Martín | Data Science & Business Analytics";
+const siteDescription =
+  "Portfolio website focused on applied analytics, decision support, and business-facing data projects.";
+
+const proofPoints = [
+  "Data Science + Business Analytics background",
+  "Business-oriented analytical mindset",
+  "Python, SQL, Power BI",
+  "End-to-end SME decision-support project",
+];
+
+const capabilities = [
+  {
+    title: "Data preparation & quality",
+    text: "Cleaning, structuring, validating, and standardizing commercial data so analysis can be trusted and reused.",
+  },
+  {
+    title: "Analytics & modeling",
+    text: "Exploratory analysis, customer segmentation, association rules, and explainable recommendation logic.",
+  },
+  {
+    title: "BI & reporting",
+    text: "Clear dashboards, KPI-focused reporting, and outputs designed to support real business decisions.",
+  },
+  {
+    title: "Decision support",
+    text: "Turning data work into useful systems, not just isolated analyses: from inputs to actionable outputs.",
+  },
+];
+
+const roleFit = [
+  {
+    title: "Data Scientist",
+    text: "Applied analytical work with business context, structured data workflows, and practical model-driven outputs.",
+  },
+  {
+    title: "Business Analyst",
+    text: "Strong fit for translating data into decisions, commercial insights, reporting, and operational recommendations.",
+  },
+  {
+    title: "Data Analyst",
+    text: "Solid grounding in data preparation, KPI analysis, dashboarding, and insight generation for business use cases.",
+  },
+];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={siteDescription} />
+    <title>{siteTitle}</title>
+  </head>
+
+  <body>
+    <header class="site-header">
+      <div class="container nav">
+        <a href="#" class="brand">Antonio González Martín</a>
+
+        <nav class="nav-links">
+          <a href="#flagship">Project</a>
+          <a href="#capabilities">Capabilities</a>
+          <a href="#background">Background</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div>
+            <p class="eyebrow">Data Science · Business Analytics · Data Analytics</p>
+            <h1>
+              Turning commercial data into decision-ready analysis, reporting, and practical business tools.
+            </h1>
+            <p class="hero-copy">
+              I build business-facing analytics projects that connect data preparation, structured analysis,
+              and clear outputs for decision-making.
+            </p>
+
+            <div class="hero-actions">
+              <a class="button button-primary" href="#flagship">View flagship project</a>
+              <a class="button button-secondary" href="#contact">Get in touch</a>
+            </div>
+          </div>
+
+          <aside class="hero-panel">
+            <p class="panel-label">Current focus</p>
+            <h2>Applied analytics for real business use cases</h2>
+            <p>
+              My strongest project centers on an SME decision-support system combining data integration,
+              quality control, customer analytics, explainable recommendations, dashboarding, and an automated pipeline.
+            </p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="proof-strip">
+        <div class="container proof-grid">
+          {proofPoints.map((item) => (
+            <div class="proof-item">{item}</div>
+          ))}
+        </div>
+      </section>
+
+      <section id="flagship" class="section">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">Flagship project</p>
+            <h2>Commercial Decision-Support System for SMEs</h2>
+            <p>
+              A business-focused data project designed to help SMEs turn fragmented commercial data into
+              usable analysis and decision-support outputs.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-copy">
+              <h3>What it includes</h3>
+              <ul class="feature-list">
+                <li>Data integration and preparation</li>
+                <li>Quality control and validation workflow</li>
+                <li>Exploratory analysis of sales and customer behavior</li>
+                <li>Customer segmentation and product association analysis</li>
+                <li>Explainable recommendation logic</li>
+                <li>Power BI dashboard and automated end-to-end pipeline</li>
+              </ul>
+            </div>
+
+            <div class="feature-copy">
+              <h3>Why it matters</h3>
+              <p>
+                This project reflects the kind of work I want to keep doing: building analytical systems
+                that are technically solid, commercially relevant, and useful for real decision-making.
+              </p>
+
+              <div class="mini-tags">
+                <span>Python</span>
+                <span>SQL</span>
+                <span>Power BI</span>
+                <span>Analytics</span>
+                <span>Decision Support</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="capabilities" class="section section-muted">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">Selected capabilities</p>
+            <h2>What I bring to analytical roles</h2>
+            <p>
+              A profile that combines structured analytical work with business context and decision-oriented thinking.
+            </p>
+          </div>
+
+          <div class="card-grid">
+            {capabilities.map((item) => (
+              <article class="card">
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">Where I fit</p>
+            <h2>One profile, multiple role fits</h2>
+            <p>
+              I do not see these as disconnected paths, but as different entry points into the same core value:
+              using data to support better business decisions.
+            </p>
+          </div>
+
+          <div class="card-grid">
+            {roleFit.map((item) => (
+              <article class="card">
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="background" class="section section-muted">
+        <div class="container narrow">
+          <div class="section-heading">
+            <p class="eyebrow">Background</p>
+            <h2>Analytics with commercial context</h2>
+          </div>
+
+          <p class="body-large">
+            My background combines recent training in Data Science and Business Analytics with previous
+            exposure to marketing, growth, performance, and applied business analysis.
+          </p>
+          <p>
+            That combination shapes how I approach projects: not as isolated technical exercises, but as
+            tools to answer relevant business questions, improve visibility, and support action.
+          </p>
+        </div>
+      </section>
+
+      <section id="contact" class="section contact-section">
+        <div class="container contact-card">
+          <div>
+            <p class="eyebrow">Contact</p>
+            <h2>Interested in my profile?</h2>
+            <p>
+              I am building this portfolio to showcase applied analytics work with real business relevance.
+            </p>
+          </div>
+
+          <div class="contact-actions">
+            <a class="button button-primary" href="mailto:antonio.business444@gmail.com">Email me</a>
+            <a class="button button-secondary" href="www.linkedin.com/in/antonio-gonzalez-189963224">LinkedIn</a>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
+
+<style>
+  :root {
+    --bg: #0b1020;
+    --bg-soft: #121933;
+    --panel: #161f3f;
+    --text: #edf2ff;
+    --muted: #aeb9d6;
+    --line: rgba(255, 255, 255, 0.08);
+    --accent: #7c9cff;
+    --accent-2: #c9d5ff;
+    --white: #ffffff;
+    --shadow: 0 20px 60px rgba(0, 0, 0, 0.28);
+    --radius: 22px;
+    --max: 1120px;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background:
+      radial-gradient(circle at top left, rgba(124, 156, 255, 0.18), transparent 32%),
+      linear-gradient(180deg, #0a0f1e 0%, #0d1327 100%);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .container {
+    width: min(var(--max), calc(100% - 2rem));
+    margin: 0 auto;
+  }
+
+  .narrow {
+    max-width: 760px;
+  }
+
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    backdrop-filter: blur(16px);
+    background: rgba(10, 15, 30, 0.72);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 76px;
+    gap: 1rem;
+  }
+
+  .brand {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 1.25rem;
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+
+  .nav-links a:hover {
+    color: var(--white);
+  }
+
+  .hero {
+    padding: 5.5rem 0 3rem;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 0.7fr;
+    gap: 1.5rem;
+    align-items: stretch;
+  }
+
+  .eyebrow {
+    margin: 0 0 0.9rem;
+    color: var(--accent-2);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+
+  h1,
+  h2,
+  h3 {
+    margin: 0;
+    letter-spacing: -0.03em;
+    line-height: 1.08;
+  }
+
+  h1 {
+    font-size: clamp(2.7rem, 6vw, 4.8rem);
+    max-width: 12ch;
+  }
+
+  h2 {
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    margin-bottom: 0.9rem;
+  }
+
+  h3 {
+    font-size: 1.15rem;
+    margin-bottom: 0.7rem;
+  }
+
+  p {
+    margin: 0 0 1rem;
+    color: var(--muted);
+  }
+
+  .hero-copy {
+    font-size: 1.1rem;
+    max-width: 62ch;
+    margin-top: 1.25rem;
+  }
+
+  .hero-panel,
+  .feature-card,
+  .card,
+  .contact-card,
+  .proof-item {
+    border: 1px solid var(--line);
+    background: rgba(22, 31, 63, 0.7);
+    box-shadow: var(--shadow);
+  }
+
+  .hero-panel {
+    padding: 1.4rem;
+    border-radius: var(--radius);
+    align-self: end;
+  }
+
+  .panel-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent-2);
+    font-weight: 700;
+    margin-bottom: 0.65rem;
+  }
+
+  .hero-actions,
+  .contact-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    margin-top: 1.6rem;
+  }
+
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    padding: 0 1rem;
+    border-radius: 999px;
+    font-weight: 700;
+    transition: transform 0.18s ease, opacity 0.18s ease, border-color 0.18s ease;
+  }
+
+  .button:hover {
+    transform: translateY(-1px);
+  }
+
+  .button-primary {
+    background: var(--accent);
+    color: #0a1024;
+  }
+
+  .button-secondary {
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .proof-strip {
+    padding: 1rem 0 0;
+  }
+
+  .proof-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.85rem;
+  }
+
+  .proof-item {
+    border-radius: 18px;
+    padding: 1rem;
+    text-align: center;
+    color: var(--accent-2);
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .section {
+    padding: 5.25rem 0;
+  }
+
+  .section-muted {
+    background: rgba(255, 255, 255, 0.02);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .section-heading {
+    max-width: 760px;
+    margin-bottom: 2rem;
+  }
+
+  .feature-card {
+    border-radius: 28px;
+    padding: 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.4rem;
+  }
+
+  .feature-list {
+    margin: 1rem 0 0;
+    padding-left: 1.1rem;
+    color: var(--muted);
+  }
+
+  .feature-list li {
+    margin-bottom: 0.65rem;
+  }
+
+  .mini-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin-top: 1rem;
+  }
+
+  .mini-tags span {
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
+    padding: 0.45rem 0.8rem;
+    color: var(--accent-2);
+    font-size: 0.9rem;
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .card {
+    border-radius: 22px;
+    padding: 1.35rem;
+  }
+
+  .body-large {
+    font-size: 1.12rem;
+    color: var(--text);
+  }
+
+  .contact-section {
+    padding-top: 4.5rem;
+  }
+
+  .contact-card {
+    border-radius: 28px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 960px) {
+    .hero-grid,
+    .feature-card,
+    .card-grid,
+    .proof-grid,
+    .contact-card {
+      grid-template-columns: 1fr;
+      display: grid;
+    }
+
+    .contact-card {
+      justify-content: initial;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .nav {
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 0.9rem 0;
+    }
+
+    .nav-links {
+      flex-wrap: wrap;
+      gap: 0.85rem;
+    }
+
+    .hero {
+      padding-top: 4rem;
+    }
+
+    h1 {
+      max-width: 100%;
+    }
+  }
+</style>

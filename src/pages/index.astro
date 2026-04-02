@@ -2,6 +2,41 @@
 const siteTitle = "Antonio González Martín | Data Portfolio";
 const siteDescription =
   "Portfolio focused on applied analytics, decision support, and business-facing data projects.";
+
+const featuredProjects = [
+  {
+    href: "/projects/finance-data-foundation",
+    image: "/FP_overview.png",
+    imageAlt: "Preview of the Finance Data Foundation for FP&A and Controlling project",
+    eyebrow: "Finance / FP&A / Controlling",
+    badge: "Most recruiter-relevant",
+    title: "Finance Data Foundation for FP&A and Controlling",
+    description:
+      "Finance-focused analytics project designed to demonstrate source-to-target logic, variance analysis, reconciliation controls, and stakeholder-facing reporting.",
+    highlights: [
+      "4-page Power BI suite",
+      "Variance & controls",
+      "DuckDB + parquet layers",
+    ],
+    cta: "Open finance case study",
+  },
+  {
+    href: "#flagship",
+    image: "/dashboard-overview.png",
+    imageAlt: "Preview of the master's flagship analytics project",
+    eyebrow: "Master’s flagship project",
+    badge: "",
+    title: "End-to-end decision-support system for SMEs",
+    description:
+      "A full analytical system turning fragmented commercial data into structured visibility, segmentation, recommendation logic, and business-facing outputs.",
+    highlights: [
+      "Multi-source pipeline",
+      "Segmentation + recommendations",
+      "Decision-support design",
+    ],
+    cta: "Jump to flagship project",
+  },
+];
 ---
 
 <html lang="en">
@@ -15,12 +50,12 @@ const siteDescription =
   <body>
     <header class="site-header">
       <div class="container nav">
-        <a href="#" class="brand">Antonio González Martín</a>
+        <a href="/" class="brand">Antonio González Martín</a>
 
         <nav class="nav-links">
-          <a href="#about">About</a>
-          <a href="#flagship">Flagship Project</a>
-          <a href="#contact">Contact</a>
+          <a href="/#about">About</a>
+          <a href="/#projects">Projects</a>
+          <a href="/#contact">Contact</a>
         </nav>
       </div>
     </header>
@@ -40,8 +75,8 @@ const siteDescription =
               </p>
 
               <div class="hero-actions">
-                <a class="button button-primary" href="#flagship">View flagship project</a>
-                <a class="button button-secondary" href="#about">About me</a>
+                <a class="button button-primary" href="/#projects">View selected work</a>
+                <a class="button button-secondary" href="/#about">About me</a>
               </div>
             </div>
           </div>
@@ -75,15 +110,14 @@ const siteDescription =
 
             <div class="about-actions">
               <a
-  class="button button-primary"
-  href="/ANTONIO.G DATA CV .pdf"
-  download="Antonio_Gonzalez_Martin_Resume.pdf"
-  type="application/pdf"
->
-  Download resume
-</a>
-              
+                class="button button-primary"
+                href="/ANTONIO.G DATA CV .pdf"
+                download="Antonio_Gonzalez_Martin_Resume.pdf"
+                type="application/pdf"
+              >
+                Download resume
               </a>
+
               <a
                 class="button button-secondary reveal reveal-up"
                 style="--reveal-delay: 140ms;"
@@ -101,6 +135,79 @@ const siteDescription =
                 Email
               </a>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="section projects-section">
+        <div class="container">
+          <div class="projects-header reveal reveal-up">
+            <p class="section-label">Selected work</p>
+            <h2>Projects that show how I use data in a business context.</h2>
+            <p class="projects-intro">
+              A selection of work focused on structured problem solving, decision support, and
+              business-facing analytics.
+            </p>
+          </div>
+
+          <div class="projects-carousel-shell reveal reveal-up" style="--reveal-delay: 90ms;">
+            <button
+              type="button"
+              class="projects-carousel-arrow projects-carousel-arrow-left"
+              id="projects-carousel-prev"
+              aria-label="Previous projects"
+            >
+              ←
+            </button>
+
+            <div class="projects-carousel-track" id="projects-carousel">
+              {featuredProjects.map((project, index) => (
+                <a
+                  href={project.href}
+                  class="project-carousel-card-link"
+                  aria-label={`Open ${project.title}`}
+                >
+                  <article
+                    class={`project-carousel-card ${index === 0 ? "project-carousel-card--featured" : ""}`}
+                  >
+                    <div class="project-carousel-card-media">
+                      <img src={project.image} alt={project.imageAlt} loading="lazy" />
+                    </div>
+
+                    <div class="project-carousel-card-body">
+                      <div class="project-carousel-card-topline">
+                        <span class="project-carousel-card-eyebrow">{project.eyebrow}</span>
+                        {project.badge && (
+                          <span class="project-carousel-card-badge">{project.badge}</span>
+                        )}
+                      </div>
+
+                      <h3>{project.title}</h3>
+
+                      <p class="project-carousel-card-description">{project.description}</p>
+
+                      <div class="project-carousel-card-highlights">
+                        {project.highlights.map((item) => <span>{item}</span>)}
+                      </div>
+
+                      <div class="project-carousel-card-footer">
+                        <span class="project-carousel-card-cta">{project.cta}</span>
+                        <span class="project-carousel-card-arrow" aria-hidden="true">↗</span>
+                      </div>
+                    </div>
+                  </article>
+                </a>
+              ))}
+            </div>
+
+            <button
+              type="button"
+              class="projects-carousel-arrow projects-carousel-arrow-right"
+              id="projects-carousel-next"
+              aria-label="Next projects"
+            >
+              →
+            </button>
           </div>
         </div>
       </section>
@@ -428,6 +535,10 @@ const siteDescription =
       const galleryModalTitle = document.getElementById("gallery-modal-title");
       const galleryModalText = document.getElementById("gallery-modal-text");
 
+      const projectsCarousel = document.getElementById("projects-carousel");
+      const projectsCarouselPrev = document.getElementById("projects-carousel-prev");
+      const projectsCarouselNext = document.getElementById("projects-carousel-next");
+
       function applyGalleryContent(index) {
         currentGalleryIndex = index;
         const item = galleryItems[index];
@@ -497,6 +608,42 @@ const siteDescription =
         const nextIndex = (currentGalleryIndex + 1) % galleryItems.length;
         renderGallery(nextIndex, true);
       }
+
+      function getProjectsScrollAmount() {
+        if (!projectsCarousel) return 0;
+
+        const firstCard = projectsCarousel.querySelector(".project-carousel-card-link");
+        if (!firstCard) return 0;
+
+        const styles = window.getComputedStyle(projectsCarousel);
+        const gap = parseFloat(styles.columnGap || styles.gap || "0");
+
+        return firstCard.getBoundingClientRect().width + gap;
+      }
+
+      function updateProjectsCarouselControls() {
+        if (!projectsCarousel || !projectsCarouselPrev || !projectsCarouselNext) return;
+
+        const maxScrollLeft = projectsCarousel.scrollWidth - projectsCarousel.clientWidth;
+        const hasOverflow = maxScrollLeft > 8;
+
+        projectsCarouselPrev.disabled = !hasOverflow || projectsCarousel.scrollLeft <= 8;
+        projectsCarouselNext.disabled =
+          !hasOverflow || projectsCarousel.scrollLeft >= maxScrollLeft - 8;
+      }
+
+      projectsCarouselPrev?.addEventListener("click", () => {
+        const amount = getProjectsScrollAmount();
+        projectsCarousel?.scrollBy({ left: -amount, behavior: "smooth" });
+      });
+
+      projectsCarouselNext?.addEventListener("click", () => {
+        const amount = getProjectsScrollAmount();
+        projectsCarousel?.scrollBy({ left: amount, behavior: "smooth" });
+      });
+
+      projectsCarousel?.addEventListener("scroll", updateProjectsCarouselControls);
+      window.addEventListener("resize", updateProjectsCarouselControls);
 
       galleryPrev?.addEventListener("click", goToPreviousGalleryItem);
       galleryNext?.addEventListener("click", goToNextGalleryItem);
@@ -571,6 +718,7 @@ const siteDescription =
       }
 
       renderGallery(0, false);
+      updateProjectsCarouselControls();
     </script>
   </body>
 </html>
@@ -639,6 +787,7 @@ const siteDescription =
   }
 
   .about-section,
+  .projects-section,
   .case-section,
   .contact-section {
     position: relative;
@@ -646,6 +795,7 @@ const siteDescription =
   }
 
   .about-section::before,
+  .projects-section::before,
   .case-section::before,
   .contact-section::before {
     content: "";
@@ -656,6 +806,7 @@ const siteDescription =
   }
 
   .about-section .container,
+  .projects-section .container,
   .case-section .container,
   .contact-section .container {
     position: relative;
@@ -669,6 +820,22 @@ const siteDescription =
         rgba(145, 169, 255, 0.16) 0%,
         rgba(145, 169, 255, 0.07) 16%,
         transparent 42%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.012) 0%,
+        rgba(255, 255, 255, 0) 100%
+      );
+    opacity: 0.95;
+  }
+
+  .projects-section::before {
+    background:
+      radial-gradient(
+        circle at 76% 22%,
+        rgba(145, 169, 255, 0.12) 0%,
+        rgba(145, 169, 255, 0.04) 18%,
+        transparent 40%
       ),
       linear-gradient(
         180deg,
@@ -802,7 +969,9 @@ const siteDescription =
   .gallery-thumb:focus-visible,
   .gallery-arrow:focus-visible,
   .media-open-btn:focus-visible,
-  .media-modal-close:focus-visible {
+  .media-modal-close:focus-visible,
+  .project-carousel-card-link:focus-visible,
+  .projects-carousel-arrow:focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 3px;
   }
@@ -1019,6 +1188,274 @@ const siteDescription =
   .about-copy {
     max-width: 820px;
     padding-top: 0.6rem;
+  }
+
+  .projects-section {
+    padding-top: 1rem;
+    padding-bottom: 3.8rem;
+  }
+
+  .projects-header {
+    max-width: 840px;
+    margin: 0 auto 1.25rem;
+    text-align: center;
+  }
+
+  .projects-intro {
+    max-width: 760px;
+    margin: 0 auto;
+    font-size: 1.03rem;
+  }
+
+  .projects-carousel-shell {
+    position: relative;
+    padding: 0 3.5rem;
+  }
+
+  .projects-carousel-track {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    padding-bottom: 0.2rem;
+  }
+
+  .projects-carousel-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .project-carousel-card-link {
+    flex: 0 0 calc((100% - 2rem) / 3);
+    min-width: 0;
+    display: block;
+    scroll-snap-align: start;
+  }
+
+  .project-carousel-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    background: rgba(18, 29, 50, 0.84);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(14px);
+    transition:
+      transform 0.22s ease,
+      border-color 0.22s ease,
+      box-shadow 0.22s ease,
+      background 0.22s ease;
+  }
+
+  .project-carousel-card--featured {
+    background: linear-gradient(
+      180deg,
+      rgba(19, 31, 56, 0.92) 0%,
+      rgba(16, 26, 46, 0.88) 100%
+    );
+    border-color: rgba(145, 169, 255, 0.18);
+  }
+
+  .project-carousel-card-link:hover .project-carousel-card,
+  .project-carousel-card-link:focus-visible .project-carousel-card {
+    transform: translateY(-3px);
+    border-color: rgba(145, 169, 255, 0.26);
+    box-shadow: 0 24px 65px rgba(0, 0, 0, 0.28);
+  }
+
+  .project-carousel-card-media {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 72% 20%, rgba(145, 169, 255, 0.16), transparent 34%),
+      linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.06),
+        rgba(255, 255, 255, 0.02)
+      );
+  }
+
+  .project-carousel-card-media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(7, 16, 31, 0.05) 0%,
+      rgba(7, 16, 31, 0.14) 56%,
+      rgba(7, 16, 31, 0.32) 100%
+    );
+    pointer-events: none;
+  }
+
+  .project-carousel-card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition:
+      transform 0.35s var(--ease-out),
+      opacity 0.35s var(--ease-out);
+  }
+
+  .project-carousel-card-link:hover .project-carousel-card-media img,
+  .project-carousel-card-link:focus-visible .project-carousel-card-media img {
+    transform: scale(1.04);
+  }
+
+  .project-carousel-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    flex: 1;
+    padding: 1rem 1rem 1.05rem;
+  }
+
+  .project-carousel-card-topline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .project-carousel-card-eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: var(--accent-soft);
+  }
+
+  .project-carousel-card-badge {
+    display: inline-flex;
+    align-items: center;
+    min-height: 28px;
+    padding: 0 0.65rem;
+    border-radius: 999px;
+    border: 1px solid rgba(145, 169, 255, 0.18);
+    background: rgba(145, 169, 255, 0.08);
+    color: #edf2ff;
+    font-size: 0.72rem;
+    font-weight: 700;
+  }
+
+  .project-carousel-card h3 {
+    margin: 0;
+    font-size: 1.55rem;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+  }
+
+  .project-carousel-card-description {
+    margin: 0;
+    font-size: 0.96rem;
+    color: #d1dbf1;
+  }
+
+  .project-carousel-card-highlights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    margin-top: 0.15rem;
+  }
+
+  .project-carousel-card-highlights span {
+    padding: 0.42rem 0.7rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--accent-soft);
+    font-size: 0.82rem;
+    font-weight: 600;
+  }
+
+  .project-carousel-card-footer {
+    margin-top: auto;
+    padding-top: 0.95rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.8rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .project-carousel-card-cta {
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+
+  .project-carousel-card-arrow {
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--text);
+    transition:
+      transform 0.22s ease,
+      border-color 0.22s ease,
+      background 0.22s ease;
+  }
+
+  .project-carousel-card-link:hover .project-carousel-card-arrow,
+  .project-carousel-card-link:focus-visible .project-carousel-card-arrow {
+    transform: translate(2px, -2px);
+    border-color: rgba(145, 169, 255, 0.24);
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .projects-carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+    width: 52px;
+    height: 52px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(7, 16, 31, 0.8);
+    backdrop-filter: blur(14px);
+    color: var(--text);
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+    transition:
+      background 0.18s ease,
+      border-color 0.18s ease,
+      transform 0.18s ease,
+      opacity 0.18s ease;
+  }
+
+  .projects-carousel-arrow:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(145, 169, 255, 0.24);
+    transform: translateY(-50%) scale(1.03);
+  }
+
+  .projects-carousel-arrow:disabled {
+    opacity: 0.38;
+    cursor: default;
+    transform: translateY(-50%);
+  }
+
+  .projects-carousel-arrow-left {
+    left: 0;
+  }
+
+  .projects-carousel-arrow-right {
+    right: 0;
   }
 
   .case-section {
@@ -1668,6 +2105,10 @@ const siteDescription =
       grid-template-columns: 1fr;
     }
 
+    .project-carousel-card-link {
+      flex: 0 0 calc((100% - 1rem) / 2);
+    }
+
     .case-top-inner {
       padding: 2rem 1.25rem 1.45rem;
     }
@@ -1698,6 +2139,7 @@ const siteDescription =
     }
 
     .about-section::before,
+    .projects-section::before,
     .contact-section::before {
       opacity: 0.78;
     }
@@ -1770,6 +2212,28 @@ const siteDescription =
       font-size: clamp(2rem, 10vw, 2.7rem);
     }
 
+    .projects-section {
+      padding-top: 0.5rem;
+      padding-bottom: 3rem;
+    }
+
+    .projects-carousel-shell {
+      padding: 0 2.9rem;
+    }
+
+    .project-carousel-card-link {
+      flex: 0 0 100%;
+    }
+
+    .project-carousel-card h3 {
+      font-size: 1.42rem;
+    }
+
+    .projects-carousel-arrow {
+      width: 46px;
+      height: 46px;
+    }
+
     .case-transition {
       gap: 0.65rem;
       margin-bottom: 1.2rem;
@@ -1817,7 +2281,11 @@ const siteDescription =
     }
 
     .gallery-stage img,
-    .gallery-meta {
+    .gallery-meta,
+    .project-carousel-card,
+    .project-carousel-card-media img,
+    .project-carousel-card-arrow,
+    .projects-carousel-arrow {
       transition: none;
     }
 

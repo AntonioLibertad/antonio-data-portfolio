@@ -65,7 +65,41 @@ const frameworkCards = [
     text: "Combines the main leakage drivers into a prioritisation lens to highlight where management attention should go first.",
   },
 ];
+const keyFindings = [
+  {
+    eyebrow: "Finding 1",
+    title: "The problem is not broad-based. It is concentrated.",
+    text: "Commercial value leakage is not evenly spread across the business. The largest exposure is concentrated in a relatively small number of categories, which means blanket action would be less effective than targeted intervention.",
+  },
+  {
+    eyebrow: "Finding 2",
+    title: "Store is carrying more return-related pressure.",
+    text: "Return leakage is more heavily concentrated in store-driven performance, making post-sale erosion one of the clearest drivers of lost retained value on the commercial side.",
+  },
+  {
+    eyebrow: "Finding 3",
+    title: "Online shows weaker pricing discipline.",
+    text: "Online performance reveals clearer pricing leakage and margin-floor weakness, suggesting that discount governance and realised price discipline need tighter control in that channel.",
+  },
+];
 
+const managementTakeaways = [
+  {
+    eyebrow: "Action 1",
+    title: "Treat returns as a value-protection priority, not just an operational issue.",
+    text: "Where return leakage is highest, management should review product, fulfilment, and category-level drivers before assuming the issue is purely commercial.",
+  },
+  {
+    eyebrow: "Action 2",
+    title: "Tighten pricing discipline where leakage is structurally visible.",
+    text: "Where realised price underperforms expected value, the response should focus on discount control, pricing guardrails, and closer monitoring of margin-floor exposure.",
+  },
+  {
+    eyebrow: "Action 3",
+    title: "Prioritise the categories that combine multiple leakage signals.",
+    text: "The most relevant action areas are not the ones with only one weakness, but the ones where pricing leakage, return pressure, and margin exposure overlap and destroy value together.",
+  },
+];
 const projectSignals = [
   {
     eyebrow: "Commercial framing",
@@ -272,7 +306,61 @@ const stackTags = [
           </div>
         </div>
       </section>
+      <section class="section findings-section">
+  <div class="container">
+    <div class="section-heading reveal reveal-up">
+      <p class="section-label">Key findings &amp; management takeaways</p>
+      <h2>Where the analysis points management first.</h2>
+      <p>
+        The value of the case is not only in surfacing leakage, but in showing that the problem
+        is concentrated, structurally different by driver, and better solved through prioritised
+        intervention than broad commercial reaction.
+      </p>
+    </div>
 
+    <div class="findings-layout">
+      <div class="findings-column">
+        <div class="findings-column-header reveal reveal-up">
+          <p class="panel-kicker">What the analysis found</p>
+          <h3>Key findings</h3>
+        </div>
+
+        <div class="findings-grid">
+          {keyFindings.map((item, index) => (
+            <article
+              class="finding-card reveal reveal-up"
+              style={`--reveal-delay: ${index * 70}ms;`}
+            >
+              <p class="panel-kicker">{item.eyebrow}</p>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <div class="findings-column">
+        <div class="findings-column-header reveal reveal-up" style="--reveal-delay: 120ms;">
+          <p class="panel-kicker">What management should do with it</p>
+          <h3>Management takeaways</h3>
+        </div>
+
+        <div class="findings-grid">
+          {managementTakeaways.map((item, index) => (
+            <article
+              class="finding-card reveal reveal-up"
+              style={`--reveal-delay: ${index * 70 + 120}ms;`}
+            >
+              <p class="panel-kicker">{item.eyebrow}</p>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
       <section class="section signals-section">
         <div class="container">
           <div class="section-heading reveal reveal-up">
@@ -986,7 +1074,89 @@ const stackTags = [
     opacity: 1;
     transform: translate3d(0, 0, 0);
   }
+  .findings-section .section-heading {
+  margin: 0 auto 2.4rem;
+}
 
+.findings-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.6rem;
+  margin-top: 0.4rem;
+}
+
+.findings-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+}
+
+.findings-column-header {
+  padding: 0 0.2rem;
+  text-align: center;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.findings-column-header .panel-kicker {
+  margin-bottom: 0.65rem;
+}
+
+.findings-column-header h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.findings-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.finding-card {
+  border-radius: 24px;
+  padding: 1.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  background: rgba(18, 29, 50, 0.84);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(14px);
+  transition:
+    transform 0.22s ease,
+    border-color 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+.finding-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(145, 169, 255, 0.24);
+}
+
+.finding-card h3 {
+  margin: 0 0 0.7rem;
+  font-size: 1.32rem;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.finding-card p:last-child {
+  margin: 0;
+}
+
+@media (max-width: 980px) {
+  .findings-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .findings-column-header h3,
+  .finding-card h3 {
+    font-size: 1.22rem;
+  }
+}
   @media (max-width: 980px) {
     .hero-summary-grid,
     .dashboard-grid,

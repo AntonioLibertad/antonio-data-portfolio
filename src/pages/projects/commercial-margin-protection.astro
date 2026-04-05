@@ -1,0 +1,1067 @@
+---
+const siteTitle =
+  "Commercial Margin Protection & Pricing Analytics | Antonio González Martín";
+const siteDescription =
+  "Business-facing analytics project focused on revenue leakage, discount governance, return pressure, and price realization in an omnichannel retail business.";
+
+const dashboardViews = [
+  {
+    label: "Page 1",
+    title: "Executive Overview",
+    src: "/commercial-margin-protection/overview.png",
+    alt: "Executive Overview dashboard",
+    summary:
+      "A high-level management view connecting net revenue, gross margin, discount rate, return rate, pricing leakage, and the main areas where commercial value is being lost.",
+  },
+  {
+    label: "Page 2",
+    title: "Leakage Drivers",
+    src: "/commercial-margin-protection/drivers.png",
+    alt: "Leakage Drivers dashboard",
+    summary:
+      "A diagnostic view focused on how pricing leakage, return leakage, and margin floor exposure vary across sources and categories, revealing where the problem is actually concentrated.",
+  },
+  {
+    label: "Page 3",
+    title: "Discount & Price Realization",
+    src: "/commercial-margin-protection/discount-pricing.png",
+    alt: "Discount and Price Realization dashboard",
+    summary:
+      "A pricing-focused page designed to assess discount discipline, realised pricing quality, and where commercial concessions appear to be destroying more value than they create.",
+  },
+  {
+    label: "Page 4",
+    title: "Returns & Margin Pressure",
+    src: "/commercial-margin-protection/returns-margin.png",
+    alt: "Returns and Margin Pressure dashboard",
+    summary:
+      "A performance pressure view showing how returns and low-margin selling combine to weaken value retention across categories and channels.",
+  },
+  {
+    label: "Page 5",
+    title: "Action Priorities",
+    src: "/commercial-margin-protection/actions.png",
+    alt: "Action Priorities dashboard",
+    summary:
+      "A decision-support layer that turns multiple leakage signals into prioritised management actions, helping leadership focus on the areas with the greatest potential value protection.",
+  },
+];
+
+const frameworkCards = [
+  {
+    title: "Pricing Leakage",
+    text: "Captures the value lost when realised selling prices underperform the expected commercial price level.",
+  },
+  {
+    title: "Return Leakage",
+    text: "Measures how post-sale erosion weakens retained net revenue and commercial value.",
+  },
+  {
+    title: "Margin Floor Exposure",
+    text: "Shows the gap between actual gross margin and the minimum acceptable margin threshold defined by policy.",
+  },
+  {
+    title: "Action Priority Value",
+    text: "Combines the main leakage drivers into a prioritisation lens to highlight where management attention should go first.",
+  },
+];
+
+const projectSignals = [
+  {
+    eyebrow: "Commercial framing",
+    title: "Analysis built around a real management problem",
+    text: "The project starts from a business tension: sales do not automatically translate into protected margin.",
+  },
+  {
+    eyebrow: "Decision support",
+    title: "Diagnosis tied to prioritisation",
+    text: "The work goes beyond descriptive reporting by showing where value leakage is concentrated and where action should start first.",
+  },
+  {
+    eyebrow: "Stakeholder focus",
+    title: "Built for management interpretation",
+    text: "The reporting structure is designed around pricing discipline, return pressure, category exposure, and intervention priorities.",
+  },
+];
+
+const stackTags = [
+  "Power BI",
+  "Commercial Analytics",
+  "Pricing Analytics",
+  "Margin Protection",
+  "Discount Governance",
+  "Return Leakage",
+  "Price Realization",
+  "Gross Margin",
+  "Management Reporting",
+  "Action Prioritization",
+];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={siteDescription} />
+    <title>{siteTitle}</title>
+  </head>
+
+  <body>
+    <header class="site-header">
+      <div class="container nav">
+        <a href="/" class="brand">Antonio González Martín</a>
+
+        <nav class="nav-links">
+          <a href="/">Home</a>
+          <a href="/#about">About</a>
+          <a href="/#projects">Projects</a>
+          <a href="/#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="project-hero">
+        <div class="container">
+          <div class="project-hero-shell reveal reveal-up">
+            <div class="project-hero-overlay"></div>
+
+            <div class="project-hero-content">
+              <p class="section-label">Commercial Analytics / Pricing / Margin</p>
+              <h1>Commercial Margin Protection &amp; Pricing Analytics</h1>
+              <p class="project-hero-subtitle">
+                A business-facing analytics case built to show how discounts, returns,
+                and weak price realization erode net revenue and gross margin — and how
+                management can identify where to act first.
+              </p>
+
+              <div class="hero-actions">
+                <a class="button button-primary" href="#dashboard-suite">Explore dashboard suite</a>
+                <a class="button button-secondary" href="/#projects">Back to homepage</a>
+              </div>
+
+              <div class="hero-summary-grid">
+                <article class="hero-summary-card">
+                  <span class="hero-summary-label">Positioning</span>
+                  <strong>Commercial performance with margin logic</strong>
+                  <p>Built to show business analysis thinking beyond headline sales reporting.</p>
+                </article>
+
+                <article class="hero-summary-card">
+                  <span class="hero-summary-label">Build</span>
+                  <strong>Leakage diagnosis + prioritisation</strong>
+                  <p>Combines pricing leakage, return leakage, and margin pressure into one management view.</p>
+                </article>
+
+                <article class="hero-summary-card">
+                  <span class="hero-summary-label">Outcome</span>
+                  <strong>Decision-ready commercial visibility</strong>
+                  <p>Designed to help leadership see where value is leaking and where intervention should start.</p>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section narrative-section">
+        <div class="container narrative-grid">
+          <div class="narrative-copy reveal reveal-left">
+            <p class="section-label">Project overview</p>
+            <h2>Sales were coming in. Margin was slipping underneath.</h2>
+
+            <p class="lead">
+              This project was built around a common commercial problem: headline sales can
+              look acceptable while the economics underneath are much weaker than they appear.
+            </p>
+
+            <p>
+              In this case, value was being eroded across multiple points in the commercial
+              cycle — discounts, returns, weak price realization, and margin pressure —
+              but without a clear analytical view linking those effects together, it was
+              difficult to see which drivers mattered most and where management should intervene first.
+            </p>
+
+            <p>
+              The objective was to build a management-facing Power BI case that connects gross sales,
+              discounts, returns, net revenue, gross margin, leakage drivers, and action priorities
+              into one structured decision-support story.
+            </p>
+
+            <p>
+              The goal was not just to report performance, but to show where commercial value is leaking,
+              why it is happening, and where corrective action is likely to protect the most value.
+            </p>
+          </div>
+
+          <div class="narrative-panel reveal reveal-right">
+            <p class="panel-kicker">What this project is meant to signal</p>
+            <ul class="narrative-list">
+              <li>Ability to frame a real commercial performance problem</li>
+              <li>Comfort connecting pricing, returns, and margin into one business logic</li>
+              <li>Structured thinking around diagnosis, prioritisation, and management action</li>
+              <li>Business-facing communication rather than KPI reporting for its own sake</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section framework-section">
+        <div class="container">
+          <div class="section-heading reveal reveal-up">
+            <p class="section-label">Analytical framework</p>
+            <h2>From gross sales to protected margin.</h2>
+            <p>
+              The analysis was structured around one core question: not how much the business sells,
+              but how much value survives the journey from transaction volume to protected gross margin.
+            </p>
+          </div>
+
+          <div class="framework-grid">
+            {frameworkCards.map((card, index) => (
+              <article
+                class="framework-card reveal reveal-up"
+                style={`--reveal-delay: ${index * 70}ms;`}
+              >
+                <h3>{card.title}</h3>
+                <p>{card.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="dashboard-suite" class="section dashboard-section">
+        <div class="container">
+          <div class="section-heading reveal reveal-up">
+            <p class="section-label">Dashboard suite</p>
+            <h2>Five pages, one management story.</h2>
+            <p>
+              The suite moves from executive visibility to driver diagnosis and finally to
+              prioritised action, so each page answers a different business question rather than
+              repeating the previous one.
+            </p>
+          </div>
+
+          <div class="dashboard-grid">
+            {dashboardViews.map((view, index) => (
+              <article
+                class="dashboard-card reveal reveal-up"
+                style={`--reveal-delay: ${index * 70}ms;`}
+              >
+                <button
+                  type="button"
+                  class="dashboard-image-button"
+                  data-modal-src={view.src}
+                  data-modal-title={view.title}
+                  data-modal-text={view.summary}
+                  aria-label={`Open ${view.title}`}
+                >
+                  <div class="dashboard-image-wrap">
+                    <img src={view.src} alt={view.alt} loading="lazy" />
+                  </div>
+                </button>
+
+                <div class="dashboard-card-body">
+                  <span class="dashboard-card-label">{view.label}</span>
+                  <h3>{view.title}</h3>
+                  <p>{view.summary}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="section signals-section">
+        <div class="container">
+          <div class="section-heading reveal reveal-up">
+            <p class="section-label">What this demonstrates</p>
+            <h2>Why this project matters professionally.</h2>
+            <p>
+              The case is designed to show that my work goes beyond building dashboards and into
+              framing business problems, prioritising drivers, and translating analysis into decision support.
+            </p>
+          </div>
+
+          <div class="signals-grid">
+            {projectSignals.map((signal, index) => (
+              <article
+                class="signal-card reveal reveal-up"
+                style={`--reveal-delay: ${index * 80}ms;`}
+              >
+                <p class="panel-kicker">{signal.eyebrow}</p>
+                <h3>{signal.title}</h3>
+                <p>{signal.text}</p>
+              </article>
+            ))}
+          </div>
+
+          <div class="stack-shell reveal reveal-up" style="--reveal-delay: 220ms;">
+            <p class="panel-kicker">Tools and concepts</p>
+            <div class="tag-row">
+              {stackTags.map((tag) => <span>{tag}</span>)}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section contact-section">
+        <div class="container">
+          <div class="contact-card reveal reveal-up">
+            <div>
+              <p class="section-label">Next step</p>
+              <h2>Interested in the commercial case study?</h2>
+              <p>
+                This project is part of a broader portfolio focused on applied analytics,
+                business visibility, and decision-support work built around real management questions.
+              </p>
+            </div>
+
+            <div class="hero-actions contact-actions">
+              <a class="button button-primary" href="/#projects">Back to selected work</a>
+              <a class="button button-secondary" href="mailto:antonio.business444@gmail.com">Email me</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="media-modal" id="dashboard-modal">
+        <div class="media-modal-dialog media-modal-dialog--large">
+          <button type="button" class="media-modal-close" data-close-modal>×</button>
+          <img
+            id="dashboard-modal-image"
+            src="/commercial-margin-protection/overview.png"
+            alt="Commercial dashboard preview"
+          />
+          <div class="media-modal-caption">
+            <strong id="dashboard-modal-title">Executive Overview</strong>
+            <p id="dashboard-modal-text">
+              A high-level management view connecting net revenue, gross margin, discount rate,
+              return rate, pricing leakage, and the main areas where commercial value is being lost.
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script is:inline>
+      const revealItems = Array.from(document.querySelectorAll(".reveal"));
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+      function revealImmediately() {
+        revealItems.forEach((item) => item.classList.add("is-visible"));
+      }
+
+      if (prefersReducedMotion.matches) {
+        revealImmediately();
+      } else {
+        const revealObserver = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            });
+          },
+          {
+            threshold: 0.14,
+            rootMargin: "0px 0px -10% 0px",
+          }
+        );
+
+        revealItems.forEach((item) => revealObserver.observe(item));
+      }
+
+      const dashboardModal = document.getElementById("dashboard-modal");
+      const dashboardModalImage = document.getElementById("dashboard-modal-image");
+      const dashboardModalTitle = document.getElementById("dashboard-modal-title");
+      const dashboardModalText = document.getElementById("dashboard-modal-text");
+
+      function openModal(modal) {
+        if (!modal) return;
+        modal.classList.add("is-open");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeModal(modal) {
+        if (!modal) return;
+        modal.classList.remove("is-open");
+        document.body.style.overflow = "";
+      }
+
+      document.querySelectorAll(".dashboard-image-button").forEach((button) => {
+        button.addEventListener("click", () => {
+          const src = button.getAttribute("data-modal-src");
+          const title = button.getAttribute("data-modal-title");
+          const text = button.getAttribute("data-modal-text");
+
+          if (dashboardModalImage && src) dashboardModalImage.src = src;
+          if (dashboardModalTitle && title) dashboardModalTitle.textContent = title;
+          if (dashboardModalText && text) dashboardModalText.textContent = text;
+
+          openModal(dashboardModal);
+        });
+      });
+
+      document.querySelectorAll("[data-close-modal]").forEach((button) => {
+        button.addEventListener("click", () => {
+          closeModal(button.closest(".media-modal"));
+        });
+      });
+
+      document.querySelectorAll(".media-modal").forEach((modal) => {
+        modal.addEventListener("click", (event) => {
+          if (event.target === modal) {
+            closeModal(modal);
+          }
+        });
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          closeModal(dashboardModal);
+        }
+      });
+    </script>
+  </body>
+</html>
+
+<style>
+  :root {
+    --bg: #07101f;
+    --text: #edf2ff;
+    --muted: #b5c1dc;
+    --line: rgba(255, 255, 255, 0.1);
+    --accent: #91a9ff;
+    --accent-soft: #d8e0ff;
+    --shadow: 0 20px 55px rgba(0, 0, 0, 0.24);
+    --shadow-soft: 0 12px 30px rgba(0, 0, 0, 0.18);
+    --max: 1180px;
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: var(--text);
+    background:
+      radial-gradient(circle at top left, rgba(145, 169, 255, 0.1), transparent 28%),
+      linear-gradient(180deg, #06101d 0%, #08111f 55%, #08111f 100%);
+    line-height: 1.65;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 1100px;
+    background:
+      radial-gradient(circle at 14% 18%, rgba(145, 169, 255, 0.12), transparent 28%),
+      linear-gradient(
+        180deg,
+        rgba(6, 16, 29, 0.08) 0%,
+        rgba(6, 16, 29, 0.2) 30%,
+        rgba(6, 16, 29, 0.72) 78%,
+        rgba(6, 16, 29, 1) 100%
+      );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  main,
+  .site-header {
+    position: relative;
+    z-index: 1;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  .container {
+    width: min(var(--max), calc(100% - 2rem));
+    margin: 0 auto;
+  }
+
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    backdrop-filter: blur(16px);
+    background: rgba(6, 16, 29, 0.7);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav {
+    min-height: 78px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .brand {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+
+  .nav-links a {
+    transition: color 0.18s ease;
+  }
+
+  .nav-links a:hover {
+    color: var(--text);
+  }
+
+  .nav-links a:focus-visible,
+  .brand:focus-visible,
+  .button:focus-visible,
+  .dashboard-image-button:focus-visible,
+  .media-modal-close:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  .project-hero {
+    padding: 2.2rem 0 2.2rem;
+  }
+
+  .project-hero-shell {
+    position: relative;
+    overflow: hidden;
+    border-radius: 34px;
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    background: linear-gradient(
+      180deg,
+      rgba(18, 30, 54, 0.88) 0%,
+      rgba(14, 23, 42, 0.94) 100%
+    );
+    box-shadow: var(--shadow);
+  }
+
+  .project-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 78% 18%, rgba(145, 169, 255, 0.18), transparent 28%),
+      linear-gradient(
+        180deg,
+        rgba(5, 11, 24, 0.16) 0%,
+        rgba(6, 13, 28, 0.42) 34%,
+        rgba(6, 13, 28, 0.82) 100%
+      );
+    pointer-events: none;
+  }
+
+  .project-hero-content {
+    position: relative;
+    z-index: 1;
+    padding: 2.7rem 2rem 2rem;
+  }
+
+  .section-label {
+    margin: 0 0 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.76rem;
+    font-weight: 700;
+    color: var(--accent-soft);
+  }
+
+  h1,
+  h2 {
+    margin: 0;
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+    text-wrap: balance;
+  }
+
+  h1 {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    max-width: 12ch;
+  }
+
+  h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 1rem;
+  }
+
+  p {
+    margin: 0 0 1rem;
+    color: var(--muted);
+  }
+
+  .project-hero-subtitle {
+    font-size: 1.08rem;
+    max-width: 820px;
+    margin-top: 1rem;
+  }
+
+  .hero-actions,
+  .contact-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    flex-wrap: wrap;
+  }
+
+  .hero-actions {
+    margin-top: 1.35rem;
+  }
+
+  .button {
+    min-height: 50px;
+    padding: 0 1.2rem;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    transition:
+      transform 0.18s ease,
+      background 0.18s ease,
+      border-color 0.18s ease,
+      box-shadow 0.18s ease;
+  }
+
+  .button:hover {
+    transform: translateY(-1px);
+  }
+
+  .button-primary {
+    background: var(--accent);
+    color: #081122;
+    box-shadow: 0 10px 24px rgba(145, 169, 255, 0.18);
+  }
+
+  .button-secondary {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    color: var(--text);
+  }
+
+  .hero-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 1.8rem;
+  }
+
+  .hero-summary-card,
+  .narrative-panel,
+  .framework-card,
+  .dashboard-card,
+  .signal-card,
+  .stack-shell,
+  .contact-card {
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    background: rgba(20, 31, 54, 0.8);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(14px);
+  }
+
+  .hero-summary-card {
+    border-radius: 22px;
+    padding: 1rem 1.05rem;
+    background: rgba(22, 35, 61, 0.76);
+  }
+
+  .hero-summary-label,
+  .panel-kicker,
+  .dashboard-card-label {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--accent-soft);
+  }
+
+  .hero-summary-card strong {
+    display: block;
+    margin-bottom: 0.35rem;
+    font-size: 1.05rem;
+    line-height: 1.2;
+  }
+
+  .hero-summary-card p {
+    margin: 0;
+    font-size: 0.95rem;
+  }
+
+  .section {
+    padding: 4.5rem 0;
+  }
+
+  .section-heading {
+    max-width: 860px;
+    margin: 0 auto 1.35rem;
+    text-align: center;
+  }
+
+  .lead {
+    font-size: 1.08rem;
+    color: var(--text);
+  }
+
+  .narrative-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 1.2rem;
+    align-items: start;
+  }
+
+  .narrative-panel {
+    border-radius: 28px;
+    padding: 1.35rem;
+    background: rgba(18, 29, 50, 0.84);
+  }
+
+  .narrative-list {
+    margin: 0;
+    padding-left: 1.1rem;
+    color: var(--muted);
+  }
+
+  .narrative-list li {
+    margin-bottom: 0.65rem;
+  }
+
+  .framework-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+
+  .framework-card {
+    border-radius: 24px;
+    padding: 1.2rem;
+    background: rgba(18, 29, 50, 0.84);
+    transition:
+      transform 0.22s ease,
+      border-color 0.22s ease;
+  }
+
+  .framework-card:hover,
+  .dashboard-card:hover,
+  .signal-card:hover,
+  .narrative-panel:hover {
+    transform: translateY(-2px);
+    border-color: rgba(145, 169, 255, 0.24);
+  }
+
+  .framework-card h3,
+  .dashboard-card h3,
+  .signal-card h3 {
+    margin: 0 0 0.7rem;
+    font-size: 1.34rem;
+    line-height: 1.12;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+  }
+
+  .framework-card p,
+  .dashboard-card p,
+  .signal-card p {
+    margin: 0;
+  }
+
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .dashboard-card {
+    border-radius: 28px;
+    overflow: hidden;
+    background: rgba(18, 29, 50, 0.84);
+    transition:
+      transform 0.22s ease,
+      border-color 0.22s ease,
+      box-shadow 0.22s ease;
+  }
+
+  .dashboard-image-button {
+    width: 100%;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: zoom-in;
+    color: inherit;
+    text-align: left;
+  }
+
+  .dashboard-image-wrap {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 72% 20%, rgba(145, 169, 255, 0.16), transparent 34%),
+      linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.06),
+        rgba(255, 255, 255, 0.02)
+      );
+  }
+
+  .dashboard-image-wrap::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(7, 16, 31, 0.04) 0%,
+      rgba(7, 16, 31, 0.16) 56%,
+      rgba(7, 16, 31, 0.3) 100%
+    );
+    pointer-events: none;
+  }
+
+  .dashboard-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.35s var(--ease-out);
+  }
+
+  .dashboard-image-button:hover .dashboard-image-wrap img {
+    transform: scale(1.03);
+  }
+
+  .dashboard-card-body {
+    padding: 1rem 1rem 1.1rem;
+  }
+
+  .signals-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .signal-card {
+    border-radius: 24px;
+    padding: 1.2rem;
+    background: rgba(18, 29, 50, 0.84);
+  }
+
+  .stack-shell {
+    border-radius: 24px;
+    padding: 1.15rem;
+    background: rgba(18, 29, 50, 0.84);
+  }
+
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+  }
+
+  .tag-row span {
+    padding: 0.46rem 0.8rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: var(--accent-soft);
+    background: rgba(255, 255, 255, 0.03);
+    font-size: 0.92rem;
+    font-weight: 600;
+  }
+
+  .contact-card {
+    border-radius: 28px;
+    padding: 1.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  .media-modal {
+    position: fixed;
+    top: 78px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(5, 10, 22, 0.82);
+    backdrop-filter: blur(10px);
+    display: none;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 1rem 1.5rem 1.5rem;
+    overflow-y: auto;
+    z-index: 120;
+  }
+
+  .media-modal.is-open {
+    display: flex;
+  }
+
+  .media-modal-dialog {
+    position: relative;
+    width: min(100%, 1100px);
+    border-radius: 24px;
+    border: 1px solid var(--line);
+    background: rgba(10, 17, 32, 0.96);
+    box-shadow: var(--shadow);
+    padding: 1rem;
+  }
+
+  .media-modal-dialog--large img {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+  }
+
+  .media-modal-close {
+    position: sticky;
+    top: 0;
+    margin-left: auto;
+    display: block;
+    width: 42px;
+    height: 42px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text);
+    font-size: 1.25rem;
+    cursor: pointer;
+    z-index: 2;
+  }
+
+  .media-modal-caption {
+    padding-top: 0.9rem;
+  }
+
+  .media-modal-caption strong {
+    display: block;
+    margin-bottom: 0.35rem;
+    font-size: 1.05rem;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0);
+    transition:
+      opacity 0.72s var(--ease-out),
+      transform 0.72s var(--ease-out);
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, transform;
+  }
+
+  .reveal-left {
+    transform: translate3d(-36px, 0, 0);
+  }
+
+  .reveal-right {
+    transform: translate3d(36px, 0, 0);
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  @media (max-width: 980px) {
+    .hero-summary-grid,
+    .dashboard-grid,
+    .signals-grid,
+    .framework-grid,
+    .narrative-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .project-hero-content {
+      padding: 2.15rem 1.3rem 1.45rem;
+    }
+
+    .contact-card {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .nav {
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 0.9rem 0;
+    }
+
+    .nav-links {
+      flex-wrap: wrap;
+      gap: 0.9rem;
+    }
+
+    .project-hero {
+      padding-top: 1.25rem;
+    }
+
+    h1 {
+      font-size: clamp(2.1rem, 9vw, 3.2rem);
+    }
+
+    h2 {
+      font-size: clamp(1.9rem, 9vw, 2.6rem);
+    }
+
+    .framework-card h3,
+    .dashboard-card h3,
+    .signal-card h3 {
+      font-size: 1.22rem;
+    }
+
+    .media-modal-dialog {
+      padding: 0.8rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    .reveal,
+    .reveal-left,
+    .reveal-right {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+
+    .button,
+    .framework-card,
+    .dashboard-card,
+    .signal-card,
+    .narrative-panel,
+    .dashboard-image-wrap img {
+      transition: none;
+    }
+  }
+</style>

@@ -3,23 +3,45 @@ const siteTitle = "Antonio González Martín | Data Portfolio";
 const siteDescription =
   "Portfolio focused on applied analytics, decision support, and business-facing data projects.";
 
-const featuredProjects = [
+type ProjectTrack = "data-analyst" | "business-analyst" | "data-science";
+
+const trackLabels: Record<ProjectTrack, string> = {
+  "data-analyst": "Data Analyst",
+  "business-analyst": "Business Analyst",
+  "data-science": "Data Science",
+};
+
+type FeaturedProject = {
+  href: string;
+  image: string;
+  imageAlt: string;
+  eyebrow: string;
+  badge: string;
+  title: string;
+  description: string;
+  highlights: string[];
+  tracks: ProjectTrack[];
+  cta: string;
+};
+
+const featuredProjects: FeaturedProject[] = [
   {
-  href: "/projects/commercial-margin-protection",
-  image: "/commercial-margin-protection/overview.png",
-  imageAlt: "Preview of the Commercial Margin Protection & Pricing Analytics project",
-  eyebrow: "Commercial Analytics / Pricing / Margin",
-  badge: "Management-facing case",
-  title: "Commercial Margin Protection & Pricing Analytics",
-  description:
-    "A business-facing analytics case focused on discount leakage, returns, weak price realization, and margin pressure in an omnichannel retail business.",
-  highlights: [
-    "5-page Power BI suite",
-    "Pricing + returns + margin logic",
-    "Action prioritization",
-  ],
-  cta: "Open commercial case study",
-},
+    href: "/projects/commercial-margin-protection",
+    image: "/commercial-margin-protection/overview.png",
+    imageAlt: "Preview of the Commercial Margin Protection & Pricing Analytics project",
+    eyebrow: "Commercial Analytics / Pricing / Margin",
+    badge: "Management-facing case",
+    title: "Commercial Margin Protection & Pricing Analytics",
+    description:
+      "A business-facing analytics case focused on discount leakage, returns, weak price realization, and margin pressure in an omnichannel retail business.",
+    highlights: [
+      "5-page Power BI suite",
+      "Pricing + returns + margin logic",
+      "Action prioritization",
+    ],
+    tracks: ["data-analyst", "business-analyst"],
+    cta: "Open commercial case study",
+  },
   {
     href: "/projects/finance-data-foundation",
     image: "/FP_overview.png",
@@ -34,6 +56,7 @@ const featuredProjects = [
       "Variance & controls",
       "DuckDB + parquet layers",
     ],
+    tracks: ["data-analyst", "business-analyst"],
     cta: "Open finance case study",
   },
   {
@@ -50,7 +73,25 @@ const featuredProjects = [
       "Segmentation + recommendations",
       "Decision-support design",
     ],
+    tracks: ["data-analyst", "business-analyst", "data-science"],
     cta: "Jump to flagship project",
+  },
+  {
+    href: "/projects/internal-policy-process-knowledge-assistant",
+    image: "/images/projects/northstar/northstar-demo-home.png",
+    imageAlt: "Preview of the Internal Policy & Process Knowledge Assistant project",
+    eyebrow: "Applied GenAI / Retrieval / Knowledge Workflow",
+    badge: "New GenAI case",
+    title: "Internal Policy & Process Knowledge Assistant",
+    description:
+      "A grounded GenAI workflow built around a realistic internal operations problem: helping teams get faster, more reliable answers from scattered policies, procedures, approvals, and support documents.",
+    highlights: [
+      "Grounded answers",
+      "Retrieval-first workflow",
+      "Source-backed evidence",
+    ],
+    tracks: ["business-analyst", "data-science"],
+    cta: "Open GenAI case study",
   },
 ];
 ---
@@ -160,9 +201,46 @@ const featuredProjects = [
             <p class="section-label">Selected work</p>
             <h2>Projects that show how I use data in a business context.</h2>
             <p class="projects-intro">
-              A selection of work focused on structured problem solving, decision support, and
-              business-facing analytics.
+              Explore the portfolio by role positioning: Data Analyst, Business Analyst, or Data Science.
             </p>
+
+            <div class="project-filter-row" aria-label="Project track filters">
+              <button
+                type="button"
+                class="project-filter-button"
+                data-project-filter="all"
+                aria-pressed="true"
+              >
+                All
+              </button>
+
+              <button
+                type="button"
+                class="project-filter-button"
+                data-project-filter="data-analyst"
+                aria-pressed="false"
+              >
+                Data Analyst
+              </button>
+
+              <button
+                type="button"
+                class="project-filter-button"
+                data-project-filter="business-analyst"
+                aria-pressed="false"
+              >
+                Business Analyst
+              </button>
+
+              <button
+                type="button"
+                class="project-filter-button"
+                data-project-filter="data-science"
+                aria-pressed="false"
+              >
+                Data Science
+              </button>
+            </div>
           </div>
 
           <div class="projects-carousel-shell reveal reveal-up" style="--reveal-delay: 90ms;">
@@ -175,44 +253,49 @@ const featuredProjects = [
               ←
             </button>
 
-            <div class="projects-carousel-track" id="projects-carousel">
-              {featuredProjects.map((project, index) => (
-                <a
-                  href={project.href}
-                  class="project-carousel-card-link"
-                  aria-label={`Open ${project.title}`}
-                >
-                  <article
-                    class={`project-carousel-card ${index === 0 ? "project-carousel-card--featured" : ""}`}
+            <div class="projects-carousel-viewport">
+              <div class="projects-carousel-track" id="projects-carousel-track">
+                {featuredProjects.map((project, index) => (
+                  <a
+                    href={project.href}
+                    class="project-carousel-card-link"
+                    data-project-tracks={project.tracks.join(" ")}
+                    aria-label={`Open ${project.title}`}
                   >
-                    <div class="project-carousel-card-media">
-                      <img src={project.image} alt={project.imageAlt} loading="lazy" />
-                    </div>
-
-                    <div class="project-carousel-card-body">
-                      <div class="project-carousel-card-topline">
-                        <span class="project-carousel-card-eyebrow">{project.eyebrow}</span>
-                        {project.badge && (
-                          <span class="project-carousel-card-badge">{project.badge}</span>
-                        )}
+                    <article class={`project-carousel-card ${index === 0 ? "project-carousel-card--featured" : ""}`}>
+                      <div class="project-carousel-card-media">
+                        <img src={project.image} alt={project.imageAlt} loading="lazy" />
                       </div>
 
-                      <h3>{project.title}</h3>
+                      <div class="project-carousel-card-body">
+                        <div class="project-carousel-card-topline">
+                          <span class="project-carousel-card-eyebrow">{project.eyebrow}</span>
+                          {project.badge && (
+                            <span class="project-carousel-card-badge">{project.badge}</span>
+                          )}
+                        </div>
 
-                      <p class="project-carousel-card-description">{project.description}</p>
+                        <h3>{project.title}</h3>
 
-                      <div class="project-carousel-card-highlights">
-                        {project.highlights.map((item) => <span>{item}</span>)}
+                        <p class="project-carousel-card-description">{project.description}</p>
+
+                        <div class="project-carousel-card-track-pills">
+                          {project.tracks.map((track) => <span>{trackLabels[track]}</span>)}
+                        </div>
+
+                        <div class="project-carousel-card-highlights">
+                          {project.highlights.map((item) => <span>{item}</span>)}
+                        </div>
+
+                        <div class="project-carousel-card-footer">
+                          <span class="project-carousel-card-cta">{project.cta}</span>
+                          <span class="project-carousel-card-arrow" aria-hidden="true">↗</span>
+                        </div>
                       </div>
-
-                      <div class="project-carousel-card-footer">
-                        <span class="project-carousel-card-cta">{project.cta}</span>
-                        <span class="project-carousel-card-arrow" aria-hidden="true">↗</span>
-                      </div>
-                    </div>
-                  </article>
-                </a>
-              ))}
+                    </article>
+                  </a>
+                ))}
+              </div>
             </div>
 
             <button
@@ -550,9 +633,13 @@ const featuredProjects = [
       const galleryModalTitle = document.getElementById("gallery-modal-title");
       const galleryModalText = document.getElementById("gallery-modal-text");
 
-      const projectsCarousel = document.getElementById("projects-carousel");
-      const projectsCarouselPrev = document.getElementById("projects-carousel-prev");
-      const projectsCarouselNext = document.getElementById("projects-carousel-next");
+      const projectFilterButtons = Array.from(document.querySelectorAll("[data-project-filter]"));
+      const projectTrack = document.getElementById("projects-carousel-track");
+      const projectPrev = document.getElementById("projects-carousel-prev");
+      const projectNext = document.getElementById("projects-carousel-next");
+
+      let activeProjectFilter = "all";
+      let projectCurrentPage = 0;
 
       function applyGalleryContent(index) {
         currentGalleryIndex = index;
@@ -624,41 +711,94 @@ const featuredProjects = [
         renderGallery(nextIndex, true);
       }
 
-      function getProjectsScrollAmount() {
-        if (!projectsCarousel) return 0;
-
-        const firstCard = projectsCarousel.querySelector(".project-carousel-card-link");
-        if (!firstCard) return 0;
-
-        const styles = window.getComputedStyle(projectsCarousel);
-        const gap = parseFloat(styles.columnGap || styles.gap || "0");
-
-        return firstCard.getBoundingClientRect().width + gap;
+      function getVisibleProjectCards() {
+        if (!projectTrack) return [];
+        return Array.from(projectTrack.querySelectorAll(".project-carousel-card-link")).filter((card) => {
+          return !card.classList.contains("is-hidden");
+        });
       }
 
-      function updateProjectsCarouselControls() {
-        if (!projectsCarousel || !projectsCarouselPrev || !projectsCarouselNext) return;
-
-        const maxScrollLeft = projectsCarousel.scrollWidth - projectsCarousel.clientWidth;
-        const hasOverflow = maxScrollLeft > 8;
-
-        projectsCarouselPrev.disabled = !hasOverflow || projectsCarousel.scrollLeft <= 8;
-        projectsCarouselNext.disabled =
-          !hasOverflow || projectsCarousel.scrollLeft >= maxScrollLeft - 8;
+      function getProjectsPerView() {
+        if (window.innerWidth <= 760) return 1;
+        if (window.innerWidth <= 1080) return 2;
+        return 3;
       }
 
-      projectsCarouselPrev?.addEventListener("click", () => {
-        const amount = getProjectsScrollAmount();
-        projectsCarousel?.scrollBy({ left: -amount, behavior: "smooth" });
+      function updateProjectCardsVisibility() {
+        if (!projectTrack) return;
+
+        const cards = Array.from(projectTrack.querySelectorAll(".project-carousel-card-link"));
+
+        cards.forEach((card) => {
+          const tracks = (card.dataset.projectTracks || "").split(" ").filter(Boolean);
+          const shouldShow = activeProjectFilter === "all" || tracks.includes(activeProjectFilter);
+          card.classList.toggle("is-hidden", !shouldShow);
+        });
+
+        projectCurrentPage = 0;
+        updateProjectCarousel();
+      }
+
+      function updateProjectFilterButtons() {
+        projectFilterButtons.forEach((button) => {
+          const isActive = button.dataset.projectFilter === activeProjectFilter;
+          button.classList.toggle("is-active", isActive);
+          button.setAttribute("aria-pressed", isActive ? "true" : "false");
+        });
+      }
+
+      function updateProjectCarousel() {
+        if (!projectTrack) return;
+
+        const visibleCards = getVisibleProjectCards();
+        const perView = getProjectsPerView();
+        const maxPage = Math.max(0, Math.ceil(visibleCards.length / perView) - 1);
+
+        if (projectCurrentPage > maxPage) {
+          projectCurrentPage = maxPage;
+        }
+
+        visibleCards.forEach((card, index) => {
+          const page = Math.floor(index / perView);
+          card.classList.toggle("is-page-hidden", page !== projectCurrentPage);
+        });
+
+        const allCards = Array.from(projectTrack.querySelectorAll(".project-carousel-card-link"));
+        allCards.forEach((card) => {
+          if (card.classList.contains("is-hidden")) {
+            card.classList.add("is-page-hidden");
+          }
+        });
+
+        if (projectPrev) projectPrev.disabled = projectCurrentPage === 0;
+        if (projectNext) projectNext.disabled = projectCurrentPage >= maxPage;
+      }
+
+      projectFilterButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          activeProjectFilter = button.dataset.projectFilter || "all";
+          updateProjectFilterButtons();
+          updateProjectCardsVisibility();
+        });
       });
 
-      projectsCarouselNext?.addEventListener("click", () => {
-        const amount = getProjectsScrollAmount();
-        projectsCarousel?.scrollBy({ left: amount, behavior: "smooth" });
+      projectPrev?.addEventListener("click", () => {
+        if (projectCurrentPage > 0) {
+          projectCurrentPage -= 1;
+          updateProjectCarousel();
+        }
       });
 
-      projectsCarousel?.addEventListener("scroll", updateProjectsCarouselControls);
-      window.addEventListener("resize", updateProjectsCarouselControls);
+      projectNext?.addEventListener("click", () => {
+        const visibleCards = getVisibleProjectCards();
+        const perView = getProjectsPerView();
+        const maxPage = Math.max(0, Math.ceil(visibleCards.length / perView) - 1);
+
+        if (projectCurrentPage < maxPage) {
+          projectCurrentPage += 1;
+          updateProjectCarousel();
+        }
+      });
 
       galleryPrev?.addEventListener("click", goToPreviousGalleryItem);
       galleryNext?.addEventListener("click", goToNextGalleryItem);
@@ -732,8 +872,11 @@ const featuredProjects = [
         revealItems.forEach((item) => revealObserver.observe(item));
       }
 
+      window.addEventListener("resize", updateProjectCarousel);
+
       renderGallery(0, false);
-      updateProjectsCarouselControls();
+      updateProjectFilterButtons();
+      updateProjectCardsVisibility();
     </script>
   </body>
 </html>
@@ -985,8 +1128,9 @@ const featuredProjects = [
   .gallery-arrow:focus-visible,
   .media-open-btn:focus-visible,
   .media-modal-close:focus-visible,
-  .project-carousel-card-link:focus-visible,
-  .projects-carousel-arrow:focus-visible {
+  .project-filter-button:focus-visible,
+  .projects-carousel-arrow:focus-visible,
+  .project-carousel-card-link:focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 3px;
   }
@@ -1181,7 +1325,8 @@ const featuredProjects = [
   .case-pipeline-copy,
   .case-pipeline-image-card,
   .case-gallery-shell,
-  .case-value-card {
+  .case-value-card,
+  .project-carousel-card {
     border: 1px solid rgba(255, 255, 255, 0.13);
     background: rgba(20, 31, 54, 0.8);
     box-shadow: var(--shadow);
@@ -1206,272 +1351,322 @@ const featuredProjects = [
   }
 
   .projects-section {
-    padding-top: 1rem;
-    padding-bottom: 3.8rem;
-  }
+  padding-top: 1rem;
+  padding-bottom: 3.8rem;
+}
 
-  .projects-header {
-    max-width: 840px;
-    margin: 0 auto 1.25rem;
-    text-align: center;
-  }
+.projects-section .container {
+  width: min(1500px, calc(100% - 2rem));
+}
 
-  .projects-intro {
-    max-width: 760px;
-    margin: 0 auto;
-    font-size: 1.03rem;
-  }
+.projects-header {
+  max-width: 980px;
+  margin: 0 auto 1.8rem;
+  text-align: center;
+}
 
-  .projects-carousel-shell {
-    position: relative;
-    padding: 0 3.5rem;
-  }
+.projects-intro {
+  max-width: 860px;
+  margin: 0 auto;
+  font-size: 1.03rem;
+}
 
-  .projects-carousel-track {
-    display: flex;
-    gap: 1rem;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    scrollbar-width: none;
-    padding-bottom: 0.2rem;
-  }
+.project-filter-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.15rem;
+}
 
-  .projects-carousel-track::-webkit-scrollbar {
-    display: none;
-  }
+.project-filter-button {
+  min-height: 42px;
+  padding: 0 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    transform 0.18s ease,
+    background 0.18s ease,
+    border-color 0.18s ease,
+    color 0.18s ease,
+    box-shadow 0.18s ease;
+}
 
-  .project-carousel-card-link {
-    flex: 0 0 calc((100% - 2rem) / 3);
-    min-width: 0;
-    display: block;
-    scroll-snap-align: start;
-  }
+.project-filter-button:hover {
+  transform: translateY(-1px);
+  border-color: rgba(145, 169, 255, 0.24);
+}
 
-  .project-carousel-card {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    border-radius: 24px;
-    border: 1px solid rgba(255, 255, 255, 0.13);
-    background: rgba(18, 29, 50, 0.84);
-    box-shadow: var(--shadow);
-    backdrop-filter: blur(14px);
-    transition:
-      transform 0.22s ease,
-      border-color 0.22s ease,
-      box-shadow 0.22s ease,
-      background 0.22s ease;
-  }
+.project-filter-button.is-active {
+  background: var(--accent);
+  color: #081122;
+  border-color: transparent;
+  box-shadow: 0 10px 24px rgba(145, 169, 255, 0.18);
+}
 
-  .project-carousel-card--featured {
-    background: linear-gradient(
+.projects-carousel-shell {
+  position: relative;
+  padding: 0 4.5rem;
+}
+
+.projects-carousel-viewport {
+  overflow: hidden;
+}
+
+.projects-carousel-track {
+  display: flex;
+  gap: 1.15rem;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.projects-carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(7, 16, 31, 0.78);
+  backdrop-filter: blur(14px);
+  color: var(--text);
+  font-size: 1.35rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease,
+    transform 0.18s ease,
+    opacity 0.18s ease;
+  z-index: 3;
+}
+
+.projects-carousel-arrow-left {
+  left: 0;
+}
+
+.projects-carousel-arrow-right {
+  right: 0;
+}
+
+.projects-carousel-arrow:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(145, 169, 255, 0.24);
+  transform: translateY(-50%) scale(1.03);
+}
+
+.projects-carousel-arrow:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.project-carousel-card-link {
+  display: block;
+  flex: 0 0 calc((100% - 2.3rem) / 3);
+  min-width: 0;
+}
+
+.project-carousel-card-link.is-hidden,
+.project-carousel-card-link.is-page-hidden {
+  display: none;
+}
+
+.project-carousel-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 26px;
+  background: rgba(18, 29, 50, 0.84);
+  transition:
+    transform 0.22s ease,
+    border-color 0.22s ease,
+    box-shadow 0.22s ease,
+    background 0.22s ease;
+}
+
+.project-carousel-card--featured {
+  background: linear-gradient(
+    180deg,
+    rgba(19, 31, 56, 0.92) 0%,
+    rgba(16, 26, 46, 0.88) 100%
+  );
+  border-color: rgba(145, 169, 255, 0.18);
+}
+
+.project-carousel-card-link:hover .project-carousel-card,
+.project-carousel-card-link:focus-visible .project-carousel-card {
+  transform: translateY(-3px);
+  border-color: rgba(145, 169, 255, 0.26);
+  box-shadow: 0 24px 65px rgba(0, 0, 0, 0.28);
+}
+
+.project-carousel-card-media {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 72% 20%, rgba(145, 169, 255, 0.16), transparent 34%),
+    linear-gradient(
       180deg,
-      rgba(19, 31, 56, 0.92) 0%,
-      rgba(16, 26, 46, 0.88) 100%
+      rgba(255, 255, 255, 0.06),
+      rgba(255, 255, 255, 0.02)
     );
-    border-color: rgba(145, 169, 255, 0.18);
-  }
+}
 
-  .project-carousel-card-link:hover .project-carousel-card,
-  .project-carousel-card-link:focus-visible .project-carousel-card {
-    transform: translateY(-3px);
-    border-color: rgba(145, 169, 255, 0.26);
-    box-shadow: 0 24px 65px rgba(0, 0, 0, 0.28);
-  }
+.project-carousel-card-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(7, 16, 31, 0.05) 0%,
+    rgba(7, 16, 31, 0.14) 56%,
+    rgba(7, 16, 31, 0.32) 100%
+  );
+  pointer-events: none;
+}
 
-  .project-carousel-card-media {
-    position: relative;
-    aspect-ratio: 16 / 10;
-    overflow: hidden;
-    background:
-      radial-gradient(circle at 72% 20%, rgba(145, 169, 255, 0.16), transparent 34%),
-      linear-gradient(
-        180deg,
-        rgba(255, 255, 255, 0.06),
-        rgba(255, 255, 255, 0.02)
-      );
-  }
+.project-carousel-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition:
+    transform 0.35s var(--ease-out),
+    opacity 0.35s var(--ease-out);
+}
 
-  .project-carousel-card-media::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      180deg,
-      rgba(7, 16, 31, 0.05) 0%,
-      rgba(7, 16, 31, 0.14) 56%,
-      rgba(7, 16, 31, 0.32) 100%
-    );
-    pointer-events: none;
-  }
+.project-carousel-card-link:hover .project-carousel-card-media img,
+.project-carousel-card-link:focus-visible .project-carousel-card-media img {
+  transform: scale(1.04);
+}
 
-  .project-carousel-card-media img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition:
-      transform 0.35s var(--ease-out),
-      opacity 0.35s var(--ease-out);
-  }
+.project-carousel-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.95rem;
+  flex: 1;
+  padding: 1.2rem 1.2rem 1.25rem;
+}
 
-  .project-carousel-card-link:hover .project-carousel-card-media img,
-  .project-carousel-card-link:focus-visible .project-carousel-card-media img {
-    transform: scale(1.04);
-  }
+.project-carousel-card-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
 
-  .project-carousel-card-body {
-    display: flex;
-    flex-direction: column;
-    gap: 0.85rem;
-    flex: 1;
-    padding: 1rem 1rem 1.05rem;
-  }
+.project-carousel-card-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--accent-soft);
+}
 
-  .project-carousel-card-topline {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-  }
+.project-carousel-card-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 0.7rem;
+  border-radius: 999px;
+  border: 1px solid rgba(145, 169, 255, 0.18);
+  background: rgba(145, 169, 255, 0.08);
+  color: #edf2ff;
+  font-size: 0.74rem;
+  font-weight: 700;
+}
 
-  .project-carousel-card-eyebrow {
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    font-size: 0.68rem;
-    font-weight: 700;
-    color: var(--accent-soft);
-  }
+.project-carousel-card h3 {
+  margin: 0;
+  font-size: clamp(1.7rem, 1.9vw, 2.2rem);
+  line-height: 1.06;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
 
-  .project-carousel-card-badge {
-    display: inline-flex;
-    align-items: center;
-    min-height: 28px;
-    padding: 0 0.65rem;
-    border-radius: 999px;
-    border: 1px solid rgba(145, 169, 255, 0.18);
-    background: rgba(145, 169, 255, 0.08);
-    color: #edf2ff;
-    font-size: 0.72rem;
-    font-weight: 700;
-  }
+.project-carousel-card-description {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: #d1dbf1;
+}
 
-  .project-carousel-card h3 {
-    margin: 0;
-    font-size: 1.55rem;
-    line-height: 1.08;
-    letter-spacing: -0.03em;
-    text-wrap: balance;
-  }
+.project-carousel-card-track-pills,
+.project-carousel-card-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
 
-  .project-carousel-card-description {
-    margin: 0;
-    font-size: 0.96rem;
-    color: #d1dbf1;
-  }
+.project-carousel-card-track-pills span {
+  padding: 0.42rem 0.74rem;
+  border-radius: 999px;
+  border: 1px solid rgba(145, 169, 255, 0.16);
+  background: rgba(145, 169, 255, 0.08);
+  color: #eef5ff;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
 
-  .project-carousel-card-highlights {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.55rem;
-    margin-top: 0.15rem;
-  }
+.project-carousel-card-highlights span {
+  padding: 0.44rem 0.74rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--accent-soft);
+  font-size: 0.84rem;
+  font-weight: 600;
+}
 
-  .project-carousel-card-highlights span {
-    padding: 0.42rem 0.7rem;
-    border-radius: 999px;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    background: rgba(255, 255, 255, 0.04);
-    color: var(--accent-soft);
-    font-size: 0.82rem;
-    font-weight: 600;
-  }
+.project-carousel-card-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
 
-  .project-carousel-card-footer {
-    margin-top: auto;
-    padding-top: 0.95rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.8rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-  }
+.project-carousel-card-cta {
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.01em;
+  font-size: 0.98rem;
+}
 
-  .project-carousel-card-cta {
-    font-weight: 700;
-    color: var(--text);
-    letter-spacing: -0.01em;
-  }
+.project-carousel-card-arrow {
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  transition:
+    transform 0.22s ease,
+    border-color 0.22s ease,
+    background 0.22s ease;
+}
 
-  .project-carousel-card-arrow {
-    width: 40px;
-    height: 40px;
-    border-radius: 999px;
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(255, 255, 255, 0.04);
-    color: var(--text);
-    transition:
-      transform 0.22s ease,
-      border-color 0.22s ease,
-      background 0.22s ease;
-  }
-
-  .project-carousel-card-link:hover .project-carousel-card-arrow,
-  .project-carousel-card-link:focus-visible .project-carousel-card-arrow {
-    transform: translate(2px, -2px);
-    border-color: rgba(145, 169, 255, 0.24);
-    background: rgba(255, 255, 255, 0.08);
-  }
-
-  .projects-carousel-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 3;
-    width: 52px;
-    height: 52px;
-    border-radius: 999px;
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    background: rgba(7, 16, 31, 0.8);
-    backdrop-filter: blur(14px);
-    color: var(--text);
-    font-size: 1.2rem;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
-    transition:
-      background 0.18s ease,
-      border-color 0.18s ease,
-      transform 0.18s ease,
-      opacity 0.18s ease;
-  }
-
-  .projects-carousel-arrow:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(145, 169, 255, 0.24);
-    transform: translateY(-50%) scale(1.03);
-  }
-
-  .projects-carousel-arrow:disabled {
-    opacity: 0.38;
-    cursor: default;
-    transform: translateY(-50%);
-  }
-
-  .projects-carousel-arrow-left {
-    left: 0;
-  }
-
-  .projects-carousel-arrow-right {
-    right: 0;
-  }
+.project-carousel-card-link:hover .project-carousel-card-arrow,
+.project-carousel-card-link:focus-visible .project-carousel-card-arrow {
+  transform: translate(2px, -2px);
+  border-color: rgba(145, 169, 255, 0.24);
+  background: rgba(255, 255, 255, 0.08);
+}
 
   .case-section {
     padding-top: 5.4rem;
@@ -2112,16 +2307,18 @@ const featuredProjects = [
     transform: translate3d(0, 0, 0) scale(1);
   }
 
+ @media (max-width: 1080px) {
+  .project-carousel-card-link {
+    flex: 0 0 calc((100% - 1.15rem) / 2);
+  }
+}
+
   @media (max-width: 980px) {
     .case-metrics-grid,
     .case-value-grid,
     .case-pipeline-grid,
     .about-grid {
       grid-template-columns: 1fr;
-    }
-
-    .project-carousel-card-link {
-      flex: 0 0 calc((100% - 1rem) / 2);
     }
 
     .case-top-inner {
@@ -2182,6 +2379,20 @@ const featuredProjects = [
     }
   }
 
+ @media (max-width: 760px) {
+  .projects-carousel-shell {
+    padding: 0;
+  }
+
+  .projects-carousel-arrow {
+    display: none;
+  }
+
+  .project-carousel-card-link {
+    flex: 0 0 100%;
+  }
+}
+
   @media (max-width: 720px) {
     .nav {
       flex-direction: column;
@@ -2232,21 +2443,8 @@ const featuredProjects = [
       padding-bottom: 3rem;
     }
 
-    .projects-carousel-shell {
-      padding: 0 2.9rem;
-    }
-
-    .project-carousel-card-link {
-      flex: 0 0 100%;
-    }
-
-    .project-carousel-card h3 {
-      font-size: 1.42rem;
-    }
-
-    .projects-carousel-arrow {
-      width: 46px;
-      height: 46px;
+    .projects-header {
+      margin-bottom: 1.25rem;
     }
 
     .case-transition {
@@ -2299,8 +2497,7 @@ const featuredProjects = [
     .gallery-meta,
     .project-carousel-card,
     .project-carousel-card-media img,
-    .project-carousel-card-arrow,
-    .projects-carousel-arrow {
+    .project-carousel-card-arrow {
       transition: none;
     }
 
@@ -2308,6 +2505,8 @@ const featuredProjects = [
     .gallery-thumb,
     .gallery-arrow,
     .media-open-btn,
+    .project-filter-button,
+    .projects-carousel-arrow,
     .case-metric-card,
     .case-value-card,
     .case-pipeline-copy,

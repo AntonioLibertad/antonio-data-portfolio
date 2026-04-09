@@ -1,0 +1,964 @@
+---
+const pageTitle = "NovaMarket — Product Growth & Experimentation Analytics";
+const pageDescription =
+  "A product analytics workflow for discovery quality, experiment impact, and rollout decisions.";
+
+const pageMeta = {
+  eyebrow: "Product Analytics / Experimentation / Growth",
+  badge: "New product case",
+  subtitle:
+    "A product analytics workflow for discovery quality, experiment impact, and rollout decisions",
+};
+
+const heroStats = [
+  { label: "Case structure", value: "4-page Power BI story" },
+  { label: "Core focus", value: "Discovery quality" },
+  { label: "Decision", value: "Selective rollout" },
+];
+
+const keyQuestions = [
+  "Is discovery genuinely the product problem, or just a noisy early-stage step?",
+  "Where does friction really concentrate across intent, device, and visitor context?",
+  "Did the treatment improve meaningful progression rather than surface engagement alone?",
+  "If the treatment worked, where should rollout begin first and what should be monitored after launch?",
+];
+
+const caseWalkthrough = [
+  {
+    title: "Page 1 — Why Discovery Is the Problem",
+    image: "/images/projects/novamarket/novamarket-page-1.png",
+    alt: "NovaMarket page 1 showing why discovery is the problem",
+    text:
+      "The first page established the real business issue. Discovery volume was high, but too much of that activity still failed to become meaningful product evaluation or cart progression. The problem was not lack of engagement. It was weak conversion of discovery into stronger decision behavior.",
+  },
+  {
+    title: "Page 2 — Where Discovery Friction Concentrates",
+    image: "/images/projects/novamarket/novamarket-page-2.png",
+    alt: "NovaMarket page 2 showing where discovery friction concentrates",
+    text:
+      "The second page showed that the weakness was not evenly distributed. Recoverable opportunity concentrated heavily in exploratory mobile journeys, structural weakness was highest in browse-led flows, and first-time visitors progressed much less effectively than returning users.",
+  },
+  {
+    title: "Page 3 — Did the Treatment Improve Discovery Quality?",
+    image: "/images/projects/novamarket/novamarket-page-3.png",
+    alt: "NovaMarket page 3 showing experiment results and rollout recommendation",
+    text:
+      "The third page evaluated the experiment itself. The treatment improved the right early-stage metrics, especially qualified consideration, discovery-to-cart, add-to-cart, and dead-end reduction. But purchase stayed broadly flat, so the right conclusion was not blanket rollout. It was selective expansion with judgment.",
+  },
+  {
+    title: "Page 4 — Where Should Rollout Happen First?",
+    image: "/images/projects/novamarket/novamarket-page-4.png",
+    alt: "NovaMarket page 4 showing rollout priorities and rollout plan",
+    text:
+      "The final page turned the analysis into an action plan. Rollout should begin inside exploratory search, prioritising mobile and first-time visitor contexts where baseline progression is weakest and recovery opportunity is strongest. Broader expansion should wait until post-launch performance confirms the signal.",
+  },
+];
+
+const proofPoints = [
+  "Product analytics problem framing",
+  "Event-based behavioral logic",
+  "Experiment interpretation with business judgment",
+  "Friction diagnosis across journey context",
+  "Rollout prioritisation and monitoring logic",
+  "Business-facing analytics storytelling",
+];
+
+const techTags = [
+  "Power BI",
+  "Product Analytics",
+  "Experimentation",
+  "Event Logic",
+  "Segmentation",
+  "Decision Support",
+  "Growth Analytics",
+];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={pageDescription} />
+    <title>{pageTitle}</title>
+  </head>
+
+  <body>
+    <main>
+      <section class="hero-section">
+        <div class="hero-blur hero-blur-a" aria-hidden="true"></div>
+        <div class="hero-blur hero-blur-b" aria-hidden="true"></div>
+        <div class="hero-grid" aria-hidden="true"></div>
+
+        <div class="container">
+          <a href="/#projects" class="back-link reveal reveal-up">← Back to projects</a>
+
+          <div class="hero-card reveal reveal-up">
+            <div class="hero-topline">
+              <span class="eyebrow">{pageMeta.eyebrow}</span>
+              <span class="badge">{pageMeta.badge}</span>
+            </div>
+
+            <h1 class="hero-title">
+              <span>NovaMarket</span>
+              <span>Product, Growth &amp;</span>
+              <span>Experimentation Analytics</span>
+            </h1>
+
+            <p class="hero-subtitle">{pageMeta.subtitle}</p>
+
+            <p class="hero-copy">
+              NovaMarket had plenty of discovery activity. That was never the issue. Users were
+              searching, browsing, and interacting with recommendations at scale, but too much of
+              that activity still failed to become meaningful product evaluation or cart progression.
+              This case was built to answer a practical product question: did a new discovery
+              treatment improve user progression enough to justify action, and if so, where should
+              the business move first?
+            </p>
+
+            <div class="hero-stats">
+              {heroStats.map((item, index) => (
+                <article
+                  class={`stat-card reveal reveal-up stat-card-${index + 1}`}
+                  style={`--reveal-delay: ${120 + index * 90}ms;`}
+                >
+                  <span>{item.label}</span>
+                  <strong>{item.value}</strong>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-problem">
+        <div class="section-blur section-blur-left" aria-hidden="true"></div>
+        <div class="container two-column-grid">
+          <div class="content-card content-card-violet reveal reveal-left">
+            <p class="section-label">The business problem</p>
+            <h2>Discovery volume was there. Decision quality was not.</h2>
+            <p>
+              This was not a case about vanity engagement. The company already had discovery
+              activity at scale. What it lacked was confidence that discovery was actually helping
+              users move forward.
+            </p>
+            <p>
+              Too many sessions were still stalling before reaching stronger product evaluation,
+              cart progression, or purchase. That matters because discovery is expensive to get
+              wrong. When users browse, search, and interact without progressing, the business pays
+              the cost of attention without capturing much value from it.
+            </p>
+            <p>
+              So the real challenge was not how to get more clicks. It was how to understand where
+              discovery was breaking down, whether a new treatment improved that journey, and what
+              kind of rollout the results actually justified.
+            </p>
+          </div>
+
+          <div class="content-card content-card-cyan question-card reveal reveal-right" style="--reveal-delay: 90ms;">
+            <p class="section-label">What I set out to answer</p>
+            <h2>Four questions shaped the case.</h2>
+            <ul>
+              {keyQuestions.map((question) => <li>{question}</li>)}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-setup">
+        <div class="section-blur section-blur-right" aria-hidden="true"></div>
+        <div class="container single-column">
+          <div class="content-card wide-card content-card-indigo reveal reveal-up">
+            <p class="section-label">Data and analytical setup</p>
+            <h2>A product analytics model built for decision support, not generic reporting.</h2>
+            <p>
+              The case is built on a session-level product analytics mart supported by experiment
+              summary and QA tables. The model tracks discovery sessions, product detail views,
+              qualified consideration, add-to-cart behavior, purchase outcomes, dead-end discovery,
+              reformulation behavior, and treatment exposure.
+            </p>
+            <p>
+              Power BI was used as the business-facing layer, but the project was really about the
+              analytical logic underneath it: defining meaningful discovery quality, diagnosing
+              friction concentration, comparing treatment versus control, and translating that into
+              a rollout recommendation that a product or growth team could actually use.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-walkthrough">
+        <div class="container single-column">
+          <div class="section-heading reveal reveal-up">
+            <p class="section-label">Case walkthrough</p>
+            <h2>From problem framing to rollout recommendation.</h2>
+            <p>
+              The dashboard was intentionally structured as a four-step decision story: identify the
+              problem, locate the friction, judge the experiment, and turn that evidence into a
+              rollout plan.
+            </p>
+          </div>
+
+          <div class="walkthrough-grid">
+            {caseWalkthrough.map((page, index) => (
+              <article
+                class={`walkthrough-card reveal reveal-up walkthrough-accent-${(index % 4) + 1}`}
+                style={`--reveal-delay: ${80 + index * 90}ms;`}
+              >
+                <div class="walkthrough-image-wrap">
+                  <img src={page.image} alt={page.alt} loading="lazy" />
+                </div>
+                <div class="walkthrough-copy">
+                  <h3>{page.title}</h3>
+                  <p>{page.text}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-recommendation">
+        <div class="section-blur section-blur-center" aria-hidden="true"></div>
+        <div class="container two-column-grid recommendation-grid">
+          <div class="content-card recommendation-card content-card-emerald reveal reveal-left">
+            <p class="section-label">Final recommendation</p>
+            <h2>Proceed with selective rollout, not full launch.</h2>
+            <p>
+              The treatment improved the right discovery-quality signals and showed the strongest
+              lift in exploratory search, which is exactly where the business most needed help. At
+              the same time, final purchase impact remained limited, so the evidence did not
+              justify a blanket release.
+            </p>
+            <p>
+              The best next step is to expand first in the highest-opportunity exploratory
+              contexts, especially mobile and first-time visitor journeys, while monitoring
+              discovery-to-cart progression and downstream guardrails closely before broader
+              rollout.
+            </p>
+          </div>
+
+          <div class="content-card proof-card content-card-rose reveal reveal-right" style="--reveal-delay: 100ms;">
+            <p class="section-label">What this project demonstrates</p>
+            <h2>What this says about the way I work.</h2>
+            <div class="proof-points">
+              {proofPoints.map((point) => (
+                <span class="proof-pill">{point}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-footer">
+        <div class="container footer-shell reveal reveal-up">
+          <div class="tag-row">
+            {techTags.map((tag) => <span class="tag-pill">{tag}</span>)}
+          </div>
+
+          <div class="footer-actions">
+            <a class="button button-secondary" href="/#projects">Back to projects</a>
+            <a class="button button-primary" href="mailto:antonio.business444@gmail.com">
+              Contact me
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script is:inline>
+      const revealItems = Array.from(document.querySelectorAll(".reveal"));
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+      function revealImmediately() {
+        revealItems.forEach((item) => item.classList.add("is-visible"));
+      }
+
+      if (prefersReducedMotion.matches) {
+        revealImmediately();
+      } else {
+        const revealObserver = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            });
+          },
+          {
+            threshold: 0.14,
+            rootMargin: "0px 0px -8% 0px",
+          }
+        );
+
+        revealItems.forEach((item) => revealObserver.observe(item));
+      }
+    </script>
+  </body>
+</html>
+
+<style>
+  :root {
+    --bg: #07101f;
+    --text: #edf2ff;
+    --muted: #b9c5df;
+    --line: rgba(255, 255, 255, 0.11);
+
+    --accent: #93a8ff;
+    --accent-soft: #dce4ff;
+    --violet: #9f8cff;
+    --cyan: #6fd3ff;
+    --teal: #69e6c4;
+    --rose: #ff9dc9;
+
+    --surface: rgba(16, 25, 43, 0.78);
+    --surface-strong: rgba(13, 21, 37, 0.88);
+    --shadow: 0 24px 60px rgba(0, 0, 0, 0.26);
+    --shadow-soft: 0 14px 34px rgba(0, 0, 0, 0.18);
+    --max: 1180px;
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: var(--text);
+    background:
+      radial-gradient(circle at 14% 8%, rgba(159, 140, 255, 0.12), transparent 24%),
+      radial-gradient(circle at 86% 18%, rgba(111, 211, 255, 0.11), transparent 20%),
+      radial-gradient(circle at 72% 72%, rgba(105, 230, 196, 0.08), transparent 24%),
+      linear-gradient(180deg, #050d19 0%, #09111f 48%, #08111f 100%);
+    line-height: 1.68;
+    overflow-x: hidden;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  main {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .container {
+    width: min(var(--max), calc(100% - 2rem));
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  .section {
+    position: relative;
+    padding: 2rem 0 4.5rem;
+  }
+
+  .hero-section {
+    position: relative;
+    padding: 2.3rem 0 2.8rem;
+    overflow: hidden;
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: 36px 36px;
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.75), transparent 92%);
+    opacity: 0.18;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .hero-blur,
+  .section-blur {
+    position: absolute;
+    border-radius: 999px;
+    filter: blur(28px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .hero-blur {
+    animation: floatBlob 11s ease-in-out infinite;
+  }
+
+  .hero-blur-a {
+    top: 10%;
+    left: -8%;
+    width: 280px;
+    height: 280px;
+    background: radial-gradient(circle, rgba(159, 140, 255, 0.28), transparent 68%);
+  }
+
+  .hero-blur-b {
+    top: 4%;
+    right: -4%;
+    width: 320px;
+    height: 320px;
+    background: radial-gradient(circle, rgba(111, 211, 255, 0.24), transparent 68%);
+    animation-delay: 1.8s;
+  }
+
+  .section-blur-left {
+    top: 20%;
+    left: 2%;
+    width: 240px;
+    height: 240px;
+    background: radial-gradient(circle, rgba(159, 140, 255, 0.14), transparent 72%);
+  }
+
+  .section-blur-right {
+    top: 10%;
+    right: 3%;
+    width: 260px;
+    height: 260px;
+    background: radial-gradient(circle, rgba(111, 211, 255, 0.12), transparent 72%);
+  }
+
+  .section-blur-center {
+    top: 24%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 280px;
+    height: 280px;
+    background: radial-gradient(circle, rgba(105, 230, 196, 0.1), transparent 74%);
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    color: var(--accent-soft);
+    font-weight: 600;
+    margin-bottom: 1rem;
+    transition: color 0.18s ease, transform 0.18s ease;
+  }
+
+  .back-link:hover {
+    color: #ffffff;
+    transform: translateX(-2px);
+  }
+
+  .hero-card,
+  .content-card,
+  .walkthrough-card {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(16px);
+    border-radius: 30px;
+  }
+
+  .hero-card::before,
+  .content-card::before,
+  .walkthrough-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0)),
+      radial-gradient(circle at top right, rgba(255, 255, 255, 0.06), transparent 30%);
+    pointer-events: none;
+  }
+
+  .hero-card {
+    padding: 2.25rem;
+    background:
+      linear-gradient(180deg, rgba(19, 30, 55, 0.9) 0%, rgba(13, 22, 39, 0.96) 100%),
+      radial-gradient(circle at 16% 16%, rgba(159, 140, 255, 0.12), transparent 24%),
+      radial-gradient(circle at 86% 18%, rgba(111, 211, 255, 0.13), transparent 24%);
+    box-shadow:
+      var(--shadow),
+      0 0 0 1px rgba(147, 168, 255, 0.06) inset;
+  }
+
+  .hero-topline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+
+  .eyebrow,
+  .section-label {
+    margin: 0 0 0.15rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.76rem;
+    font-weight: 700;
+    color: var(--accent-soft);
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
+    padding: 0 0.82rem;
+    border-radius: 999px;
+    border: 1px solid rgba(159, 140, 255, 0.22);
+    background: linear-gradient(180deg, rgba(159, 140, 255, 0.18), rgba(147, 168, 255, 0.08));
+    color: #f4f6ff;
+    font-size: 0.76rem;
+    font-weight: 700;
+    box-shadow: 0 8px 22px rgba(111, 113, 255, 0.14);
+  }
+
+  h1,
+  h2,
+  h3 {
+    margin: 0;
+    line-height: 1.08;
+    letter-spacing: -0.04em;
+    text-wrap: balance;
+  }
+
+  h1 {
+    font-size: clamp(2.2rem, 4.8vw, 4rem);
+    margin-bottom: 0.9rem;
+  }
+
+  .hero-title {
+    display: flex;
+    flex-direction: column;
+    gap: 0.04em;
+    max-width: 10.5ch;
+  }
+
+  .hero-title span {
+    display: block;
+  }
+
+  h2 {
+    font-size: clamp(1.72rem, 3.2vw, 2.8rem);
+    margin-bottom: 0.95rem;
+  }
+
+  h3 {
+    font-size: clamp(1.24rem, 2.2vw, 1.68rem);
+    margin-bottom: 0.78rem;
+  }
+
+  p {
+    margin: 0 0 1rem;
+    color: var(--muted);
+  }
+
+  .hero-subtitle {
+    font-size: 1.08rem;
+    color: var(--text);
+    max-width: 760px;
+  }
+
+  .hero-copy {
+    max-width: 920px;
+  }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 1.55rem;
+  }
+
+  .stat-card {
+    position: relative;
+    border-radius: 22px;
+    padding: 1rem 1.05rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(20, 31, 54, 0.74);
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease;
+  }
+
+  .stat-card:hover {
+    transform: translateY(-3px);
+  }
+
+  .stat-card-1:hover {
+    border-color: rgba(159, 140, 255, 0.35);
+    background: rgba(39, 34, 72, 0.74);
+  }
+
+  .stat-card-2:hover {
+    border-color: rgba(111, 211, 255, 0.35);
+    background: rgba(24, 44, 65, 0.74);
+  }
+
+  .stat-card-3:hover {
+    border-color: rgba(105, 230, 196, 0.35);
+    background: rgba(20, 48, 49, 0.74);
+  }
+
+  .stat-card span {
+    display: block;
+    margin-bottom: 0.35rem;
+    font-size: 0.83rem;
+    color: var(--accent-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+  }
+
+  .stat-card strong {
+    font-size: 1.02rem;
+  }
+
+  .two-column-grid {
+    display: grid;
+    grid-template-columns: 1.08fr 0.92fr;
+    gap: 1.2rem;
+  }
+
+  .single-column {
+    display: block;
+  }
+
+  .content-card {
+    padding: 1.58rem;
+    transition: transform 0.24s ease, border-color 0.24s ease, box-shadow 0.24s ease;
+  }
+
+  .content-card:hover,
+  .walkthrough-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 28px 60px rgba(0, 0, 0, 0.28);
+  }
+
+  .content-card-violet {
+    background:
+      linear-gradient(180deg, rgba(20, 29, 50, 0.88) 0%, rgba(15, 22, 39, 0.92) 100%),
+      radial-gradient(circle at top right, rgba(159, 140, 255, 0.16), transparent 26%);
+  }
+
+  .content-card-cyan {
+    background:
+      linear-gradient(180deg, rgba(18, 30, 48, 0.9) 0%, rgba(14, 22, 37, 0.94) 100%),
+      radial-gradient(circle at top right, rgba(111, 211, 255, 0.16), transparent 28%);
+  }
+
+  .content-card-indigo {
+    background:
+      linear-gradient(180deg, rgba(17, 27, 47, 0.9) 0%, rgba(12, 20, 35, 0.94) 100%),
+      radial-gradient(circle at 85% 18%, rgba(147, 168, 255, 0.14), transparent 26%);
+  }
+
+  .content-card-emerald {
+    background:
+      linear-gradient(180deg, rgba(16, 30, 38, 0.92) 0%, rgba(11, 19, 30, 0.96) 100%),
+      radial-gradient(circle at top right, rgba(105, 230, 196, 0.16), transparent 26%);
+  }
+
+  .content-card-rose {
+    background:
+      linear-gradient(180deg, rgba(30, 22, 39, 0.9) 0%, rgba(15, 19, 31, 0.96) 100%),
+      radial-gradient(circle at top right, rgba(255, 157, 201, 0.13), transparent 26%);
+  }
+
+  .question-card ul {
+    margin: 0;
+    padding-left: 1.2rem;
+    color: var(--muted);
+  }
+
+  .question-card li {
+    margin-bottom: 0.8rem;
+  }
+
+  .wide-card {
+    max-width: 100%;
+  }
+
+  .section-heading {
+    max-width: 900px;
+    margin: 0 auto 1.45rem;
+    text-align: center;
+  }
+
+  .walkthrough-grid {
+    display: grid;
+    gap: 1.2rem;
+  }
+
+  .walkthrough-card {
+    display: grid;
+    grid-template-columns: 1.02fr 0.98fr;
+    gap: 1.2rem;
+    padding: 1.1rem;
+    align-items: center;
+    transition: transform 0.24s ease, border-color 0.24s ease, box-shadow 0.24s ease;
+  }
+
+  .walkthrough-accent-1 {
+    background:
+      linear-gradient(180deg, rgba(19, 28, 49, 0.9) 0%, rgba(12, 20, 35, 0.95) 100%),
+      radial-gradient(circle at 90% 18%, rgba(159, 140, 255, 0.14), transparent 25%);
+  }
+
+  .walkthrough-accent-2 {
+    background:
+      linear-gradient(180deg, rgba(17, 30, 47, 0.9) 0%, rgba(12, 20, 35, 0.95) 100%),
+      radial-gradient(circle at 90% 18%, rgba(111, 211, 255, 0.14), transparent 25%);
+  }
+
+  .walkthrough-accent-3 {
+    background:
+      linear-gradient(180deg, rgba(16, 30, 39, 0.9) 0%, rgba(12, 20, 35, 0.95) 100%),
+      radial-gradient(circle at 90% 18%, rgba(105, 230, 196, 0.13), transparent 25%);
+  }
+
+  .walkthrough-accent-4 {
+    background:
+      linear-gradient(180deg, rgba(29, 24, 42, 0.9) 0%, rgba(12, 20, 35, 0.95) 100%),
+      radial-gradient(circle at 90% 18%, rgba(255, 157, 201, 0.12), transparent 25%);
+  }
+
+  .walkthrough-image-wrap {
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(10, 17, 32, 0.8);
+  }
+
+  .walkthrough-image-wrap img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    transition: transform 0.42s var(--ease-out), filter 0.42s var(--ease-out);
+  }
+
+  .walkthrough-card:hover .walkthrough-image-wrap img {
+    transform: scale(1.025);
+    filter: saturate(1.03);
+  }
+
+  .walkthrough-copy p {
+    margin-bottom: 0;
+  }
+
+  .recommendation-grid {
+    align-items: stretch;
+  }
+
+  .proof-points {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+  }
+
+  .proof-pill,
+  .tag-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.52rem 0.84rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.11);
+    background: rgba(255, 255, 255, 0.045);
+    color: var(--accent-soft);
+    font-size: 0.92rem;
+    font-weight: 600;
+    transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+  }
+
+  .proof-pill:hover,
+  .tag-pill:hover {
+    transform: translateY(-2px);
+    border-color: rgba(147, 168, 255, 0.26);
+    background: rgba(255, 255, 255, 0.07);
+  }
+
+  .footer-shell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.35rem;
+  }
+
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+  }
+
+  .footer-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .button {
+    min-height: 50px;
+    padding: 0 1.2rem;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    transition:
+      transform 0.18s ease,
+      background 0.18s ease,
+      border-color 0.18s ease,
+      box-shadow 0.18s ease;
+  }
+
+  .button:hover {
+    transform: translateY(-1px);
+  }
+
+  .button-primary {
+    background: linear-gradient(135deg, #9f8cff 0%, #6fd3ff 100%);
+    color: #081122;
+    box-shadow: 0 12px 28px rgba(111, 211, 255, 0.2);
+  }
+
+  .button-primary:hover {
+    box-shadow: 0 16px 32px rgba(111, 211, 255, 0.24);
+  }
+
+  .button-secondary {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    color: var(--text);
+  }
+
+  .button-secondary:hover {
+    border-color: rgba(147, 168, 255, 0.24);
+    background: rgba(255, 255, 255, 0.07);
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0);
+    transition:
+      opacity 0.78s var(--ease-out),
+      transform 0.78s var(--ease-out);
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, transform;
+  }
+
+  .reveal-left {
+    transform: translate3d(-36px, 0, 0);
+  }
+
+  .reveal-right {
+    transform: translate3d(36px, 0, 0);
+  }
+
+  .reveal-up {
+    transform: translate3d(0, 26px, 0);
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  @keyframes floatBlob {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    50% {
+      transform: translate3d(0, 12px, 0) scale(1.03);
+    }
+  }
+
+  @media (max-width: 980px) {
+    .hero-stats,
+    .two-column-grid,
+    .walkthrough-card {
+      grid-template-columns: 1fr;
+    }
+
+    .walkthrough-card {
+      padding: 1rem;
+    }
+
+    .hero-title {
+      max-width: 100%;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .hero-card,
+    .content-card {
+      padding: 1.2rem;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 10vw, 3rem);
+    }
+
+    .hero-title {
+      gap: 0.08em;
+    }
+
+    h2 {
+      font-size: clamp(1.6rem, 8vw, 2.3rem);
+    }
+
+    .section {
+      padding: 1.2rem 0 3rem;
+    }
+
+    .hero-section {
+      padding-top: 1.6rem;
+    }
+
+    .hero-blur-a,
+    .hero-blur-b,
+    .section-blur {
+      opacity: 0.65;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    .hero-blur,
+    .reveal,
+    .reveal-left,
+    .reveal-right,
+    .reveal-up,
+    .walkthrough-image-wrap img,
+    .button,
+    .content-card,
+    .walkthrough-card,
+    .proof-pill,
+    .tag-pill,
+    .stat-card,
+    .back-link {
+      animation: none !important;
+      transition: none !important;
+      transform: none !important;
+    }
+
+    .reveal {
+      opacity: 1 !important;
+    }
+  }
+</style>

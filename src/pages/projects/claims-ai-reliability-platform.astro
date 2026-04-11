@@ -1,0 +1,1075 @@
+---
+const pageTitle = "Claims AI Reliability Platform";
+const pageDescription =
+  "A governed release and monitoring system for deciding when a claims knowledge assistant is safe enough to scale — and when it should be restricted, reviewed, or rolled back.";
+
+const heroMetrics = [
+  { label: "Release candidates evaluated", value: "3" },
+  { label: "Real bug caught before release", value: "1" },
+  { label: "Blockers in approved RC", value: "0" },
+  { label: "Live rollback recommendation", value: "Yes" },
+];
+
+const whyPrototypeWasNotEnough = [
+  "A fluent answer is not the same as a safe answer",
+  "Claims workflows have boundary cases where escalation matters more than helpfulness",
+  "Management needed release evidence before broader adoption, not confidence based on a good demo",
+  "Even an approved release still needed monitoring in case live behavior later degraded",
+];
+
+const platformLayers = [
+  {
+    title: "Governed assistant",
+    text: "A FastAPI claims knowledge assistant built with release-aware behavior, explicit retrieval control, and boundary-sensitive answer logic rather than open-ended assistant behavior.",
+  },
+  {
+    title: "Benchmark release gate",
+    text: "A structured evaluation layer across smoke, release-gate, boundary, and change-sensitive benchmark suites, with blocker logic, scoring, and release recommendation.",
+  },
+  {
+    title: "Live monitoring and incident logic",
+    text: "A telemetry and monitoring layer that converts unsafe live interactions into incidents, review queue items, and containment recommendations instead of leaving risk hidden inside logs.",
+  },
+  {
+    title: "Packaged runtime with persistence",
+    text: "A Docker and PostgreSQL-backed runtime that persists telemetry and monitoring state so the system feels operational, not just locally demoable.",
+  },
+];
+
+const bugStoryBullets = [
+  "A legal-liability / out-of-scope boundary case entered a product-line boundary branch first",
+  "The answer was blocked, but it did not behave like a true mandatory escalation path",
+  "That meant the system was technically restrictive, but operationally weaker than it should have been",
+  "The benchmark exposed that behavior, the service logic was fixed, and the release decision improved because of it",
+];
+
+const liveMonitoringBullets = [
+  "A deliberately unsafe post-release interaction was injected into the live workflow",
+  "The assistant answered directly where escalation should have happened",
+  "That event triggered multiple incidents across boundary, escalation, and grounding-related logic",
+  "The platform also created a P1 review queue item and raised release degradation incidents",
+  "The top containment action became rollback_release",
+];
+
+const runtimeBullets = [
+  "Docker and Docker Compose packaged the assistant, control room, and PostgreSQL-backed persistence into one runnable environment",
+  "PostgreSQL was used where it added real value: telemetry storage, monitoring storage, and operational state persistence",
+  "The governed retrieval path was deliberately kept intact rather than rewritten just to force infrastructure into the answer path",
+  "That was a disciplined choice: the retrieval behavior was already explicit, benchmarked, and central to release-gate behavior",
+];
+
+const imageAssets = {
+  heroLoop: "/images/projects/claims-ai-reliability/claims-reliability-hero-loop.png",
+  releaseProgression: "/images/projects/claims-ai-reliability/claims-reliability-release-progression.png",
+  bugFlow: "/images/projects/claims-ai-reliability/claims-reliability-bug-fix-flow.png",
+  controlRoomCritical: "/images/projects/claims-ai-reliability/claims-reliability-control-room-critical.png",
+  incidentsReviewQueue: "/images/projects/claims-ai-reliability/claims-reliability-incidents-review-queue.png",
+  dockerRuntime: "/images/projects/claims-ai-reliability/claims-reliability-docker-runtime.png",
+};
+
+const finalSignals = [
+  "This project is stronger than a normal GenAI case because it proves release discipline, operational monitoring, and rollback readiness rather than just answer generation.",
+  "It shows that I can work on the harder problem behind enterprise AI adoption: not only whether a system can answer, but whether the business can trust, govern, and contain it.",
+];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={pageDescription} />
+    <title>{pageTitle} | Antonio González Martín</title>
+
+    <style>
+      :root {
+        --bg: #04101c;
+        --bg-2: #071726;
+        --bg-3: #0a1c2d;
+
+        --text: #f4f7fb;
+        --soft: #d8e3f0;
+        --muted: #9eb1c6;
+
+        --accent-cyan: #7dd3fc;
+        --accent-blue: #60a5fa;
+        --accent-indigo: #818cf8;
+        --accent-red: #f87171;
+        --accent-amber: #fbbf24;
+        --accent-green: #4ade80;
+
+        --line: rgba(125, 211, 252, 0.16);
+        --line-strong: rgba(125, 211, 252, 0.28);
+
+        --panel: rgba(255, 255, 255, 0.035);
+        --panel-strong: rgba(255, 255, 255, 0.05);
+
+        --shadow-soft: 0 18px 50px rgba(0, 0, 0, 0.26);
+        --shadow-lift: 0 24px 70px rgba(0, 0, 0, 0.34);
+        --max: 1180px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        color: var(--text);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        line-height: 1.7;
+        background:
+          radial-gradient(circle at 12% 0%, rgba(96, 165, 250, 0.14), transparent 24%),
+          radial-gradient(circle at 88% 10%, rgba(248, 113, 113, 0.08), transparent 18%),
+          radial-gradient(circle at 50% 100%, rgba(129, 140, 248, 0.06), transparent 30%),
+          linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 54%, var(--bg-3) 100%);
+        overflow-x: hidden;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background:
+          linear-gradient(90deg, rgba(255, 255, 255, 0.014) 1px, transparent 1px),
+          linear-gradient(180deg, rgba(255, 255, 255, 0.012) 1px, transparent 1px);
+        background-size: 36px 36px;
+        mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.18), transparent 32%, transparent 68%, rgba(0, 0, 0, 0.12));
+        opacity: 0.22;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      .page {
+        width: min(var(--max), calc(100% - 2rem));
+        margin: 0 auto;
+        padding: 2rem 0 5rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        color: var(--muted);
+        margin-bottom: 1.8rem;
+        font-size: 0.95rem;
+        transition: color 220ms ease, transform 220ms ease;
+      }
+
+      .back-link:hover {
+        color: var(--text);
+        transform: translateX(-2px);
+      }
+
+      .hero {
+        padding: 2rem 0 1.35rem;
+        position: relative;
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: -3rem -2rem auto auto;
+        width: 340px;
+        height: 340px;
+        background: radial-gradient(circle, rgba(125, 211, 252, 0.12), transparent 68%);
+        filter: blur(12px);
+        pointer-events: none;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        padding: 0.42rem 0.8rem;
+        border-radius: 999px;
+        border: 1px solid rgba(125, 211, 252, 0.22);
+        background: linear-gradient(180deg, rgba(125, 211, 252, 0.11), rgba(255, 255, 255, 0.03));
+        color: var(--accent-cyan);
+        font-size: 0.84rem;
+        margin-bottom: 1.05rem;
+        box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
+      }
+
+      h1 {
+        font-size: clamp(2.45rem, 4.8vw, 4.4rem);
+        line-height: 1.02;
+        letter-spacing: -0.04em;
+        margin: 0 0 1rem;
+        max-width: 980px;
+      }
+
+      .subtitle {
+        max-width: 880px;
+        font-size: 1.12rem;
+        color: var(--muted);
+        margin: 0 0 1.45rem;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.02fr 0.98fr;
+        gap: 1.2rem;
+        align-items: start;
+      }
+
+      .hero-copy {
+        max-width: 820px;
+      }
+
+      .hero-copy p {
+        margin: 0 0 0.9rem;
+        font-size: 1.04rem;
+        color: var(--soft);
+      }
+
+      .hero-outcome {
+        margin-top: 1.15rem;
+        max-width: 920px;
+        padding: 1rem 1.1rem;
+        border-radius: 18px;
+        border: 1px solid rgba(125, 211, 252, 0.24);
+        background:
+          linear-gradient(180deg, rgba(125, 211, 252, 0.11), rgba(255, 255, 255, 0.03)),
+          radial-gradient(circle at 0% 0%, rgba(96, 165, 250, 0.08), transparent 40%);
+        color: #e7f4ff;
+        box-shadow: var(--shadow-soft);
+      }
+
+      .hero-visual {
+        overflow: hidden;
+        padding: 0;
+        border-radius: 24px;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.02)),
+          radial-gradient(circle at top left, rgba(125, 211, 252, 0.08), transparent 42%);
+        border: 1px solid rgba(125, 211, 252, 0.18);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .hero-visual img {
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        object-fit: cover;
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .hero-visual-copy {
+        padding: 1rem 1rem 1.05rem;
+      }
+
+      .hero-visual-copy strong {
+        display: block;
+        margin-bottom: 0.35rem;
+        font-size: 1rem;
+      }
+
+      .hero-visual-copy p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.94rem;
+      }
+
+      .metrics-label {
+        margin-top: 2rem;
+        margin-bottom: 0.85rem;
+        font-size: 0.86rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .metric-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1rem;
+      }
+
+      .metric {
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.025));
+        border: 1px solid rgba(125, 211, 252, 0.17);
+        border-radius: 20px;
+        padding: 1.05rem 1rem 1.15rem;
+        box-shadow: var(--shadow-soft);
+        transition:
+          transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+          border-color 320ms ease,
+          box-shadow 320ms ease,
+          background 320ms ease;
+      }
+
+      .metric::before {
+        content: "";
+        position: absolute;
+        inset: 0 auto auto 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at top left, rgba(125, 211, 252, 0.1), transparent 55%);
+        opacity: 0.8;
+        pointer-events: none;
+      }
+
+      .metric:hover,
+      .panel:hover,
+      .proof-shot:hover,
+      .image-panel:hover,
+      .final-cta-panel:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-lift);
+      }
+
+      .metric-bar {
+        width: 54px;
+        height: 3px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue));
+        margin-bottom: 0.9rem;
+      }
+
+      .metric-label {
+        font-size: 0.92rem;
+        color: var(--muted);
+        margin-bottom: 0.4rem;
+      }
+
+      .metric-value {
+        font-size: 2rem;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+      }
+
+      .section {
+        position: relative;
+        padding-top: 4.4rem;
+      }
+
+      .section::before {
+        content: "";
+        position: absolute;
+        inset: 0 0 auto 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(125, 211, 252, 0.28), transparent);
+        opacity: 0.55;
+      }
+
+      .section h2 {
+        font-size: clamp(1.9rem, 3vw, 2.8rem);
+        line-height: 1.08;
+        letter-spacing: -0.03em;
+        margin: 0 0 1rem;
+      }
+
+      .section-intro {
+        max-width: 920px;
+        color: var(--muted);
+        margin: 0 0 1.25rem;
+        font-size: 1.03rem;
+      }
+
+      .split {
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 1.2rem;
+      }
+
+      .panel {
+        position: relative;
+        overflow: hidden;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.028)),
+          radial-gradient(circle at top left, rgba(125, 211, 252, 0.08), transparent 48%),
+          radial-gradient(circle at bottom right, rgba(96, 165, 250, 0.04), transparent 42%);
+        border: 1px solid rgba(125, 211, 252, 0.18);
+        border-radius: 22px;
+        padding: 1.45rem;
+        box-shadow: var(--shadow-soft);
+        transition:
+          transform 360ms cubic-bezier(0.22, 1, 0.36, 1),
+          border-color 320ms ease,
+          box-shadow 320ms ease;
+      }
+
+      .panel-strong {
+        border-color: rgba(125, 211, 252, 0.28);
+      }
+
+      .panel h3 {
+        margin: 0 0 0.75rem;
+        font-size: 1.15rem;
+        line-height: 1.25;
+      }
+
+      .panel p {
+        margin: 0 0 1rem;
+        color: var(--soft);
+      }
+
+      .panel p:last-child {
+        margin-bottom: 0;
+      }
+
+      .lead-strong {
+        font-size: 1.08rem;
+      }
+
+      .list {
+        margin: 0.1rem 0 0;
+        padding-left: 1.15rem;
+      }
+
+      .list li {
+        margin-bottom: 0.65rem;
+        color: var(--soft);
+      }
+
+      .layer-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+        margin-top: 1.2rem;
+      }
+
+      .layer-card {
+        padding: 1rem;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.032), rgba(255, 255, 255, 0.018));
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 16px;
+        transition:
+          transform 300ms ease,
+          border-color 300ms ease,
+          background 300ms ease;
+      }
+
+      .layer-card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(125, 211, 252, 0.2);
+      }
+
+      .layer-card h4 {
+        margin: 0 0 0.4rem;
+        font-size: 1rem;
+      }
+
+      .layer-card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .proof-image-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        margin-top: 1.35rem;
+      }
+
+      .image-panel,
+      .proof-shot {
+        overflow: hidden;
+        border-radius: 22px;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.022)),
+          radial-gradient(circle at top left, rgba(167, 139, 250, 0.06), transparent 42%);
+        border: 1px solid rgba(167, 139, 250, 0.15);
+        box-shadow: var(--shadow-soft);
+        transition:
+          transform 360ms cubic-bezier(0.22, 1, 0.36, 1),
+          border-color 320ms ease,
+          box-shadow 320ms ease;
+      }
+
+      .image-panel img,
+      .proof-shot img {
+        width: 100%;
+        object-fit: cover;
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .image-panel img {
+        aspect-ratio: 16 / 9;
+      }
+
+      .proof-shot img {
+        aspect-ratio: 16 / 10;
+      }
+
+      .image-copy,
+      .proof-copy {
+        padding: 1rem 1rem 1.05rem;
+      }
+
+      .image-copy strong,
+      .proof-copy h3 {
+        display: block;
+        margin: 0 0 0.4rem;
+        font-size: 1rem;
+      }
+
+      .image-copy p,
+      .proof-copy p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.94rem;
+      }
+
+      .callout {
+        margin-top: 1.2rem;
+        padding: 1.15rem 1.2rem;
+        border-radius: 20px;
+        border: 1px solid rgba(125, 211, 252, 0.22);
+        background:
+          linear-gradient(180deg, rgba(125, 211, 252, 0.11), rgba(255, 255, 255, 0.03)),
+          radial-gradient(circle at left center, rgba(96, 165, 250, 0.08), transparent 42%);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .callout strong {
+        color: #ffffff;
+      }
+
+      .final-signal-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+        margin-top: 1.2rem;
+      }
+
+      .signal-card {
+        padding: 1rem 1rem 1.05rem;
+        border-radius: 18px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+        border: 1px solid rgba(125, 211, 252, 0.16);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .signal-card p {
+        margin: 0;
+        color: var(--soft);
+      }
+
+      .final-cta-section {
+        padding-top: 3.4rem;
+      }
+
+      .final-cta-panel {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.5rem;
+        padding: 1.5rem 1.6rem;
+        border-radius: 24px;
+        border: 1px solid rgba(125, 211, 252, 0.2);
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.022)),
+          radial-gradient(circle at top left, rgba(125, 211, 252, 0.08), transparent 42%),
+          radial-gradient(circle at bottom right, rgba(129, 140, 248, 0.06), transparent 38%);
+        box-shadow: var(--shadow-soft);
+        transition:
+          transform 360ms cubic-bezier(0.22, 1, 0.36, 1),
+          box-shadow 320ms ease;
+      }
+
+      .final-cta-copy {
+        max-width: 760px;
+      }
+
+      .final-cta-kicker {
+        margin: 0 0 0.55rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-size: 0.76rem;
+        font-weight: 700;
+        color: var(--accent-cyan);
+      }
+
+      .final-cta-copy h2 {
+        margin: 0 0 0.65rem;
+        font-size: clamp(1.45rem, 2.3vw, 2rem);
+        line-height: 1.1;
+        letter-spacing: -0.03em;
+      }
+
+      .final-cta-copy p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .final-cta-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.85rem;
+        align-items: center;
+        justify-content: flex-end;
+      }
+
+      .final-button {
+        min-height: 48px;
+        padding: 0 1.15rem;
+        border-radius: 999px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        transition:
+          transform 220ms ease,
+          border-color 220ms ease,
+          background 220ms ease,
+          box-shadow 220ms ease;
+      }
+
+      .final-button:hover {
+        transform: translateY(-2px);
+      }
+
+      .final-button-primary {
+        color: #07101f;
+        background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue));
+        box-shadow: 0 12px 28px rgba(96, 165, 250, 0.2);
+      }
+
+      .final-button-primary:hover {
+        box-shadow: 0 16px 32px rgba(96, 165, 250, 0.26);
+      }
+
+      .final-button-secondary {
+        color: var(--text);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      .final-button-secondary:hover {
+        border-color: rgba(125, 211, 252, 0.24);
+        background: rgba(255, 255, 255, 0.07);
+      }
+
+      .footer-space {
+        height: 0.75rem;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition:
+          opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
+          transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+        transition-delay: var(--delay, 0ms);
+        will-change: opacity, transform;
+      }
+
+      .reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .reveal-left {
+        opacity: 0;
+        transform: translateX(-26px);
+        transition:
+          opacity 720ms cubic-bezier(0.22, 1, 0.36, 1),
+          transform 720ms cubic-bezier(0.22, 1, 0.36, 1);
+        transition-delay: var(--delay, 0ms);
+      }
+
+      .reveal-left.is-visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .reveal-right {
+        opacity: 0;
+        transform: translateX(26px);
+        transition:
+          opacity 720ms cubic-bezier(0.22, 1, 0.36, 1),
+          transform 720ms cubic-bezier(0.22, 1, 0.36, 1);
+        transition-delay: var(--delay, 0ms);
+      }
+
+      .reveal-right.is-visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      @media (max-width: 980px) {
+        .hero-grid,
+        .metric-grid,
+        .split,
+        .layer-grid,
+        .proof-image-grid,
+        .final-signal-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .page {
+          width: min(var(--max), calc(100% - 1.15rem));
+        }
+
+        .hero {
+          padding-top: 1.2rem;
+        }
+
+        h1 {
+          font-size: clamp(2.2rem, 10vw, 3.4rem);
+        }
+
+        .final-cta-panel {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .final-cta-actions {
+          justify-content: flex-start;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        *,
+        *::before,
+        *::after {
+          animation: none !important;
+          transition: none !important;
+        }
+
+        .reveal,
+        .reveal-left,
+        .reveal-right {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="page">
+      <a href="/" class="back-link reveal" style="--delay: 0ms;">← Back to portfolio</a>
+
+      <section class="hero">
+        <div class="eyebrow reveal" style="--delay: 40ms;">AI Reliability • LLMOps • Governance</div>
+        <h1 class="reveal" style="--delay: 80ms;">{pageTitle}</h1>
+        <p class="subtitle reveal" style="--delay: 140ms;">{pageDescription}</p>
+
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <p class="reveal" style="--delay: 200ms;">
+              I built this project around a harder question than “can the assistant answer claims questions?” The real question was whether a Swiss insurer could trust that assistant enough to release it into controlled production use.
+            </p>
+            <p class="reveal" style="--delay: 260ms;">
+              That meant the project had to go beyond a useful interface or a decent retrieval flow. It needed governed release behavior, benchmark discipline, escalation-sensitive evaluation, live telemetry, incident logic, review workflows, and containment recommendations if live behavior later became unsafe.
+            </p>
+
+            <div class="hero-outcome reveal" style="--delay: 320ms;">
+              The result is a full trust-loop case: a governed claims assistant, a release gate that caught a real boundary-handling bug, and a packaged live monitoring layer that can detect unsafe post-release behavior, open review workflows, and recommend rollback.
+            </div>
+          </div>
+
+          <figure class="hero-visual reveal-right" style="--delay: 240ms;">
+            <img
+              src={imageAssets.heroLoop}
+              alt="Trust loop visual for the Claims AI Reliability Platform showing governed assistant, release gate, monitoring, incidents, review, and rollback"
+            />
+            <figcaption class="hero-visual-copy">
+              <strong>The trust loop this project proves</strong>
+              <p>
+                Release discipline before deployment, and containment logic after deployment.
+              </p>
+            </figcaption>
+          </figure>
+        </div>
+
+        <div class="metrics-label reveal" style="--delay: 380ms;">Proof of project weight</div>
+
+        <div class="metric-grid">
+          {heroMetrics.map((metric, index) => (
+            <div class="metric reveal" style={`--delay: ${420 + index * 70}ms;`}>
+              <div class="metric-bar"></div>
+              <div class="metric-label">{metric.label}</div>
+              <div class="metric-value">{metric.value}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="reveal">Why a normal prototype was not enough</h2>
+        <p class="section-intro reveal" style="--delay: 60ms;">
+          A promising internal assistant is still a risk if the business cannot tell when it is safe to release, when it should escalate, and how unsafe live behavior should be contained once the system is already in use.
+        </p>
+
+        <div class="split">
+          <div class="panel panel-strong reveal-left" style="--delay: 120ms;">
+            <h3>The real business tension</h3>
+            <p class="lead-strong">
+              In a claims setting, <strong>helpful</strong> is not enough. The assistant also has to be governable.
+            </p>
+            <p>
+              Management did not need a prettier prototype. It needed evidence. The company had to know whether a release candidate handled high-risk boundary cases correctly, whether escalation behavior held up under evaluation, and whether live degradation could still be detected after approval.
+            </p>
+            <p>
+              That changed the shape of the project. Instead of stopping at answer generation, I built around operational trust.
+            </p>
+          </div>
+
+          <div class="panel reveal-right" style="--delay: 180ms;">
+            <h3>What made the problem operationally serious</h3>
+            <ul class="list">
+              {whyPrototypeWasNotEnough.map((item) => <li>{item}</li>)}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="reveal">What I actually built</h2>
+        <p class="section-intro reveal" style="--delay: 60ms;">
+          The project is best understood as a controlled release and monitoring system around a claims knowledge assistant, not as a standalone chatbot.
+        </p>
+
+        <div class="layer-grid">
+          {platformLayers.map((layer, index) => (
+            <div class="layer-card reveal" style={`--delay: ${120 + index * 70}ms;`}>
+              <h4>{layer.title}</h4>
+              <p>{layer.text}</p>
+            </div>
+          ))}
+        </div>
+
+        <div class="callout reveal" style="--delay: 420ms;">
+          <strong>This is what gives the project weight:</strong> it does not only show that an assistant can be built. It shows how a release can be evaluated, approved, monitored, and later contained if the live behavior stops being safe enough.
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="reveal">The release-gate story</h2>
+        <p class="section-intro reveal" style="--delay: 60ms;">
+          The release process was not ceremonial. It materially changed the outcome. Early release candidates failed on scoring, blocker logic, and high-risk handling. The final one only passed once the benchmark results were good enough to justify scaled production.
+        </p>
+
+        <figure class="image-panel reveal" style="--delay: 120ms;">
+          <img
+            src={imageAssets.releaseProgression}
+            alt="Release progression visual showing claims assistant movement from blocked release candidates to scaled production approval"
+          />
+          <figcaption class="image-copy">
+            <strong>From blocked release to scaled production approval</strong>
+            <p>
+              The benchmark gate forced iteration. It did not just describe quality. It changed the release path.
+            </p>
+          </figcaption>
+        </figure>
+
+        <div class="callout reveal" style="--delay: 320ms;">
+          <strong>The strongest takeaway here:</strong> the project did not just evaluate a claims assistant. It built a governed release gate, used it to catch a real issue, forced iteration, and only cleared the release once the evidence supported it.
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="reveal">The bug that changed the release outcome</h2>
+        <p class="section-intro reveal" style="--delay: 60ms;">
+          The most credible part of the release story is that the benchmark exposed a real boundary-handling defect in the assistant logic rather than just producing abstract scores.
+        </p>
+
+        <div class="split">
+          <div class="panel panel-strong reveal-left" style="--delay: 120ms;">
+            <h3>What the benchmark caught</h3>
+            <ul class="list">
+              {bugStoryBullets.map((item) => <li>{item}</li>)}
+            </ul>
+          </div>
+
+          <figure class="image-panel reveal-right" style="--delay: 180ms;">
+            <img
+              src={imageAssets.bugFlow}
+              alt="Simplified bug and fix flow for the Claims AI Reliability Platform showing wrong boundary branch behavior and corrected escalation logic"
+            />
+            <figcaption class="image-copy">
+              <strong>A subtle bug with real operational consequences</strong>
+              <p>
+                The difference between “blocked” and “properly escalated” mattered enough to affect the release decision.
+              </p>
+            </figcaption>
+          </figure>
+        </div>
+
+        <div class="callout reveal" style="--delay: 320ms;">
+          <strong>This mattered because</strong> it proved the release gate was doing real work. It was not rubber-stamping a polished demo. It was identifying behavior the business would genuinely care about before release.
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="reveal">Live monitoring and rollback story</h2>
+        <p class="section-intro reveal" style="--delay: 60ms;">
+          The project’s strongest Phase 3 proof is that approval was not treated as the end of the story. A release that had already been cleared could still later be detected as unsafe in live use.
+        </p>
+
+        <div class="split">
+          <div class="panel panel-strong reveal-left" style="--delay: 120ms;">
+            <h3>What happened in live monitoring</h3>
+            <ul class="list">
+              {liveMonitoringBullets.map((item) => <li>{item}</li>)}
+            </ul>
+          </div>
+
+          <div class="panel reveal-right" style="--delay: 180ms;">
+            <h3>Why this changes the project’s weight</h3>
+            <p>
+              A lot of AI case studies stop once the release is approved. This one keeps going. It proves that an approved release can still degrade in practice, generate operational signals, open review workflows, and trigger a stronger containment recommendation.
+            </p>
+            <p>
+              That is what makes the platform feel mature: it treats production trust as something that must be maintained, not assumed.
+            </p>
+          </div>
+        </div>
+
+        <div class="proof-image-grid">
+          <figure class="proof-shot reveal" style="--delay: 240ms;">
+            <img
+              src={imageAssets.controlRoomCritical}
+              alt="Claims AI control room in a critical state showing incidents, review queue, and rollback recommendation"
+            />
+            <figcaption class="proof-copy">
+              <h3>Control room in degraded live state</h3>
+              <p>
+                The approved release later entered a critical state after unsafe live behavior triggered incidents and changed the top containment action to rollback.
+              </p>
+            </figcaption>
+          </figure>
+
+          <figure class="proof-shot reveal" style="--delay: 320ms;">
+            <img
+              src={imageAssets.incidentsReviewQueue}
+              alt="Claims AI control room tables showing incidents, review queue, and recent interactions"
+            />
+            <figcaption class="proof-copy">
+              <h3>Unsafe behavior translated into operational action</h3>
+              <p>
+                The platform did not stop at red flags. It generated incidents, opened a P1 review queue item, and made the release operationally reviewable.
+              </p>
+            </figcaption>
+          </figure>
+        </div>
+
+        <div class="callout reveal" style="--delay: 420ms;">
+          <strong>This is the most important proof on the page:</strong> the platform can detect unsafe post-release behavior inside the operational loop, not only inside offline evaluation.
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="reveal">Packaged runtime and operational realism</h2>
+        <p class="section-intro reveal" style="--delay: 60ms;">
+          The runtime extension strengthened the project, but the important part is how it was done. Infrastructure was added where it created real operational value, not just to make the stack sound bigger.
+        </p>
+
+        <div class="split">
+          <div class="panel panel-strong reveal-left" style="--delay: 120ms;">
+            <h3>What the packaging added</h3>
+            <ul class="list">
+              {runtimeBullets.map((item) => <li>{item}</li>)}
+            </ul>
+          </div>
+
+          <figure class="image-panel reveal-right" style="--delay: 180ms;">
+            <img
+              src={imageAssets.dockerRuntime}
+              alt="Docker Compose runtime showing packaged services for the Claims AI Reliability Platform"
+            />
+            <figcaption class="image-copy">
+              <strong>Multi-service runtime validation</strong>
+              <p>
+                The assistant, monitoring layer, and persisted operational state could run together inside one packaged environment.
+              </p>
+            </figcaption>
+          </figure>
+        </div>
+
+        <div class="callout reveal" style="--delay: 320ms;">
+          <strong>The disciplined choice here matters:</strong> I did not rewrite the governed retrieval path just to force database technology into the live answer flow. I kept the release-critical behavior intact and used PostgreSQL where it created operational realism.
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="reveal">Why this project matters in the portfolio</h2>
+        <p class="section-intro reveal" style="--delay: 60ms;">
+          This is one of the strongest projects in the portfolio because it shows a more mature AI question than “can I build it?” It asks whether the business can govern it, test it, trust it, and contain it once it is live.
+        </p>
+
+        <div class="final-signal-grid">
+          {finalSignals.map((signal, index) => (
+            <div class="signal-card reveal" style={`--delay: ${120 + index * 90}ms;`}>
+              <p>{signal}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section class="section final-cta-section">
+        <div class="final-cta-panel reveal" style="--delay: 80ms;">
+          <div class="final-cta-copy">
+            <p class="final-cta-kicker">Next step</p>
+            <h2>Want to explore more of the portfolio or get in touch?</h2>
+            <p>
+              You can go back to the selected projects section or contact me directly by email.
+            </p>
+          </div>
+
+          <div class="final-cta-actions">
+            <a class="final-button final-button-secondary" href="/#projects">Back to projects</a>
+            <a class="final-button final-button-primary" href="mailto:antonio.business444@gmail.com">
+              Contact me
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <div class="footer-space"></div>
+    </main>
+
+    <script is:inline>
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      if (!reduceMotion) {
+        const animated = document.querySelectorAll(".reveal, .reveal-left, .reveal-right");
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.14,
+            rootMargin: "0px 0px -40px 0px",
+          }
+        );
+
+        animated.forEach((el) => observer.observe(el));
+      } else {
+        document
+          .querySelectorAll(".reveal, .reveal-left, .reveal-right")
+          .forEach((el) => el.classList.add("is-visible"));
+      }
+    </script>
+  </body>
+</html>

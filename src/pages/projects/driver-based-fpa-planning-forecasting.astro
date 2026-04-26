@@ -1,0 +1,1357 @@
+---
+const pageTitle = "Driver-Based FP&A Planning & Forecasting";
+const pageDescription =
+  "An applied FP&A planning and reporting case for a multi-channel consumer electronics business under margin pressure. Revenue and units remain relatively resilient, but discounting, returns, marketing intensity, cost-to-serve pressure, and SG&A run-rate weaken margin conversion and push the full-year outlook below plan.";
+
+const imageBase = "/images/projects/driver-based-fpa-planning-forecasting";
+
+const heroMetrics = [
+  {
+    label: "Planning logic",
+    value: "Budget / Actual / Latest Forecast",
+  },
+  {
+    label: "Workbook layer",
+    value: "Monthly P&L + YTD/FY review",
+  },
+  {
+    label: "Reporting layer",
+    value: "Executive Power BI pack",
+  },
+  {
+    label: "Business focus",
+    value: "Margin conversion under pressure",
+  },
+];
+
+const businessQuestions = [
+  "Where is profit conversion breaking down?",
+  "Is the gap driven by volume, margin quality, or both?",
+  "How does the Latest Forecast change the full-year outlook?",
+  "Which management actions are most likely to protect profitability?",
+];
+
+const workbookSheets = [
+  {
+    title: "Monthly P&L View",
+    text: "Structures Budget, Actual / Latest Forecast, and variance versus Budget across the monthly P&L. This is the core finance review layer of the case.",
+  },
+  {
+    title: "YTD / FY Review",
+    text: "Connects closed-month performance with the updated full-year outlook, helping management move from monthly tracking to forward-looking judgement.",
+  },
+  {
+    title: "Driver Summary",
+    text: "Links the financial shortfall to units, pricing, discount rate, return rate, fulfillment cost per unit, marketing rate, and channel support cost.",
+  },
+  {
+    title: "Scenario Review",
+    text: "Adds lightweight sensitivity thinking around discounting, returns, fulfillment cost, and marketing intensity to understand how the year-end outlook could move.",
+  },
+];
+
+const dashboardPages = [
+  {
+    eyebrow: "Page 1",
+    title: "Executive Performance Overview",
+    question:
+      "Are we below plan, where is the pressure visible, and what should management care about first?",
+    text:
+      "This page gives the executive diagnosis. Revenue and units remain relatively resilient, but the Latest Forecast shows weaker margin conversion and a worse operating profit outlook.",
+    image: `${imageBase}/fpa-overview.png`,
+    alt: "Power BI executive performance overview for the Driver-Based FP&A Planning & Forecasting project",
+    takeaway:
+      "Revenue does not collapse. The issue is that the business captures less value from broadly stable demand.",
+  },
+  {
+    eyebrow: "Page 2",
+    title: "P&L Variance Story",
+    question: "Where exactly did the full-year plan break across the P&L?",
+    text:
+      "This is the strongest FP&A / Controlling page. The bridge shows how the business moves from planned profit to forecast loss through discounting, returns, marketing, SG&A, and cost pressure below revenue.",
+    image: `${imageBase}/fpa-variance-story.png`,
+    alt: "Power BI P&L variance bridge from Budget operating profit to Latest Forecast loss",
+    takeaway:
+      "The full-year miss is driven mainly below revenue, where commercial leakage and SG&A pressure turn planned profit into forecast loss.",
+  },
+  {
+    eyebrow: "Page 3",
+    title: "Driver Pressure View",
+    question:
+      "Is the pressure mainly coming from volume, discounting, returns, marketing intensity, or cost-to-serve?",
+    text:
+      "The closing page connects financial variance to operating drivers. Discounting is the largest driver-level pressure, with returns, marketing intensity, fulfillment cost, and a smaller sales gap adding further leakage.",
+    image: `${imageBase}/fpa-driver-pressure.png`,
+    alt: "Power BI driver pressure ranking and management recommendations",
+    takeaway:
+      "The right response is not volume at any cost. Management needs profitable recovery with tighter commercial discipline.",
+  },
+];
+
+const keyInsights = [
+  "The business is not simply missing sales. Demand remains relatively resilient, but the economics of those sales are weaker.",
+  "Discounting is the clearest driver-level pressure, which makes commercial discipline more important than broad promotional recovery.",
+  "Contribution Margin is the key line in the story because it shows the gap between top-line resilience and weaker profit conversion.",
+  "The workbook gives the project its FP&A credibility; Power BI turns the same logic into a faster executive reporting layer.",
+];
+
+const tools = [
+  "Excel",
+  "Power BI",
+  "DAX",
+  "Deneb custom visual",
+  "Power Query mindset",
+  "CSV reporting outputs",
+  "FP&A modelling",
+  "Variance analysis",
+  "Driver-based reporting",
+  "Scenario sensitivity",
+  "Management commentary",
+  "Executive storytelling",
+];
+
+const recruiterSignals = [
+  {
+    title: "Finance-facing analysis",
+    text:
+      "The case is built around planning logic, P&L structure, forecast review, and management commentary rather than generic KPI exploration.",
+  },
+  {
+    title: "Business diagnosis",
+    text:
+      "It separates demand resilience from margin-quality deterioration, which is exactly the kind of judgement expected in FP&A and controlling work.",
+  },
+  {
+    title: "Decision support",
+    text:
+      "The final output does not stop at variance explanation. It translates the pressure into actions around discount governance, margin-quality revenue, and leakage reduction.",
+  },
+];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={pageDescription} />
+    <title>{pageTitle} | Antonio González Martín</title>
+  </head>
+
+  <body>
+    <main class="page-shell">
+      <a class="back-link reveal" href="/">← Back to portfolio</a>
+
+      <section class="hero-section">
+        <div class="hero-copy">
+          <p class="eyebrow reveal" style="--delay: 40ms;">
+            FP&A · Controlling · Planning & Forecasting
+          </p>
+
+          <h1 class="reveal" style="--delay: 90ms;">{pageTitle}</h1>
+
+          <p class="hero-subtitle reveal" style="--delay: 140ms;">
+            {pageDescription}
+          </p>
+
+          <div class="hero-statement reveal" style="--delay: 200ms;">
+            <strong>The core business tension:</strong>
+            the business keeps demand broadly close to plan, but fails to protect the economics of those sales.
+          </div>
+        </div>
+
+        <figure class="hero-visual reveal reveal-right" style="--delay: 220ms;">
+          <img
+            src={`${imageBase}/fpa-excel-workbook.png`}
+            alt="Excel workbook preview for the Driver-Based FP&A Planning & Forecasting project"
+          />
+          <figcaption>
+            <strong>Excel workbook as the FP&A backbone</strong>
+            <span>
+              The case starts with a structured planning pack, not with a dashboard.
+            </span>
+          </figcaption>
+        </figure>
+      </section>
+
+      <section class="metric-grid reveal" style="--delay: 280ms;">
+        {heroMetrics.map((metric) => (
+          <article class="metric-card">
+            <span>{metric.label}</span>
+            <strong>{metric.value}</strong>
+          </article>
+        ))}
+      </section>
+
+      <section class="section">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Business problem</p>
+          <h2>Revenue holds up, but margin conversion weakens.</h2>
+          <p>
+            This case is built around a realistic management problem: the business is not facing a simple sales miss. Units and revenue remain broadly resilient, but discounting, returns, marketing intensity, cost-to-serve pressure, and SG&A run-rate are weakening contribution quality.
+          </p>
+        </div>
+
+        <div class="split-grid">
+          <div class="panel panel-strong reveal reveal-left">
+            <h3>The management question is more mature than “are sales down?”</h3>
+            <p>
+              A pure sales story would lead management toward a simple answer: push more volume. But that would miss the real issue. The business is still generating demand, yet it captures less profit from that demand because pressure builds below the top line.
+            </p>
+            <p>
+              The role of FP&A in this case is to explain where the profit gap opens, which drivers matter most, and what action should come before more commercial spend.
+            </p>
+          </div>
+
+          <div class="panel reveal reveal-right">
+            <h3>Questions management needs answered</h3>
+            <ul class="clean-list">
+              {businessQuestions.map((question) => <li>{question}</li>)}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Build logic</p>
+          <h2>A planning case first, a dashboard case second.</h2>
+          <p>
+            The workbook is the core FP&A logic and review layer. Power BI does not replace it. Power BI turns the same structured finance outputs into an executive reporting pack that is easier to scan, present, and discuss.
+          </p>
+        </div>
+
+        <div class="two-layer-grid">
+          <article class="layer-card reveal reveal-left">
+            <span class="layer-number">01</span>
+            <h3>Excel workbook layer</h3>
+            <p>
+              Builds the planning structure: Budget, Actual, Latest Forecast, monthly P&L, YTD/FY review, driver interpretation, management commentary, and scenario sensitivity.
+            </p>
+          </article>
+
+          <article class="layer-card reveal reveal-right">
+            <span class="layer-number">02</span>
+            <h3>Power BI executive layer</h3>
+            <p>
+              Translates the finance logic into an executive reporting flow: performance diagnosis, P&L variance bridge, driver pressure ranking, and management recommendations.
+            </p>
+          </article>
+        </div>
+
+        <div class="callout reveal">
+          <strong>Why this matters:</strong>
+          the project does not rely on a beautiful dashboard to look impressive. The credibility comes from the finance logic underneath it.
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Workbook proof</p>
+          <h2>The Excel layer shows the actual FP&A thinking.</h2>
+          <p>
+            These workbook views are important because they prove the project was built like a finance review pack: structured, version-aware, forward-looking, and management-facing.
+          </p>
+        </div>
+
+        <div class="workbook-gallery">
+          <figure class="image-card image-card-large reveal reveal-left">
+            <img
+              src={`${imageBase}/fpa-excel-workbook.png`}
+              alt="Monthly P&L view from the Excel FP&A workbook"
+            />
+            <figcaption>
+              <strong>Monthly P&L View</strong>
+              <span>
+                The finance backbone of the case: Budget, Actual / Latest Forecast, and variance logic across the monthly P&L.
+              </span>
+            </figcaption>
+          </figure>
+
+          <div class="workbook-side">
+            <figure class="image-card reveal reveal-right">
+              <img
+                src={`${imageBase}/fpa-ytd-fy-review.png`}
+                alt="YTD and full-year review from the Excel FP&A workbook"
+              />
+              <figcaption>
+                <strong>YTD / FY Review</strong>
+                <span>
+                  Connects closed-month actuals with the updated full-year outlook.
+                </span>
+              </figcaption>
+            </figure>
+
+            <figure class="image-card reveal reveal-right" style="--delay: 80ms;">
+              <img
+                src={`${imageBase}/fpa-scenario-review.png`}
+                alt="Scenario review from the Excel FP&A workbook"
+              />
+              <figcaption>
+                <strong>Scenario Review</strong>
+                <span>
+                  A lightweight sensitivity layer around discounting, returns, fulfillment cost, and marketing intensity.
+                </span>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="workbook-sheet-grid">
+          {workbookSheets.map((sheet, index) => (
+            <article class="small-card reveal" style={`--delay: ${index * 70}ms;`}>
+              <h3>{sheet.title}</h3>
+              <p>{sheet.text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Executive reporting story</p>
+          <h2>Three pages, three different management questions.</h2>
+          <p>
+            The Power BI layer is intentionally short. Each page earns its place: one frames the business issue, one explains where the P&L breaks, and one translates the variance into operating drivers and next actions.
+          </p>
+        </div>
+
+        <div class="dashboard-flow">
+          {dashboardPages.map((page, index) => (
+            <article class="dashboard-page reveal" style={`--delay: ${index * 90}ms;`}>
+              <figure>
+                <img src={page.image} alt={page.alt} />
+              </figure>
+
+              <div class="dashboard-copy">
+                <span>{page.eyebrow}</span>
+                <h3>{page.title}</h3>
+                <p class="question">{page.question}</p>
+                <p>{page.text}</p>
+
+                <div class="takeaway">
+                  <strong>Management takeaway</strong>
+                  <p>{page.takeaway}</p>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Key insights</p>
+          <h2>The case is really about profit quality.</h2>
+          <p>
+            The strongest insight is not that the business is below plan. It is why. The reporting pack separates top-line resilience from weaker contribution quality.
+          </p>
+        </div>
+
+        <div class="insight-grid">
+          {keyInsights.map((insight, index) => (
+            <article class="insight-card reveal" style={`--delay: ${index * 80}ms;`}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <p>{insight}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Recruiter-facing value</p>
+          <h2>Why this project strengthens my FP&A / Controlling positioning.</h2>
+          <p>
+            This project is designed to show the part of analytics that hiring managers actually care about in FP&A and controlling roles: structure, judgement, business mechanics, reporting discipline, and action orientation.
+          </p>
+        </div>
+
+        <div class="recruiter-grid">
+          {recruiterSignals.map((signal, index) => (
+            <article class="recruiter-card reveal" style={`--delay: ${index * 90}ms;`}>
+              <h3>{signal.title}</h3>
+              <p>{signal.text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Tools and skills</p>
+          <h2>Practical finance analytics stack.</h2>
+          <p>
+            The toolset stays intentionally close to real FP&A work: Excel for planning logic, Power BI for executive reporting, and structured outputs to keep the model clean and reusable.
+          </p>
+        </div>
+
+        <div class="tool-grid reveal">
+          {tools.map((tool) => <span>{tool}</span>)}
+        </div>
+      </section>
+
+      <section class="final-cta reveal">
+        <div>
+          <p class="eyebrow">Portfolio takeaway</p>
+          <h2>Finance logic, driver diagnosis, and executive reporting in one case.</h2>
+          <p>
+            This project shows how a business can stay relatively resilient on revenue while still missing plan on profit because discounting, returns, marketing intensity, cost-to-serve pressure, and SG&A run-rate weaken contribution quality.
+          </p>
+        </div>
+
+        <div class="cta-actions">
+          <a href="/#projects" class="button button-secondary">Back to projects</a>
+          <a href="mailto:antonio.business444@gmail.com" class="button button-primary">Contact me</a>
+        </div>
+      </section>
+    </main>
+
+    <div class="image-lightbox" id="image-lightbox" aria-hidden="true">
+      <div class="image-lightbox-backdrop" data-close-lightbox></div>
+
+      <div class="image-lightbox-dialog" role="dialog" aria-modal="true" aria-label="Expanded project image">
+        <button type="button" class="image-lightbox-close" data-close-lightbox aria-label="Close image">
+          ×
+        </button>
+
+        <img id="image-lightbox-image" src="" alt="" />
+        <p id="image-lightbox-caption"></p>
+      </div>
+    </div>
+
+    <script is:inline>
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      if (prefersReducedMotion) {
+        document.querySelectorAll(".reveal").forEach((item) => {
+          item.classList.add("is-visible");
+        });
+      } else {
+        const observer = new IntersectionObserver(
+          (entries, currentObserver) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              entry.target.classList.add("is-visible");
+              currentObserver.unobserve(entry.target);
+            });
+          },
+          {
+            threshold: 0.14,
+            rootMargin: "0px 0px -8% 0px",
+          }
+        );
+
+        document.querySelectorAll(".reveal").forEach((item) => observer.observe(item));
+      }
+
+      const lightbox = document.getElementById("image-lightbox");
+      const lightboxImage = document.getElementById("image-lightbox-image");
+      const lightboxCaption = document.getElementById("image-lightbox-caption");
+
+      const zoomableImages = document.querySelectorAll(
+        ".hero-visual img, .image-card img, .dashboard-page img"
+      );
+
+      function openLightbox(image) {
+        if (!lightbox || !lightboxImage || !lightboxCaption) return;
+
+        lightboxImage.src = image.currentSrc || image.src;
+        lightboxImage.alt = image.alt || "Expanded project image";
+
+        const caption =
+          image.closest("figure")?.querySelector("figcaption strong")?.textContent ||
+          image.alt ||
+          "Project image";
+
+        lightboxCaption.textContent = caption;
+        lightbox.classList.add("is-open");
+        lightbox.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeLightbox() {
+        if (!lightbox || !lightboxImage) return;
+
+        lightbox.classList.remove("is-open");
+        lightbox.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+        lightboxImage.src = "";
+      }
+
+      zoomableImages.forEach((image) => {
+        image.classList.add("zoomable-image");
+
+        image.addEventListener("click", () => {
+          openLightbox(image);
+        });
+      });
+
+      document.querySelectorAll("[data-close-lightbox]").forEach((element) => {
+        element.addEventListener("click", closeLightbox);
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          closeLightbox();
+        }
+      });
+    </script>
+  </body>
+</html>
+
+<style>
+  :root {
+    --bg: #06101d;
+    --bg-2: #081525;
+    --panel: rgba(19, 31, 52, 0.82);
+    --panel-strong: rgba(23, 38, 64, 0.88);
+    --text: #edf2ff;
+    --soft: #d7e2f7;
+    --muted: #aebbd4;
+    --line: rgba(255, 255, 255, 0.12);
+    --line-strong: rgba(145, 169, 255, 0.24);
+    --accent: #91a9ff;
+    --accent-soft: #d8e0ff;
+    --cyan: #7dd3fc;
+    --green: #4ade80;
+    --red: #fb7185;
+    --amber: #fbbf24;
+    --shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+    --shadow-soft: 0 14px 34px rgba(0, 0, 0, 0.18);
+    --max: 1180px;
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    font-family:
+      Inter,
+      ui-sans-serif,
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      sans-serif;
+    color: var(--text);
+    background:
+      radial-gradient(circle at 12% 0%, rgba(145, 169, 255, 0.14), transparent 28%),
+      radial-gradient(circle at 86% 12%, rgba(125, 211, 252, 0.1), transparent 24%),
+      radial-gradient(circle at 50% 100%, rgba(251, 113, 133, 0.055), transparent 30%),
+      linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 52%, #07111f 100%);
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(90deg, rgba(255, 255, 255, 0.016) 1px, transparent 1px),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.012) 1px, transparent 1px);
+    background-size: 42px 42px;
+    opacity: 0.16;
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.34), transparent 55%);
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  h1,
+  h2,
+  h3,
+  p {
+    margin-top: 0;
+  }
+
+  .page-shell {
+    width: min(var(--max), calc(100% - 2rem));
+    margin: 0 auto;
+    padding: 2rem 0 5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .back-link {
+    display: inline-flex;
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-bottom: 2.2rem;
+    transition:
+      color 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .back-link:hover {
+    color: var(--text);
+    transform: translateX(-2px);
+  }
+
+  .hero-section {
+    display: grid;
+    grid-template-columns: 0.95fr 1.05fr;
+    gap: 1.3rem;
+    align-items: center;
+    padding: 1rem 0 1.4rem;
+  }
+
+  .eyebrow {
+    margin-bottom: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.76rem;
+    font-weight: 750;
+    color: var(--accent-soft);
+  }
+
+  h1 {
+    font-size: clamp(2.7rem, 5.4vw, 5rem);
+    line-height: 0.98;
+    letter-spacing: -0.055em;
+    margin-bottom: 1rem;
+    text-wrap: balance;
+  }
+
+  h2 {
+    font-size: clamp(2rem, 3.7vw, 3.05rem);
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+    margin-bottom: 0.9rem;
+    text-wrap: balance;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    line-height: 1.18;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.7rem;
+  }
+
+  p {
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.08rem;
+    max-width: 760px;
+  }
+
+  .hero-statement {
+    margin-top: 1.35rem;
+    padding: 1rem 1.05rem;
+    border-radius: 22px;
+    border: 1px solid rgba(145, 169, 255, 0.18);
+    background:
+      radial-gradient(circle at 0% 0%, rgba(145, 169, 255, 0.12), transparent 42%),
+      rgba(255, 255, 255, 0.04);
+    box-shadow: var(--shadow-soft);
+    color: var(--soft);
+  }
+
+  .hero-statement strong {
+    color: var(--text);
+  }
+
+  .hero-visual,
+  .image-card,
+  .dashboard-page,
+  .panel,
+  .layer-card,
+  .small-card,
+  .insight-card,
+  .recruiter-card,
+  .metric-card,
+  .final-cta {
+    border: 1px solid var(--line);
+    background: var(--panel);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(14px);
+  }
+
+  .hero-visual {
+    margin: 0;
+    border-radius: 30px;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 80% 20%, rgba(145, 169, 255, 0.14), transparent 34%),
+      rgba(19, 31, 52, 0.86);
+  }
+
+  .hero-visual img {
+    width: 100%;
+    height: auto;
+    max-height: 620px;
+    object-fit: contain;
+    object-position: center;
+    background: #f8fafc;
+  }
+
+  .hero-visual figcaption,
+  .image-card figcaption {
+    padding: 1rem 1.05rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.09);
+  }
+
+  .hero-visual strong,
+  .image-card strong {
+    display: block;
+    color: var(--text);
+    margin-bottom: 0.25rem;
+  }
+
+  .hero-visual span,
+  .image-card span {
+    display: block;
+    color: var(--muted);
+    font-size: 0.94rem;
+  }
+
+  .metric-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.9rem;
+    margin: 1.4rem 0 0;
+  }
+
+  .metric-card {
+    border-radius: 22px;
+    padding: 1rem;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.022)),
+      rgba(19, 31, 52, 0.82);
+  }
+
+  .metric-card span {
+    display: block;
+    color: var(--muted);
+    font-size: 0.82rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .metric-card strong {
+    display: block;
+    color: var(--text);
+    font-size: 1.04rem;
+    line-height: 1.32;
+  }
+
+  .section {
+    padding: 5rem 0 0;
+  }
+
+  .section::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 1px;
+    margin-bottom: 3.4rem;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(145, 169, 255, 0.22),
+      transparent
+    );
+  }
+
+  .section-heading {
+    max-width: 850px;
+    margin-bottom: 1.35rem;
+  }
+
+  .section-heading p:last-child {
+    font-size: 1.03rem;
+  }
+
+  .split-grid {
+    display: grid;
+    grid-template-columns: 1.02fr 0.98fr;
+    gap: 1rem;
+  }
+
+  .panel {
+    border-radius: 26px;
+    padding: 1.25rem;
+  }
+
+  .panel-strong {
+    background:
+      radial-gradient(circle at 0% 0%, rgba(145, 169, 255, 0.11), transparent 38%),
+      var(--panel-strong);
+    border-color: var(--line-strong);
+  }
+
+  .clean-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.8rem;
+  }
+
+  .clean-list li {
+    position: relative;
+    color: var(--muted);
+    padding-left: 1.25rem;
+  }
+
+  .clean-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.68rem;
+    width: 0.42rem;
+    height: 0.42rem;
+    border-radius: 999px;
+    background: var(--accent);
+    box-shadow: 0 0 20px rgba(145, 169, 255, 0.45);
+  }
+
+  .two-layer-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .layer-card {
+    border-radius: 28px;
+    padding: 1.3rem;
+    min-height: 230px;
+    background:
+      radial-gradient(circle at 0% 0%, rgba(125, 211, 252, 0.08), transparent 34%),
+      rgba(19, 31, 52, 0.84);
+  }
+
+  .layer-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 999px;
+    background: rgba(145, 169, 255, 0.12);
+    border: 1px solid rgba(145, 169, 255, 0.22);
+    color: var(--accent-soft);
+    font-weight: 800;
+    margin-bottom: 1rem;
+  }
+
+  .callout {
+    margin-top: 1rem;
+    padding: 1rem 1.1rem;
+    border-radius: 22px;
+    border: 1px solid rgba(251, 191, 36, 0.22);
+    background:
+      radial-gradient(circle at 0% 0%, rgba(251, 191, 36, 0.1), transparent 34%),
+      rgba(255, 255, 255, 0.035);
+    color: var(--soft);
+  }
+
+  .callout strong {
+    color: #fff4d1;
+  }
+
+  .workbook-gallery {
+    display: grid;
+    grid-template-columns: 1.22fr 0.78fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .workbook-side {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .image-card {
+    margin: 0;
+    border-radius: 28px;
+    overflow: hidden;
+    background: rgba(18, 29, 50, 0.86);
+  }
+
+  .image-card img {
+    width: 100%;
+    height: auto;
+    max-height: 620px;
+    object-fit: contain;
+    object-position: center;
+    background: #f8fafc;
+  }
+
+  .image-card-large img {
+    max-height: 760px;
+  }
+
+  .workbook-sheet-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.9rem;
+  }
+
+  .small-card {
+    border-radius: 22px;
+    padding: 1rem;
+    background: rgba(20, 33, 56, 0.78);
+  }
+
+  .small-card h3 {
+    font-size: 1.02rem;
+  }
+
+  .small-card p {
+    font-size: 0.94rem;
+    margin-bottom: 0;
+  }
+
+  .dashboard-flow {
+    display: grid;
+    gap: 1.1rem;
+  }
+
+  .dashboard-page {
+    display: grid;
+    grid-template-columns: 1.12fr 0.88fr;
+    gap: 0;
+    border-radius: 30px;
+    overflow: hidden;
+    background: rgba(18, 29, 50, 0.86);
+  }
+
+  .dashboard-page:nth-child(even) {
+    grid-template-columns: 0.88fr 1.12fr;
+  }
+
+  .dashboard-page:nth-child(even) figure {
+    order: 2;
+  }
+
+  .dashboard-page figure {
+    margin: 0;
+    min-height: 100%;
+    padding: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+      radial-gradient(circle at 70% 20%, rgba(145, 169, 255, 0.08), transparent 32%),
+      rgba(255, 255, 255, 0.02);
+  }
+
+  .dashboard-page img {
+    width: 100%;
+    height: auto;
+    max-height: 620px;
+    object-fit: contain;
+    object-position: center;
+    border-radius: 18px;
+    background: #07101f;
+  }
+
+  .dashboard-copy {
+    padding: 1.35rem;
+    align-self: center;
+  }
+
+  .dashboard-copy > span {
+    display: inline-flex;
+    color: var(--accent-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.74rem;
+    font-weight: 800;
+    margin-bottom: 0.75rem;
+  }
+
+  .dashboard-copy .question {
+    color: var(--soft);
+    font-weight: 700;
+    margin-bottom: 0.9rem;
+  }
+
+  .takeaway {
+    margin-top: 1rem;
+    padding: 0.95rem;
+    border-radius: 18px;
+    border: 1px solid rgba(145, 169, 255, 0.16);
+    background: rgba(145, 169, 255, 0.07);
+  }
+
+  .takeaway strong {
+    display: block;
+    margin-bottom: 0.35rem;
+    color: var(--text);
+  }
+
+  .takeaway p {
+    margin-bottom: 0;
+  }
+
+  .insight-grid,
+  .recruiter-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.9rem;
+  }
+
+  .recruiter-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .insight-card,
+  .recruiter-card {
+    border-radius: 24px;
+    padding: 1rem;
+    background: rgba(19, 31, 52, 0.82);
+  }
+
+  .insight-card span {
+    display: inline-flex;
+    color: var(--accent-soft);
+    font-size: 0.8rem;
+    font-weight: 800;
+    margin-bottom: 0.85rem;
+  }
+
+  .insight-card p,
+  .recruiter-card p {
+    margin-bottom: 0;
+  }
+
+  .tool-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .tool-grid span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 42px;
+    padding: 0 0.9rem;
+    border-radius: 999px;
+    border: 1px solid rgba(145, 169, 255, 0.16);
+    background: rgba(145, 169, 255, 0.07);
+    color: var(--accent-soft);
+    font-weight: 700;
+    font-size: 0.92rem;
+  }
+
+  .final-cta {
+    margin-top: 5rem;
+    border-radius: 30px;
+    padding: 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1.4rem;
+    align-items: center;
+    background:
+      radial-gradient(circle at 0% 0%, rgba(145, 169, 255, 0.14), transparent 36%),
+      rgba(19, 31, 52, 0.9);
+  }
+
+  .final-cta h2 {
+    font-size: clamp(1.7rem, 3vw, 2.45rem);
+  }
+
+  .final-cta p:last-child {
+    margin-bottom: 0;
+  }
+
+  .cta-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .button {
+    min-height: 48px;
+    padding: 0 1.05rem;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    transition:
+      transform 0.2s ease,
+      background 0.2s ease,
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .button:hover {
+    transform: translateY(-2px);
+  }
+
+  .button-primary {
+    background: var(--accent);
+    color: #081122;
+    box-shadow: 0 14px 34px rgba(145, 169, 255, 0.22);
+  }
+
+  .button-secondary {
+    background: rgba(255, 255, 255, 0.045);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    color: var(--text);
+  }
+
+  .hero-visual,
+  .image-card,
+  .dashboard-page figure {
+    position: relative;
+  }
+
+  .hero-visual::after,
+  .image-card::after,
+  .dashboard-page figure::after {
+    content: "Open large";
+    position: absolute;
+    right: 0.85rem;
+    top: 0.85rem;
+    z-index: 3;
+    padding: 0.38rem 0.7rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(7, 16, 31, 0.78);
+    color: #edf2ff;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.01em;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition:
+      opacity 0.18s ease,
+      transform 0.18s ease,
+      background 0.18s ease;
+    pointer-events: none;
+    backdrop-filter: blur(12px);
+  }
+
+  .hero-visual:hover::after,
+  .image-card:hover::after,
+  .dashboard-page figure:hover::after {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .zoomable-image {
+    cursor: zoom-in;
+  }
+
+  .image-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1.2rem;
+  }
+
+  .image-lightbox.is-open {
+    display: flex;
+  }
+
+  .image-lightbox-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(3, 8, 18, 0.88);
+    backdrop-filter: blur(14px);
+  }
+
+  .image-lightbox-dialog {
+    position: relative;
+    z-index: 1;
+    width: min(96vw, 1500px);
+    max-height: 92vh;
+    padding: 1rem;
+    border-radius: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(7, 16, 31, 0.96);
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.45);
+    overflow: auto;
+  }
+
+  .image-lightbox-dialog img {
+    width: 100%;
+    height: auto;
+    max-height: 82vh;
+    object-fit: contain;
+    border-radius: 18px;
+    background: #f8fafc;
+  }
+
+  .image-lightbox-close {
+    position: sticky;
+    top: 0;
+    margin-left: auto;
+    margin-bottom: 0.75rem;
+    z-index: 2;
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: rgba(255, 255, 255, 0.06);
+    color: #edf2ff;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .image-lightbox-caption {
+    margin: 0.75rem 0 0;
+    color: #c7d2eb;
+    font-size: 0.95rem;
+    text-align: center;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0);
+    transition:
+      opacity 0.76s var(--ease-out),
+      transform 0.76s var(--ease-out);
+    transition-delay: var(--delay, 0ms);
+    will-change: opacity, transform;
+  }
+
+  .reveal-left {
+    transform: translate3d(-34px, 0, 0);
+  }
+
+  .reveal-right {
+    transform: translate3d(34px, 0, 0);
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  @media (max-width: 1040px) {
+    .hero-section,
+    .split-grid,
+    .workbook-gallery,
+    .dashboard-page,
+    .dashboard-page:nth-child(even),
+    .final-cta {
+      grid-template-columns: 1fr;
+    }
+
+    .dashboard-page:nth-child(even) figure {
+      order: 0;
+    }
+
+    .metric-grid,
+    .workbook-sheet-grid,
+    .insight-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .recruiter-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .dashboard-page img {
+      max-height: none;
+    }
+
+    .cta-actions {
+      justify-content: flex-start;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .page-shell {
+      width: min(100% - 1.2rem, var(--max));
+      padding-top: 1.2rem;
+    }
+
+    .hero-section {
+      padding-top: 0.4rem;
+    }
+
+    h1 {
+      font-size: clamp(2.25rem, 12vw, 3.4rem);
+    }
+
+    .section {
+      padding-top: 3.7rem;
+    }
+
+    .section::before {
+      margin-bottom: 2.5rem;
+    }
+
+    .metric-grid,
+    .two-layer-grid,
+    .workbook-sheet-grid,
+    .insight-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .dashboard-copy {
+      padding: 1.1rem;
+    }
+
+    .hero-visual,
+    .image-card,
+    .dashboard-page,
+    .final-cta {
+      border-radius: 24px;
+    }
+
+    .hero-visual::after,
+    .image-card::after,
+    .dashboard-page figure::after {
+      opacity: 1;
+      transform: none;
+      font-size: 0.72rem;
+    }
+
+    .image-lightbox {
+      padding: 0.7rem;
+    }
+
+    .image-lightbox-dialog {
+      border-radius: 22px;
+      padding: 0.75rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    .reveal,
+    .reveal-left,
+    .reveal-right {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+
+    .button,
+    .back-link {
+      transition: none;
+    }
+  }
+</style>

@@ -60,6 +60,24 @@ const featuredProjects: FeaturedProject[] = [
     cta: "Open finance case study",
   },
   {
+    href: "/projects/driver-based-fpa-planning-forecasting",
+    image: "/images/projects/driver-based-fpa-planning-forecasting/fpa-excel-workbook.png",
+    imageAlt:
+      "Preview of the Excel FP&A workbook layer for the Driver-Based FP&A Planning & Forecasting project",
+    eyebrow: "FP&A / Controlling / Planning & Forecasting",
+    badge: "New FP&A case",
+    title: "Driver-Based FP&A Planning & Forecasting",
+    description:
+      "Driver-based FP&A planning and Power BI reporting case showing how stable demand can still translate into weaker profitability when discounting, returns, and cost-to-serve pressure build below revenue.",
+    highlights: [
+      "Budget / Actual / LF",
+      "Excel FP&A pack",
+      "P&L variance story",
+    ],
+    tracks: ["data-analyst", "business-analyst"],
+    cta: "Open FP&A planning case study",
+  },
+  {
     href: "/projects/manufacturing-operations-controlling-cost-to-serve",
     image: "/images/projects/manufacturing-cost-to-serve/manufacturing-cost-to-serve-hero.png",
     imageAlt: "Preview of the Manufacturing / Operations Controlling & Cost-to-Serve project",
@@ -77,22 +95,22 @@ const featuredProjects: FeaturedProject[] = [
     cta: "Open manufacturing controlling case study",
   },
   {
-  href: "/projects/novamarket-product-growth-experimentation-analytics",
-  image: "/images/projects/novamarket/novamarket-results.png",
-  imageAlt: "Preview of the NovaMarket Product Growth & Experimentation Analytics project",
-  eyebrow: "Product Analytics / Experimentation / Growth",
-  badge: "New product case",
-  title: "NovaMarket — Product Growth & Experimentation Analytics",
-  description:
-    "A product analytics case built around a real marketplace question: did a new discovery treatment improve user progression enough to justify selective rollout?",
-  highlights: [
-    "4-page Power BI story",
-    "Experiment-aware analysis",
-    "Selective rollout decision",
-  ],
-  tracks: ["data-analyst", "business-analyst"],
-  cta: "Open product analytics case study",
-},
+    href: "/projects/novamarket-product-growth-experimentation-analytics",
+    image: "/images/projects/novamarket/novamarket-results.png",
+    imageAlt: "Preview of the NovaMarket Product Growth & Experimentation Analytics project",
+    eyebrow: "Product Analytics / Experimentation / Growth",
+    badge: "New product case",
+    title: "NovaMarket — Product Growth & Experimentation Analytics",
+    description:
+      "A product analytics case built around a real marketplace question: did a new discovery treatment improve user progression enough to justify selective rollout?",
+    highlights: [
+      "4-page Power BI story",
+      "Experiment-aware analysis",
+      "Selective rollout decision",
+    ],
+    tracks: ["data-analyst", "business-analyst"],
+    cta: "Open product analytics case study",
+  },
   {
     href: "#flagship",
     image: "/dashboard-overview.png",
@@ -111,22 +129,22 @@ const featuredProjects: FeaturedProject[] = [
     cta: "Jump to flagship project",
   },
   {
-  href: "/projects/claims-ai-reliability-platform",
-  image: "/images/projects/claims-ai-reliability/claims-reliability-control-room-critical.png",
-  imageAlt: "Preview of the Claims AI Reliability Platform project",
-  eyebrow: "AI Reliability / LLMOps / Governance",
-  badge: "Flagship AI case",
-  title: "Claims AI Reliability Platform",
-  description:
-    "A production-style AI reliability case built around a harder question than demo quality: when can a claims knowledge assistant be trusted enough to scale, and how should unsafe behavior be detected, reviewed, and rolled back after release?",
-  highlights: [
-    "Governed release gate",
-    "Real bug caught and fixed",
-    "Live monitoring + rollback logic",
-  ],
-  tracks: ["business-analyst", "data-science"],
-  cta: "Open AI reliability case study",
-},
+    href: "/projects/claims-ai-reliability-platform",
+    image: "/images/projects/claims-ai-reliability/claims-reliability-control-room-critical.png",
+    imageAlt: "Preview of the Claims AI Reliability Platform project",
+    eyebrow: "AI Reliability / LLMOps / Governance",
+    badge: "Flagship AI case",
+    title: "Claims AI Reliability Platform",
+    description:
+      "A production-style AI reliability case built around a harder question than demo quality: when can a claims knowledge assistant be trusted enough to scale, and how should unsafe behavior be detected, reviewed, and rolled back after release?",
+    highlights: [
+      "Governed release gate",
+      "Real bug caught and fixed",
+      "Live monitoring + rollback logic",
+    ],
+    tracks: ["business-analyst", "data-science"],
+    cta: "Open AI reliability case study",
+  },
   {
     href: "/projects/internal-policy-process-knowledge-assistant",
     image: "/images/projects/northstar/northstar-demo-home.png",
@@ -1402,322 +1420,322 @@ const featuredProjects: FeaturedProject[] = [
   }
 
   .projects-section {
-  padding-top: 1rem;
-  padding-bottom: 3.8rem;
-}
+    padding-top: 1rem;
+    padding-bottom: 3.8rem;
+  }
 
-.projects-section .container {
-  width: min(1500px, calc(100% - 2rem));
-}
+  .projects-section .container {
+    width: min(1500px, calc(100% - 2rem));
+  }
 
-.projects-header {
-  max-width: 980px;
-  margin: 0 auto 1.8rem;
-  text-align: center;
-}
+  .projects-header {
+    max-width: 980px;
+    margin: 0 auto 1.8rem;
+    text-align: center;
+  }
 
-.projects-intro {
-  max-width: 860px;
-  margin: 0 auto;
-  font-size: 1.03rem;
-}
+  .projects-intro {
+    max-width: 860px;
+    margin: 0 auto;
+    font-size: 1.03rem;
+  }
 
-.project-filter-row {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-top: 1.15rem;
-}
+  .project-filter-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.15rem;
+  }
 
-.project-filter-button {
-  min-height: 42px;
-  padding: 0 1rem;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  background: rgba(255, 255, 255, 0.04);
-  color: var(--text);
-  font-weight: 700;
-  cursor: pointer;
-  transition:
-    transform 0.18s ease,
-    background 0.18s ease,
-    border-color 0.18s ease,
-    color 0.18s ease,
-    box-shadow 0.18s ease;
-}
+  .project-filter-button {
+    min-height: 42px;
+    padding: 0 1rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--text);
+    font-weight: 700;
+    cursor: pointer;
+    transition:
+      transform 0.18s ease,
+      background 0.18s ease,
+      border-color 0.18s ease,
+      color 0.18s ease,
+      box-shadow 0.18s ease;
+  }
 
-.project-filter-button:hover {
-  transform: translateY(-1px);
-  border-color: rgba(145, 169, 255, 0.24);
-}
+  .project-filter-button:hover {
+    transform: translateY(-1px);
+    border-color: rgba(145, 169, 255, 0.24);
+  }
 
-.project-filter-button.is-active {
-  background: var(--accent);
-  color: #081122;
-  border-color: transparent;
-  box-shadow: 0 10px 24px rgba(145, 169, 255, 0.18);
-}
+  .project-filter-button.is-active {
+    background: var(--accent);
+    color: #081122;
+    border-color: transparent;
+    box-shadow: 0 10px 24px rgba(145, 169, 255, 0.18);
+  }
 
-.projects-carousel-shell {
-  position: relative;
-  padding: 0 4.5rem;
-}
+  .projects-carousel-shell {
+    position: relative;
+    padding: 0 4.5rem;
+  }
 
-.projects-carousel-viewport {
-  overflow: hidden;
-}
+  .projects-carousel-viewport {
+    overflow: hidden;
+  }
 
-.projects-carousel-track {
-  display: flex;
-  gap: 1.15rem;
-  align-items: stretch;
-  justify-content: center;
-}
+  .projects-carousel-track {
+    display: flex;
+    gap: 1.15rem;
+    align-items: stretch;
+    justify-content: center;
+  }
 
-.projects-carousel-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 56px;
-  height: 56px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  background: rgba(7, 16, 31, 0.78);
-  backdrop-filter: blur(14px);
-  color: var(--text);
-  font-size: 1.35rem;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
-  transition:
-    background 0.18s ease,
-    border-color 0.18s ease,
-    transform 0.18s ease,
-    opacity 0.18s ease;
-  z-index: 3;
-}
+  .projects-carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 56px;
+    height: 56px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(7, 16, 31, 0.78);
+    backdrop-filter: blur(14px);
+    color: var(--text);
+    font-size: 1.35rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+    transition:
+      background 0.18s ease,
+      border-color 0.18s ease,
+      transform 0.18s ease,
+      opacity 0.18s ease;
+    z-index: 3;
+  }
 
-.projects-carousel-arrow-left {
-  left: 0;
-}
+  .projects-carousel-arrow-left {
+    left: 0;
+  }
 
-.projects-carousel-arrow-right {
-  right: 0;
-}
+  .projects-carousel-arrow-right {
+    right: 0;
+  }
 
-.projects-carousel-arrow:hover:not(:disabled) {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(145, 169, 255, 0.24);
-  transform: translateY(-50%) scale(1.03);
-}
+  .projects-carousel-arrow:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(145, 169, 255, 0.24);
+    transform: translateY(-50%) scale(1.03);
+  }
 
-.projects-carousel-arrow:disabled {
-  opacity: 0.35;
-  cursor: default;
-}
+  .projects-carousel-arrow:disabled {
+    opacity: 0.35;
+    cursor: default;
+  }
 
-.project-carousel-card-link {
-  display: block;
-  flex: 0 0 calc((100% - 2.3rem) / 3);
-  min-width: 0;
-}
+  .project-carousel-card-link {
+    display: block;
+    flex: 0 0 calc((100% - 2.3rem) / 3);
+    min-width: 0;
+  }
 
-.project-carousel-card-link.is-hidden,
-.project-carousel-card-link.is-page-hidden {
-  display: none;
-}
+  .project-carousel-card-link.is-hidden,
+  .project-carousel-card-link.is-page-hidden {
+    display: none;
+  }
 
-.project-carousel-card {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  border-radius: 26px;
-  background: rgba(18, 29, 50, 0.84);
-  transition:
-    transform 0.22s ease,
-    border-color 0.22s ease,
-    box-shadow 0.22s ease,
-    background 0.22s ease;
-}
+  .project-carousel-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 26px;
+    background: rgba(18, 29, 50, 0.84);
+    transition:
+      transform 0.22s ease,
+      border-color 0.22s ease,
+      box-shadow 0.22s ease,
+      background 0.22s ease;
+  }
 
-.project-carousel-card--featured {
-  background: linear-gradient(
-    180deg,
-    rgba(19, 31, 56, 0.92) 0%,
-    rgba(16, 26, 46, 0.88) 100%
-  );
-  border-color: rgba(145, 169, 255, 0.18);
-}
-
-.project-carousel-card-link:hover .project-carousel-card,
-.project-carousel-card-link:focus-visible .project-carousel-card {
-  transform: translateY(-3px);
-  border-color: rgba(145, 169, 255, 0.26);
-  box-shadow: 0 24px 65px rgba(0, 0, 0, 0.28);
-}
-
-.project-carousel-card-media {
-  position: relative;
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
-  background:
-    radial-gradient(circle at 72% 20%, rgba(145, 169, 255, 0.16), transparent 34%),
-    linear-gradient(
+  .project-carousel-card--featured {
+    background: linear-gradient(
       180deg,
-      rgba(255, 255, 255, 0.06),
-      rgba(255, 255, 255, 0.02)
+      rgba(19, 31, 56, 0.92) 0%,
+      rgba(16, 26, 46, 0.88) 100%
     );
-}
+    border-color: rgba(145, 169, 255, 0.18);
+  }
 
-.project-carousel-card-media::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(7, 16, 31, 0.05) 0%,
-    rgba(7, 16, 31, 0.14) 56%,
-    rgba(7, 16, 31, 0.32) 100%
-  );
-  pointer-events: none;
-}
+  .project-carousel-card-link:hover .project-carousel-card,
+  .project-carousel-card-link:focus-visible .project-carousel-card {
+    transform: translateY(-3px);
+    border-color: rgba(145, 169, 255, 0.26);
+    box-shadow: 0 24px 65px rgba(0, 0, 0, 0.28);
+  }
 
-.project-carousel-card-media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition:
-    transform 0.35s var(--ease-out),
-    opacity 0.35s var(--ease-out);
-}
+  .project-carousel-card-media {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 72% 20%, rgba(145, 169, 255, 0.16), transparent 34%),
+      linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.06),
+        rgba(255, 255, 255, 0.02)
+      );
+  }
 
-.project-carousel-card-link:hover .project-carousel-card-media img,
-.project-carousel-card-link:focus-visible .project-carousel-card-media img {
-  transform: scale(1.04);
-}
+  .project-carousel-card-media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(7, 16, 31, 0.05) 0%,
+      rgba(7, 16, 31, 0.14) 56%,
+      rgba(7, 16, 31, 0.32) 100%
+    );
+    pointer-events: none;
+  }
 
-.project-carousel-card-body {
-  display: flex;
-  flex-direction: column;
-  gap: 0.95rem;
-  flex: 1;
-  padding: 1.2rem 1.2rem 1.25rem;
-}
+  .project-carousel-card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition:
+      transform 0.35s var(--ease-out),
+      opacity 0.35s var(--ease-out);
+  }
 
-.project-carousel-card-topline {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-}
+  .project-carousel-card-link:hover .project-carousel-card-media img,
+  .project-carousel-card-link:focus-visible .project-carousel-card-media img {
+    transform: scale(1.04);
+  }
 
-.project-carousel-card-eyebrow {
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: var(--accent-soft);
-}
+  .project-carousel-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.95rem;
+    flex: 1;
+    padding: 1.2rem 1.2rem 1.25rem;
+  }
 
-.project-carousel-card-badge {
-  display: inline-flex;
-  align-items: center;
-  min-height: 30px;
-  padding: 0 0.7rem;
-  border-radius: 999px;
-  border: 1px solid rgba(145, 169, 255, 0.18);
-  background: rgba(145, 169, 255, 0.08);
-  color: #edf2ff;
-  font-size: 0.74rem;
-  font-weight: 700;
-}
+  .project-carousel-card-topline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
 
-.project-carousel-card h3 {
-  margin: 0;
-  font-size: clamp(1.7rem, 1.9vw, 2.2rem);
-  line-height: 1.06;
-  letter-spacing: -0.035em;
-  text-wrap: balance;
-}
+  .project-carousel-card-eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--accent-soft);
+  }
 
-.project-carousel-card-description {
-  margin: 0;
-  font-size: 1rem;
-  line-height: 1.65;
-  color: #d1dbf1;
-}
+  .project-carousel-card-badge {
+    display: inline-flex;
+    align-items: center;
+    min-height: 30px;
+    padding: 0 0.7rem;
+    border-radius: 999px;
+    border: 1px solid rgba(145, 169, 255, 0.18);
+    background: rgba(145, 169, 255, 0.08);
+    color: #edf2ff;
+    font-size: 0.74rem;
+    font-weight: 700;
+  }
 
-.project-carousel-card-track-pills,
-.project-carousel-card-highlights {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.55rem;
-}
+  .project-carousel-card h3 {
+    margin: 0;
+    font-size: clamp(1.7rem, 1.9vw, 2.2rem);
+    line-height: 1.06;
+    letter-spacing: -0.035em;
+    text-wrap: balance;
+  }
 
-.project-carousel-card-track-pills span {
-  padding: 0.42rem 0.74rem;
-  border-radius: 999px;
-  border: 1px solid rgba(145, 169, 255, 0.16);
-  background: rgba(145, 169, 255, 0.08);
-  color: #eef5ff;
-  font-size: 0.82rem;
-  font-weight: 700;
-}
+  .project-carousel-card-description {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.65;
+    color: #d1dbf1;
+  }
 
-.project-carousel-card-highlights span {
-  padding: 0.44rem 0.74rem;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.04);
-  color: var(--accent-soft);
-  font-size: 0.84rem;
-  font-weight: 600;
-}
+  .project-carousel-card-track-pills,
+  .project-carousel-card-highlights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+  }
 
-.project-carousel-card-footer {
-  margin-top: auto;
-  padding-top: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.8rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-}
+  .project-carousel-card-track-pills span {
+    padding: 0.42rem 0.74rem;
+    border-radius: 999px;
+    border: 1px solid rgba(145, 169, 255, 0.16);
+    background: rgba(145, 169, 255, 0.08);
+    color: #eef5ff;
+    font-size: 0.82rem;
+    font-weight: 700;
+  }
 
-.project-carousel-card-cta {
-  font-weight: 700;
-  color: var(--text);
-  letter-spacing: -0.01em;
-  font-size: 0.98rem;
-}
+  .project-carousel-card-highlights span {
+    padding: 0.44rem 0.74rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--accent-soft);
+    font-size: 0.84rem;
+    font-weight: 600;
+  }
 
-.project-carousel-card-arrow {
-  width: 42px;
-  height: 42px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255, 255, 255, 0.04);
-  color: var(--text);
-  transition:
-    transform 0.22s ease,
-    border-color 0.22s ease,
-    background 0.22s ease;
-}
+  .project-carousel-card-footer {
+    margin-top: auto;
+    padding-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.8rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
 
-.project-carousel-card-link:hover .project-carousel-card-arrow,
-.project-carousel-card-link:focus-visible .project-carousel-card-arrow {
-  transform: translate(2px, -2px);
-  border-color: rgba(145, 169, 255, 0.24);
-  background: rgba(255, 255, 255, 0.08);
-}
+  .project-carousel-card-cta {
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.01em;
+    font-size: 0.98rem;
+  }
+
+  .project-carousel-card-arrow {
+    width: 42px;
+    height: 42px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--text);
+    transition:
+      transform 0.22s ease,
+      border-color 0.22s ease,
+      background 0.22s ease;
+  }
+
+  .project-carousel-card-link:hover .project-carousel-card-arrow,
+  .project-carousel-card-link:focus-visible .project-carousel-card-arrow {
+    transform: translate(2px, -2px);
+    border-color: rgba(145, 169, 255, 0.24);
+    background: rgba(255, 255, 255, 0.08);
+  }
 
   .case-section {
     padding-top: 5.4rem;
@@ -2358,11 +2376,11 @@ const featuredProjects: FeaturedProject[] = [
     transform: translate3d(0, 0, 0) scale(1);
   }
 
- @media (max-width: 1080px) {
-  .project-carousel-card-link {
-    flex: 0 0 calc((100% - 1.15rem) / 2);
+  @media (max-width: 1080px) {
+    .project-carousel-card-link {
+      flex: 0 0 calc((100% - 1.15rem) / 2);
+    }
   }
-}
 
   @media (max-width: 980px) {
     .case-metrics-grid,
@@ -2430,19 +2448,19 @@ const featuredProjects: FeaturedProject[] = [
     }
   }
 
- @media (max-width: 760px) {
-  .projects-carousel-shell {
-    padding: 0;
-  }
+  @media (max-width: 760px) {
+    .projects-carousel-shell {
+      padding: 0;
+    }
 
-  .projects-carousel-arrow {
-    display: none;
-  }
+    .projects-carousel-arrow {
+      display: none;
+    }
 
-  .project-carousel-card-link {
-    flex: 0 0 100%;
+    .project-carousel-card-link {
+      flex: 0 0 100%;
+    }
   }
-}
 
   @media (max-width: 720px) {
     .nav {

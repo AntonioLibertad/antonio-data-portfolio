@@ -3,12 +3,19 @@ const siteTitle = "Antonio González Martín | Data Portfolio";
 const siteDescription =
   "Portfolio focused on applied analytics, decision support, and business-facing data projects.";
 
-type ProjectTrack = "data-analyst" | "business-analyst" | "data-science";
+type ProjectTrack =
+  | "data-analyst-bi"
+  | "business-analyst"
+  | "fpa-controlling"
+  | "data-science-ai";
+
+type ProjectFilter = "all" | ProjectTrack;
 
 const trackLabels: Record<ProjectTrack, string> = {
-  "data-analyst": "Data Analyst",
+  "data-analyst-bi": "Data Analyst / BI",
   "business-analyst": "Business Analyst",
-  "data-science": "Data Science",
+  "fpa-controlling": "FP&A / Controlling",
+  "data-science-ai": "Data Science / AI",
 };
 
 type FeaturedProject = {
@@ -21,10 +28,32 @@ type FeaturedProject = {
   description: string;
   highlights: string[];
   tracks: ProjectTrack[];
+  priorityByTrack?: Partial<Record<ProjectTrack, number>>;
   cta: string;
 };
 
 const featuredProjects: FeaturedProject[] = [
+  {
+    href: "/projects/diagnostic-lab-performance-sla-analytics",
+    image: "/images/projects/diagnostic-lab/diagnostic-lab-overview.png",
+    imageAlt: "Preview of the Diagnostic Lab Performance & SLA Analytics Power BI dashboard",
+    eyebrow: "Healthcare Analytics / SLA / Operations",
+    badge: "New healthcare analytics case",
+    title: "Diagnostic Lab Performance & SLA Analytics",
+    description:
+      "Operational analytics case for a diagnostic lab network, focused on SLA reliability, workflow bottlenecks, rework impact, and site-level quality action prioritization.",
+    highlights: [
+      "40K sample records",
+      "SQL + Power BI model",
+      "SLA + bottleneck actions",
+    ],
+    tracks: ["data-analyst-bi", "business-analyst"],
+    priorityByTrack: {
+  "data-analyst-bi": 1,
+  "business-analyst": 2,
+},
+    cta: "Open diagnostic lab case study",
+  },
   {
     href: "/projects/commercial-margin-protection",
     image: "/commercial-margin-protection/overview.png",
@@ -39,17 +68,21 @@ const featuredProjects: FeaturedProject[] = [
       "Pricing + returns + margin logic",
       "Action prioritization",
     ],
-    tracks: ["data-analyst", "business-analyst"],
+    tracks: ["data-analyst-bi", "business-analyst", "fpa-controlling"],
+    priorityByTrack: {
+  "data-analyst-bi": 3,
+  "business-analyst": 4,
+  "fpa-controlling": 3,
+},
     cta: "Open commercial case study",
   },
-  
   {
     href: "/projects/driver-based-fpa-planning-forecasting",
     image: "/images/projects/driver-based-fpa-planning-forecasting/fpa-excel-workbook.png",
     imageAlt:
       "Preview of the Excel FP&A workbook layer for the Driver-Based FP&A Planning & Forecasting project",
     eyebrow: "FP&A / Controlling / Planning & Forecasting",
-    badge: "New FP&A case",
+    badge: "FP&A case",
     title: "Driver-Based FP&A Planning & Forecasting",
     description:
       "Driver-based FP&A planning and Power BI reporting case showing how stable demand can still translate into weaker profitability when discounting, returns, and cost-to-serve pressure build below revenue.",
@@ -58,7 +91,12 @@ const featuredProjects: FeaturedProject[] = [
       "Excel FP&A pack",
       "P&L variance story",
     ],
-    tracks: ["data-analyst", "business-analyst"],
+    tracks: ["data-analyst-bi", "business-analyst", "fpa-controlling"],
+    priorityByTrack: {
+  "data-analyst-bi": 6,
+  "business-analyst": 6,
+  "fpa-controlling": 1,
+},
     cta: "Open FP&A planning case study",
   },
   {
@@ -66,7 +104,7 @@ const featuredProjects: FeaturedProject[] = [
     image: "/images/projects/manufacturing-cost-to-serve/manufacturing-cost-to-serve-hero.png",
     imageAlt: "Preview of the Manufacturing / Operations Controlling & Cost-to-Serve project",
     eyebrow: "Manufacturing / Controlling / Cost-to-Serve",
-    badge: "New controlling case",
+    badge: "Operations controlling case",
     title: "Manufacturing / Operations Controlling & Cost-to-Serve",
     description:
       "A management-facing controlling case built around a harder profitability question: which products still create real value once setup effort, fragmentation, fulfillment burden, service support, and scarce capacity are taken seriously?",
@@ -75,7 +113,12 @@ const featuredProjects: FeaturedProject[] = [
       "Profitability vs operational burden",
       "Management action logic",
     ],
-    tracks: ["data-analyst", "business-analyst"],
+    tracks: ["data-analyst-bi", "business-analyst", "fpa-controlling"],
+    priorityByTrack: {
+  "data-analyst-bi": 5,
+  "business-analyst": 3,
+  "fpa-controlling": 4,
+},
     cta: "Open manufacturing controlling case study",
   },
   {
@@ -83,7 +126,7 @@ const featuredProjects: FeaturedProject[] = [
     image: "/FP_overview.png",
     imageAlt: "Preview of the Finance Data Foundation for FP&A and Controlling project",
     eyebrow: "Finance / FP&A / Controlling",
-    badge: "Most recruiter-relevant",
+    badge: "Finance data case",
     title: "Finance Data Foundation for FP&A and Controlling",
     description:
       "Finance-focused analytics project designed to demonstrate source-to-target logic, variance analysis, reconciliation controls, and stakeholder-facing reporting.",
@@ -92,7 +135,12 @@ const featuredProjects: FeaturedProject[] = [
       "Variance & controls",
       "DuckDB + parquet layers",
     ],
-    tracks: ["data-analyst", "business-analyst"],
+    tracks: ["data-analyst-bi", "business-analyst", "fpa-controlling"],
+    priorityByTrack: {
+  "data-analyst-bi": 7,
+  "business-analyst": 5,
+  "fpa-controlling": 2,
+},
     cta: "Open finance case study",
   },
   {
@@ -100,7 +148,7 @@ const featuredProjects: FeaturedProject[] = [
     image: "/images/projects/novamarket/novamarket-results.png",
     imageAlt: "Preview of the NovaMarket Product Growth & Experimentation Analytics project",
     eyebrow: "Product Analytics / Experimentation / Growth",
-    badge: "New product case",
+    badge: "Product analytics case",
     title: "NovaMarket — Product Growth & Experimentation Analytics",
     description:
       "A product analytics case built around a real marketplace question: did a new discovery treatment improve user progression enough to justify selective rollout?",
@@ -109,7 +157,11 @@ const featuredProjects: FeaturedProject[] = [
       "Experiment-aware analysis",
       "Selective rollout decision",
     ],
-    tracks: ["data-analyst", "business-analyst"],
+    tracks: ["data-analyst-bi", "business-analyst"],
+    priorityByTrack: {
+  "data-analyst-bi": 2,
+  "business-analyst": 7,
+},
     cta: "Open product analytics case study",
   },
   {
@@ -126,7 +178,12 @@ const featuredProjects: FeaturedProject[] = [
       "Segmentation + recommendations",
       "Decision-support design",
     ],
-    tracks: ["data-analyst", "business-analyst", "data-science"],
+    tracks: ["data-analyst-bi", "business-analyst", "data-science-ai"],
+    priorityByTrack: {
+  "data-analyst-bi": 4,
+  "business-analyst": 1,
+  "data-science-ai": 3,
+},
     cta: "Jump to flagship project",
   },
   {
@@ -143,7 +200,11 @@ const featuredProjects: FeaturedProject[] = [
       "Real bug caught and fixed",
       "Live monitoring + rollback logic",
     ],
-    tracks: ["business-analyst", "data-science"],
+    tracks: ["business-analyst", "data-science-ai"],
+    priorityByTrack: {
+  "business-analyst": 8,
+  "data-science-ai": 1,
+},
     cta: "Open AI reliability case study",
   },
   {
@@ -151,7 +212,7 @@ const featuredProjects: FeaturedProject[] = [
     image: "/images/projects/northstar/northstar-demo-home.png",
     imageAlt: "Preview of the Internal Policy & Process Knowledge Assistant project",
     eyebrow: "Applied GenAI / Retrieval / Knowledge Workflow",
-    badge: "New GenAI case",
+    badge: "GenAI workflow case",
     title: "Internal Policy & Process Knowledge Assistant",
     description:
       "A grounded GenAI workflow built around a realistic internal operations problem: helping teams get faster, more reliable answers from scattered policies, procedures, approvals, and support documents.",
@@ -160,8 +221,40 @@ const featuredProjects: FeaturedProject[] = [
       "Retrieval-first workflow",
       "Source-backed evidence",
     ],
-    tracks: ["business-analyst", "data-science"],
+    tracks: ["business-analyst", "data-science-ai"],
+    priorityByTrack: {
+  "business-analyst": 4,
+  "data-science-ai": 2,
+},
     cta: "Open GenAI case study",
+  },
+];
+
+const filterOptions: { key: ProjectFilter; label: string; count: number }[] = [
+  {
+    key: "all",
+    label: "All",
+    count: featuredProjects.length,
+  },
+  {
+    key: "data-analyst-bi",
+    label: trackLabels["data-analyst-bi"],
+    count: featuredProjects.filter((project) => project.tracks.includes("data-analyst-bi")).length,
+  },
+  {
+    key: "business-analyst",
+    label: trackLabels["business-analyst"],
+    count: featuredProjects.filter((project) => project.tracks.includes("business-analyst")).length,
+  },
+  {
+    key: "fpa-controlling",
+    label: trackLabels["fpa-controlling"],
+    count: featuredProjects.filter((project) => project.tracks.includes("fpa-controlling")).length,
+  },
+  {
+    key: "data-science-ai",
+    label: trackLabels["data-science-ai"],
+    count: featuredProjects.filter((project) => project.tracks.includes("data-science-ai")).length,
   },
 ];
 ---
@@ -198,7 +291,7 @@ const featuredProjects: FeaturedProject[] = [
               <h1>Turning data into business decisions.</h1>
               <p class="hero-subtitle">
                 Applied analytics, decision support, and business-facing data projects built around
-                real commercial use cases.
+                real commercial, operational, finance, and healthcare use cases.
               </p>
 
               <div class="hero-actions">
@@ -221,8 +314,8 @@ const featuredProjects: FeaturedProject[] = [
             <h2>Analytics with business context.</h2>
 
             <p class="lead">
-              I build business-facing analytics that turn commercial data into clearer decisions,
-              structured visibility, and more useful reporting.
+              I build business-facing analytics that turn operational, commercial, and financial data
+              into clearer decisions, structured visibility, and more useful reporting.
             </p>
 
             <p>
@@ -269,47 +362,26 @@ const featuredProjects: FeaturedProject[] = [
         <div class="container">
           <div class="projects-header reveal reveal-up">
             <p class="section-label">Selected work</p>
-            <h2>Projects that show how I use data in a business context.</h2>
+            <h2>Applied analytics projects built around real business decisions.</h2>
             <p class="projects-intro">
-              Explore the portfolio by role positioning: Data Analyst, Business Analyst, or Data Science.
+              Explore the portfolio by role positioning. Each case is designed to show how I use
+              data to clarify problems, diagnose drivers, and support management action.
             </p>
 
             <div class="project-filter-row" aria-label="Project track filters">
-              <button
-                type="button"
-                class="project-filter-button"
-                data-project-filter="all"
-                aria-pressed="true"
-              >
-                All
-              </button>
-
-              <button
-                type="button"
-                class="project-filter-button"
-                data-project-filter="data-analyst"
-                aria-pressed="false"
-              >
-                Data Analyst
-              </button>
-
-              <button
-                type="button"
-                class="project-filter-button"
-                data-project-filter="business-analyst"
-                aria-pressed="false"
-              >
-                Business Analyst
-              </button>
-
-              <button
-                type="button"
-                class="project-filter-button"
-                data-project-filter="data-science"
-                aria-pressed="false"
-              >
-                Data Science
-              </button>
+              {filterOptions.map((filter) => (
+                <button
+                  type="button"
+                  class="project-filter-button"
+                  data-project-filter={filter.key}
+                  aria-pressed={filter.key === "all" ? "true" : "false"}
+                >
+                  <span>{filter.label}</span>
+                  {filter.key !== "all" && (
+  <span class="project-filter-count">{filter.count}</span>
+)}
+                </button>
+              ))}
             </div>
           </div>
 
@@ -326,12 +398,17 @@ const featuredProjects: FeaturedProject[] = [
             <div class="projects-carousel-viewport">
               <div class="projects-carousel-track" id="projects-carousel-track">
                 {featuredProjects.map((project, index) => (
-                  <a
-                    href={project.href}
-                    class="project-carousel-card-link"
-                    data-project-tracks={project.tracks.join(" ")}
-                    aria-label={`Open ${project.title}`}
-                  >
+                 <a
+  href={project.href}
+  class="project-carousel-card-link"
+  data-project-tracks={project.tracks.join(" ")}
+  data-original-index={index}
+  data-priority-data-analyst-bi={project.priorityByTrack?.["data-analyst-bi"] ?? 999}
+  data-priority-business-analyst={project.priorityByTrack?.["business-analyst"] ?? 999}
+  data-priority-fpa-controlling={project.priorityByTrack?.["fpa-controlling"] ?? 999}
+  data-priority-data-science-ai={project.priorityByTrack?.["data-science-ai"] ?? 999}
+  aria-label={`Open ${project.title}`}
+>
                     <article class={`project-carousel-card ${index === 0 ? "project-carousel-card--featured" : ""}`}>
                       <div class="project-carousel-card-media">
                         <img src={project.image} alt={project.imageAlt} loading="lazy" />
@@ -628,8 +705,9 @@ const featuredProjects: FeaturedProject[] = [
               <p class="section-label">Contact</p>
               <h2>Interested in my profile?</h2>
               <p>
-                I am currently positioning myself for Data Scientist, Business Analyst, and Data Analyst
-                roles focused on applied analytics, business understanding, and decision support.
+                I am currently positioning myself for Data Analyst, Business Analyst, FP&A / Controlling,
+                and selected Data Science / AI roles focused on applied analytics, business understanding,
+                and decision support.
               </p>
             </div>
 
@@ -793,21 +871,56 @@ const featuredProjects: FeaturedProject[] = [
         if (window.innerWidth <= 1080) return 2;
         return 3;
       }
+function sortProjectCardsForActiveFilter() {
+  if (!projectTrack) return;
 
+  const cards = Array.from(projectTrack.querySelectorAll(".project-carousel-card-link"));
+
+  const priorityDatasetKeys = {
+    "data-analyst-bi": "priorityDataAnalystBi",
+    "business-analyst": "priorityBusinessAnalyst",
+    "fpa-controlling": "priorityFpaControlling",
+    "data-science-ai": "priorityDataScienceAi",
+  };
+
+  const sortedCards = [...cards].sort((a, b) => {
+    const originalA = Number(a.dataset.originalIndex || 999);
+    const originalB = Number(b.dataset.originalIndex || 999);
+
+    if (activeProjectFilter === "all") {
+      return originalA - originalB;
+    }
+
+    const priorityKey = priorityDatasetKeys[activeProjectFilter];
+
+    const priorityA = Number(a.dataset[priorityKey] || 999);
+    const priorityB = Number(b.dataset[priorityKey] || 999);
+
+    if (priorityA !== priorityB) {
+      return priorityA - priorityB;
+    }
+
+    return originalA - originalB;
+  });
+
+  sortedCards.forEach((card) => {
+    projectTrack.appendChild(card);
+  });
+}
       function updateProjectCardsVisibility() {
-        if (!projectTrack) return;
+  if (!projectTrack) return;
 
-        const cards = Array.from(projectTrack.querySelectorAll(".project-carousel-card-link"));
+  const cards = Array.from(projectTrack.querySelectorAll(".project-carousel-card-link"));
 
-        cards.forEach((card) => {
-          const tracks = (card.dataset.projectTracks || "").split(" ").filter(Boolean);
-          const shouldShow = activeProjectFilter === "all" || tracks.includes(activeProjectFilter);
-          card.classList.toggle("is-hidden", !shouldShow);
-        });
+  cards.forEach((card) => {
+    const tracks = (card.dataset.projectTracks || "").split(" ").filter(Boolean);
+    const shouldShow = activeProjectFilter === "all" || tracks.includes(activeProjectFilter);
+    card.classList.toggle("is-hidden", !shouldShow);
+  });
 
-        projectCurrentPage = 0;
-        updateProjectCarousel();
-      }
+  projectCurrentPage = 0;
+  updateProjectCarousel();
+}
 
       function updateProjectFilterButtons() {
         projectFilterButtons.forEach((button) => {
@@ -1451,13 +1564,16 @@ const featuredProjects: FeaturedProject[] = [
 
   .project-filter-button {
     min-height: 42px;
-    padding: 0 1rem;
+    padding: 0 0.85rem 0 1rem;
     border-radius: 999px;
     border: 1px solid rgba(255, 255, 255, 0.14);
     background: rgba(255, 255, 255, 0.04);
     color: var(--text);
     font-weight: 700;
     cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
     transition:
       transform 0.18s ease,
       background 0.18s ease,
@@ -1476,6 +1592,28 @@ const featuredProjects: FeaturedProject[] = [
     color: #081122;
     border-color: transparent;
     box-shadow: 0 10px 24px rgba(145, 169, 255, 0.18);
+  }
+
+  .project-filter-count {
+    min-width: 28px;
+    height: 28px;
+    padding: 0 0.45rem;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.78rem;
+    font-weight: 800;
+    line-height: 1;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--accent-soft);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .project-filter-button.is-active .project-filter-count {
+    background: rgba(8, 17, 34, 0.16);
+    color: #081122;
+    border-color: rgba(8, 17, 34, 0.1);
   }
 
   .projects-carousel-shell {
@@ -2178,7 +2316,7 @@ const featuredProjects: FeaturedProject[] = [
     cursor: pointer;
     transition:
       background 0.18s ease,
-      border-color 0.18s ease,
+    border-color 0.18s ease,
       transform 0.18s ease,
       color 0.18s ease;
   }
@@ -2515,6 +2653,18 @@ const featuredProjects: FeaturedProject[] = [
 
     .projects-header {
       margin-bottom: 1.25rem;
+    }
+
+    .project-filter-button {
+      min-height: 40px;
+      padding: 0 0.75rem 0 0.85rem;
+      font-size: 0.9rem;
+    }
+
+    .project-filter-count {
+      min-width: 25px;
+      height: 25px;
+      font-size: 0.72rem;
     }
 
     .case-transition {

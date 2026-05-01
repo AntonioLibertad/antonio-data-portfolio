@@ -1,0 +1,1323 @@
+---
+const pageTitle = "Diagnostic Lab Performance & SLA Analytics | Antonio González Martín";
+const pageDescription =
+  "Operational analytics case for a diagnostic laboratory network, focused on SLA reliability, workflow bottlenecks, rework impact and site-level quality actions.";
+
+const project = {
+  title: "Diagnostic Lab Performance & SLA Analytics",
+  subtitle:
+    "A healthcare operations case where a diagnostic lab receives enough volume, but lacks visibility into where SLA breaches, delays, rework and bottlenecks are actually happening.",
+  eyebrow: "Healthcare Analytics / SLA / Operational BI",
+  heroImage: "/images/projects/diagnostic-lab/diagnostic-lab-overview.png",
+  tags: [
+    "Power BI",
+    "SQL",
+    "Python",
+    "Pandas",
+    "SQLite",
+    "Power Query",
+    "DAX",
+    "Operational Analytics",
+    "Healthcare Analytics",
+    "SLA Reporting",
+    "Data Quality",
+  ],
+};
+
+const galleryItems = [
+  {
+    title: "Executive Operations Overview",
+    src: "/images/projects/diagnostic-lab/diagnostic-lab-overview.png",
+    alt: "Executive overview page of the diagnostic lab analytics dashboard",
+    caption:
+      "The front-door view for management: overall SLA stability, workload mix, test-group performance and the first executive readout.",
+    insight:
+      "The lab is stable overall, but complex workflows reveal recurring SLA pressure.",
+  },
+  {
+    title: "Workflow & SLA Risk Concentration",
+    src: "/images/projects/diagnostic-lab/diagnostic-lab-workflow-risk.png",
+    alt: "Workflow and SLA risk concentration page of the diagnostic lab analytics dashboard",
+    caption:
+      "A workflow-level risk map separating volume exposure, breach rate and P90 turnaround risk.",
+    insight:
+      "Routine Blood creates many breaches because it carries the largest workload, but the more actionable risk sits in Microbiology, Pathology and Molecular Diagnostics.",
+  },
+  {
+    title: "Bottleneck & Stage Flow Analysis",
+    src: "/images/projects/diagnostic-lab/diagnostic-lab-stage-flow.png",
+    alt: "Bottleneck and stage flow analysis page of the diagnostic lab analytics dashboard",
+    caption:
+      "A stage-level view showing where turnaround time is consumed and where avoidable waiting appears inside the sample journey.",
+    insight:
+      "Testing explains process duration, but validation explains avoidable waiting.",
+  },
+  {
+    title: "Rework & Site Quality Action View",
+    src: "/images/projects/diagnostic-lab/diagnostic-lab-action-view.png",
+    alt: "Rework and site quality action view of the diagnostic lab analytics dashboard",
+    caption:
+      "An action-oriented page connecting rework impact with source-site quality patterns and management recommendations.",
+    insight:
+      "Rework is a small-volume issue with disproportionate SLA impact, and quality action should be targeted by source site.",
+  },
+  {
+    title: "Data Quality & Clean Reporting Layer",
+    src: "/images/projects/diagnostic-lab/diagnostic-lab-data-quality.png",
+    alt: "Data quality and validation screenshot from the diagnostic lab analytics project",
+    caption:
+      "Raw operational data was checked for duplicate samples, timestamp issues, SLA target logic, status conflicts and stage-event validity before reporting.",
+    insight:
+      "The dashboard is built on a validated clean layer, not directly on raw operational extracts.",
+  },
+];
+
+const keyMetrics = [
+  {
+    value: "40,000",
+    label: "clean sample records",
+  },
+  {
+    value: "200,000",
+    label: "stage-event records",
+  },
+  {
+    value: "39,601",
+    label: "valid released samples",
+  },
+  {
+    value: "87.5%",
+    label: "overall SLA compliance",
+  },
+];
+
+const findings = [
+  {
+    title: "The lab is not failing overall.",
+    text:
+      "SLA compliance is stable at 87.5%, and routine / urgent workflows are mostly protected.",
+  },
+  {
+    title: "SLA risk is concentrated.",
+    text:
+      "Pathology, Molecular Diagnostics and Microbiology repeatedly sit below the lab average.",
+  },
+  {
+    title: "Validation is the actionable bottleneck.",
+    text:
+      "Testing naturally takes time, but validation queue is where avoidable waiting becomes visible.",
+  },
+  {
+    title: "Rework has disproportionate impact.",
+    text:
+      "Reworked samples represent 8.3% of volume but account for 28.9% of SLA breaches.",
+  },
+];
+
+const workflowSteps = [
+  {
+    label: "01",
+    title: "Raw operational data",
+    text:
+      "Sample-level and stage-level data covering diagnostic workflows, priorities, sites, timestamps, SLA targets, rework and quality flags.",
+  },
+  {
+    label: "02",
+    title: "Data quality checks",
+    text:
+      "Duplicates, missing timestamps, invalid stage durations, SLA target gaps and status conflicts were identified before creating reporting tables.",
+  },
+  {
+    label: "03",
+    title: "Clean analytical model",
+    text:
+      "Created fact and dimension tables for samples, stage events, dates, sites, departments, priorities and test groups.",
+  },
+  {
+    label: "04",
+    title: "SQL KPI validation",
+    text:
+      "Core KPIs were reproduced through SQL before dashboarding: SLA compliance, breach volume, P90 turnaround, queue time and rework impact.",
+  },
+  {
+    label: "05",
+    title: "Power BI executive reporting",
+    text:
+      "Built a four-page dashboard focused on management visibility, bottleneck diagnosis and targeted action prioritization.",
+  },
+];
+
+const dashboardPages = [
+  {
+    page: "Page 1",
+    title: "Executive Operations Overview",
+    question:
+      "Is the lab meeting service expectations overall, and where is reliability risk visible at a high level?",
+    read:
+      "The lab is stable overall, but complex workflows reveal recurring SLA pressure.",
+  },
+  {
+    page: "Page 2",
+    title: "Workflow & SLA Risk Concentration",
+    question:
+      "Which workflows deserve management attention because they combine breach volume, weak SLA performance and long turnaround tails?",
+    read:
+      "Routine Blood has volume exposure, while complex workflows carry more actionable risk exposure.",
+  },
+  {
+    page: "Page 3",
+    title: "Bottleneck & Stage Flow Analysis",
+    question:
+      "Where inside the sample journey is turnaround time being lost, and which part is actually actionable?",
+    read:
+      "Testing consumes process time, but validation creates the clearest avoidable waiting signal.",
+  },
+  {
+    page: "Page 4",
+    title: "Rework & Site Quality Action View",
+    question:
+      "Which quality issues should management act on first, and where should those actions be targeted?",
+    read:
+      "Rework is small in volume but large in SLA impact, and site-level patterns help target action.",
+  },
+];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={pageDescription} />
+    <title>{pageTitle}</title>
+  </head>
+
+  <body>
+    <header class="site-header">
+      <div class="container nav">
+        <a href="/" class="brand">Antonio González Martín</a>
+
+        <nav class="nav-links">
+          <a href="/#projects">Projects</a>
+          <a href="/#about">About</a>
+          <a href="/#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="project-hero">
+        <div class="container">
+          <a href="/#projects" class="back-link">← Back to selected work</a>
+
+          <div class="hero-layout">
+            <div class="hero-copy reveal reveal-left">
+              <p class="project-eyebrow">{project.eyebrow}</p>
+
+              <h1>{project.title}</h1>
+
+              <p class="hero-subtitle">{project.subtitle}</p>
+
+              <div class="hero-metrics" aria-label="Project key metrics">
+                <div>
+                  <strong>39,601</strong>
+                  <span>valid released samples</span>
+                </div>
+                <div>
+                  <strong>87.5%</strong>
+                  <span>SLA compliance</span>
+                </div>
+                <div>
+                  <strong>28.9%</strong>
+                  <span>breaches from rework</span>
+                </div>
+              </div>
+
+              <div class="hero-tags">
+                {project.tags.slice(0, 6).map((tag) => <span>{tag}</span>)}
+              </div>
+
+              <div class="hero-actions">
+                <a href="#dashboard" class="button button-primary">View dashboard story</a>
+                <a href="#technical-foundation" class="button button-secondary">See technical foundation</a>
+              </div>
+            </div>
+
+            <figure class="hero-showcase reveal reveal-right">
+              <div class="hero-showcase-glow"></div>
+              <div class="hero-showcase-frame">
+                <img src={project.heroImage} alt="Diagnostic Lab Performance & SLA Analytics dashboard overview" />
+              </div>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="section problem-section">
+        <div class="container">
+          <div class="problem-card reveal reveal-up">
+            <p class="section-label">Business problem</p>
+            <h2>The lab has enough volume. What it lacks is operational visibility.</h2>
+
+            <p class="lead">
+              A diagnostic laboratory network receives stable sample volume, but management does not
+              have a clear view of where delays, rework, backlog pressure and SLA breaches are happening.
+            </p>
+
+            <p>
+              Overall SLA compliance looks relatively stable, but that average hides recurring pressure
+              in complex diagnostic workflows, validation queues and reworked samples. The challenge is
+              not simply to report KPIs. The real question is where management should act first.
+            </p>
+          </div>
+
+          <div class="metrics-grid">
+            {keyMetrics.map((metric, index) => (
+              <article class="metric-card reveal reveal-up" style={`--reveal-delay: ${80 + index * 70}ms;`}>
+                <strong>{metric.value}</strong>
+                <span>{metric.label}</span>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="dashboard" class="section dashboard-section">
+        <div class="container">
+          <div class="section-heading reveal reveal-up">
+            <p class="section-label">Dashboard story</p>
+            <h2>Four pages, four different management questions.</h2>
+            <p>
+              Each page earns its place by answering a different operational question. The dashboard
+              moves from executive visibility to workflow risk, bottleneck diagnosis and targeted action.
+            </p>
+          </div>
+
+          <div class="dashboard-gallery reveal reveal-scale">
+            <div class="gallery-main">
+              <button type="button" class="gallery-arrow gallery-arrow-left" id="gallery-prev" aria-label="Previous screenshot">
+                ←
+              </button>
+
+              <figure class="gallery-image-wrap">
+                <img
+                  id="gallery-image"
+                  src={galleryItems[0].src}
+                  alt={galleryItems[0].alt}
+                />
+              </figure>
+
+              <button type="button" class="gallery-arrow gallery-arrow-right" id="gallery-next" aria-label="Next screenshot">
+                →
+              </button>
+            </div>
+
+            <div class="gallery-content">
+              <div>
+                <p class="gallery-kicker">Dashboard page</p>
+                <h3 id="gallery-title">{galleryItems[0].title}</h3>
+                <p id="gallery-caption">{galleryItems[0].caption}</p>
+                <div class="insight-box">
+                  <span>Key read</span>
+                  <strong id="gallery-insight">{galleryItems[0].insight}</strong>
+                </div>
+              </div>
+
+              <div class="gallery-thumbs">
+                {galleryItems.map((item, index) => (
+                  <button
+                    type="button"
+                    class={`gallery-thumb ${index === 0 ? "is-active" : ""}`}
+                    data-gallery-index={index}
+                    aria-pressed={index === 0 ? "true" : "false"}
+                  >
+                    {index + 1}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div class="dashboard-page-grid">
+            {dashboardPages.map((page, index) => (
+              <article class="dashboard-page-card reveal reveal-up" style={`--reveal-delay: ${70 + index * 80}ms;`}>
+                <span>{page.page}</span>
+                <h3>{page.title}</h3>
+                <p class="dashboard-question">{page.question}</p>
+                <p>{page.read}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="technical-foundation" class="section technical-section">
+        <div class="container">
+          <div class="technical-grid">
+            <div class="technical-copy reveal reveal-left">
+              <p class="section-label">Technical foundation</p>
+              <h2>Built on validated sample-level and stage-level operational data.</h2>
+
+              <p>
+                The reporting model is based on two core fact tables:
+                <strong>fact_samples</strong>, with one row per diagnostic sample, and
+                <strong>fact_stage_events</strong>, with one row per sample-stage event.
+              </p>
+
+              <p>
+                Supporting dimensions include test group, priority, department, site and date. The clean
+                layer preserves 40,000 diagnostic samples and 200,000 stage events, with 39,601 samples
+                valid for released-sample SLA reporting.
+              </p>
+
+              <div class="tech-stack">
+                {project.tags.map((tag) => <span>{tag}</span>)}
+              </div>
+            </div>
+
+            <div class="workflow-card reveal reveal-right">
+              {workflowSteps.map((step) => (
+                <article class="workflow-step">
+                  <span>{step.label}</span>
+                  <div>
+                    <h3>{step.title}</h3>
+                    <p>{step.text}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section findings-section">
+        <div class="container">
+          <div class="section-heading reveal reveal-up">
+            <p class="section-label">Key findings</p>
+            <h2>The analysis separates stable operations from targeted reliability risk.</h2>
+          </div>
+
+          <div class="findings-grid">
+            {findings.map((finding, index) => (
+              <article class="finding-card reveal reveal-up" style={`--reveal-delay: ${70 + index * 80}ms;`}>
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <h3>{finding.title}</h3>
+                <p>{finding.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="section value-section">
+        <div class="container">
+          <div class="value-shell reveal reveal-up">
+            <div>
+              <p class="section-label">What this project demonstrates</p>
+              <h2>Data Analyst work with business judgement.</h2>
+            </div>
+
+            <div class="value-list">
+              <div>
+                <h3>KPI logic</h3>
+                <p>Defined and validated SLA compliance, breach volume, turnaround, P90 tail risk, rework impact and queue-time metrics.</p>
+              </div>
+              <div>
+                <h3>Operational diagnosis</h3>
+                <p>Separated volume exposure from performance risk, and separated process duration from avoidable waiting.</p>
+              </div>
+              <div>
+                <h3>Management reporting</h3>
+                <p>Designed Power BI pages around decisions: what is happening, where risk sits, where time is lost and what action to prioritize.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="closing-card reveal reveal-up">
+            <p class="section-label">Portfolio positioning</p>
+            <h2>Why this case matters for Swiss Data Analyst roles</h2>
+            <p>
+              This project adds a healthcare / MedTech-adjacent operational analytics case to my portfolio.
+              It shows practical work with KPI reporting, data quality checks, SQL validation, Power BI
+              storytelling and process visibility in a regulated, service-heavy environment.
+            </p>
+
+            <div class="closing-actions">
+              <a href="/#projects" class="button button-primary">Back to all projects</a>
+              <a href="mailto:antonio.business444@gmail.com" class="button button-secondary">Contact me</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script is:inline>
+      const galleryItems = [
+        {
+          title: "Executive Operations Overview",
+          src: "/images/projects/diagnostic-lab/diagnostic-lab-overview.png",
+          alt: "Executive overview page of the diagnostic lab analytics dashboard",
+          caption:
+            "The front-door view for management: overall SLA stability, workload mix, test-group performance and the first executive readout.",
+          insight:
+            "The lab is stable overall, but complex workflows reveal recurring SLA pressure.",
+        },
+        {
+          title: "Workflow & SLA Risk Concentration",
+          src: "/images/projects/diagnostic-lab/diagnostic-lab-workflow-risk.png",
+          alt: "Workflow and SLA risk concentration page of the diagnostic lab analytics dashboard",
+          caption:
+            "A workflow-level risk map separating volume exposure, breach rate and P90 turnaround risk.",
+          insight:
+            "Routine Blood creates many breaches because it carries the largest workload, but the more actionable risk sits in Microbiology, Pathology and Molecular Diagnostics.",
+        },
+        {
+          title: "Bottleneck & Stage Flow Analysis",
+          src: "/images/projects/diagnostic-lab/diagnostic-lab-stage-flow.png",
+          alt: "Bottleneck and stage flow analysis page of the diagnostic lab analytics dashboard",
+          caption:
+            "A stage-level view showing where turnaround time is consumed and where avoidable waiting appears inside the sample journey.",
+          insight:
+            "Testing explains process duration, but validation explains avoidable waiting.",
+        },
+        {
+          title: "Rework & Site Quality Action View",
+          src: "/images/projects/diagnostic-lab/diagnostic-lab-action-view.png",
+          alt: "Rework and site quality action view of the diagnostic lab analytics dashboard",
+          caption:
+            "An action-oriented page connecting rework impact with source-site quality patterns and management recommendations.",
+          insight:
+            "Rework is a small-volume issue with disproportionate SLA impact, and quality action should be targeted by source site.",
+        },
+        {
+          title: "Data Quality & Clean Reporting Layer",
+          src: "/images/projects/diagnostic-lab/diagnostic-lab-data-quality.png",
+          alt: "Data quality and validation screenshot from the diagnostic lab analytics project",
+          caption:
+            "Raw operational data was checked for duplicate samples, timestamp issues, SLA target logic, status conflicts and stage-event validity before reporting.",
+          insight:
+            "The dashboard is built on a validated clean layer, not directly on raw operational extracts.",
+        },
+      ];
+
+      let currentGalleryIndex = 0;
+
+      const galleryImage = document.getElementById("gallery-image");
+      const galleryTitle = document.getElementById("gallery-title");
+      const galleryCaption = document.getElementById("gallery-caption");
+      const galleryInsight = document.getElementById("gallery-insight");
+      const galleryPrev = document.getElementById("gallery-prev");
+      const galleryNext = document.getElementById("gallery-next");
+      const galleryThumbs = Array.from(document.querySelectorAll(".gallery-thumb"));
+
+      function renderGallery(index) {
+        currentGalleryIndex = index;
+        const item = galleryItems[index];
+
+        if (galleryImage) {
+          galleryImage.src = item.src;
+          galleryImage.alt = item.alt;
+        }
+
+        if (galleryTitle) galleryTitle.textContent = item.title;
+        if (galleryCaption) galleryCaption.textContent = item.caption;
+        if (galleryInsight) galleryInsight.textContent = item.insight;
+
+        galleryThumbs.forEach((thumb, thumbIndex) => {
+          const isActive = thumbIndex === index;
+          thumb.classList.toggle("is-active", isActive);
+          thumb.setAttribute("aria-pressed", isActive ? "true" : "false");
+        });
+      }
+
+      galleryPrev?.addEventListener("click", () => {
+        const nextIndex = (currentGalleryIndex - 1 + galleryItems.length) % galleryItems.length;
+        renderGallery(nextIndex);
+      });
+
+      galleryNext?.addEventListener("click", () => {
+        const nextIndex = (currentGalleryIndex + 1) % galleryItems.length;
+        renderGallery(nextIndex);
+      });
+
+      galleryThumbs.forEach((thumb, index) => {
+        thumb.addEventListener("click", () => renderGallery(index));
+      });
+
+      const revealItems = Array.from(document.querySelectorAll(".reveal"));
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+      if (prefersReducedMotion.matches) {
+        revealItems.forEach((item) => item.classList.add("is-visible"));
+      } else {
+        const revealObserver = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            });
+          },
+          {
+            threshold: 0.14,
+            rootMargin: "0px 0px -10% 0px",
+          }
+        );
+
+        revealItems.forEach((item) => revealObserver.observe(item));
+      }
+    </script>
+  </body>
+</html>
+
+<style>
+  :root {
+    --bg: #07101f;
+    --panel: rgba(18, 29, 50, 0.84);
+    --panel-strong: rgba(20, 31, 54, 0.9);
+    --text: #edf2ff;
+    --muted: #b5c1dc;
+    --line: rgba(255, 255, 255, 0.12);
+    --accent: #91a9ff;
+    --accent-soft: #d8e0ff;
+    --green: #10b981;
+    --green-soft: rgba(16, 185, 129, 0.14);
+    --shadow: 0 22px 60px rgba(0, 0, 0, 0.26);
+    --max: 1320px;
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: var(--text);
+    background:
+      radial-gradient(circle at 18% 12%, rgba(145, 169, 255, 0.12), transparent 26%),
+      radial-gradient(circle at 82% 22%, rgba(16, 185, 129, 0.11), transparent 30%),
+      linear-gradient(180deg, #06101d 0%, #08111f 55%, #08111f 100%);
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  strong {
+    color: #f7f9ff;
+  }
+
+  .container {
+    width: min(var(--max), calc(100% - 2rem));
+    margin: 0 auto;
+  }
+
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    backdrop-filter: blur(16px);
+    background: rgba(6, 16, 29, 0.74);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav {
+    min-height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .brand {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 1.4rem;
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+
+  .nav-links a:hover {
+    color: var(--text);
+  }
+
+  .project-hero {
+    padding: 2.25rem 0 4rem;
+    min-height: calc(100vh - 76px);
+    display: flex;
+    align-items: center;
+  }
+
+  .back-link {
+    display: inline-flex;
+    margin-bottom: 1.25rem;
+    color: var(--accent-soft);
+    font-weight: 700;
+    font-size: 0.94rem;
+  }
+
+  .hero-layout {
+    display: grid;
+    grid-template-columns: minmax(420px, 0.44fr) minmax(620px, 0.56fr);
+    gap: clamp(2rem, 4vw, 4rem);
+    align-items: center;
+  }
+
+  .hero-copy {
+    min-width: 0;
+  }
+
+  .project-eyebrow,
+  .section-label,
+  .gallery-kicker {
+    margin: 0 0 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.74rem;
+    font-weight: 800;
+    color: var(--accent-soft);
+  }
+
+  h1,
+  h2,
+  h3 {
+    margin: 0;
+    line-height: 1.08;
+    letter-spacing: -0.04em;
+  }
+
+  h1 {
+    max-width: 13.5ch;
+    font-size: clamp(3.1rem, 4.6vw, 5.7rem);
+    line-height: 0.96;
+    letter-spacing: -0.068em;
+    text-wrap: balance;
+  }
+
+  h2 {
+    font-size: clamp(2rem, 3.4vw, 3rem);
+    margin-bottom: 1rem;
+    text-wrap: balance;
+  }
+
+  h3 {
+    font-size: 1.18rem;
+  }
+
+  p {
+    margin: 0 0 1rem;
+    color: var(--muted);
+  }
+
+  .hero-subtitle {
+    max-width: 680px;
+    margin-top: 1.15rem;
+    font-size: 1.08rem;
+    line-height: 1.68;
+    color: #d8e2f7;
+  }
+
+  .lead {
+    font-size: 1.08rem;
+    color: #d8e2f7;
+  }
+
+  .hero-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.72rem;
+    margin-top: 1.35rem;
+    max-width: 560px;
+  }
+
+  .hero-metrics div {
+    border-radius: 18px;
+    padding: 0.82rem 0.88rem;
+    border: 1px solid rgba(255, 255, 255, 0.11);
+    background: rgba(255, 255, 255, 0.045);
+    backdrop-filter: blur(10px);
+  }
+
+  .hero-metrics strong {
+    display: block;
+    margin-bottom: 0.22rem;
+    font-size: 1.22rem;
+    line-height: 1;
+    color: #f8fbff;
+    letter-spacing: -0.035em;
+  }
+
+  .hero-metrics span {
+    display: block;
+    color: #b5c1dc;
+    font-size: 0.76rem;
+    line-height: 1.25;
+  }
+
+  .hero-tags,
+  .tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.62rem;
+    margin-top: 1.2rem;
+  }
+
+  .hero-tags span,
+  .tech-stack span {
+    padding: 0.46rem 0.78rem;
+    border-radius: 999px;
+    border: 1px solid rgba(145, 169, 255, 0.18);
+    background: rgba(145, 169, 255, 0.08);
+    color: #edf2ff;
+    font-size: 0.84rem;
+    font-weight: 700;
+  }
+
+  .hero-actions,
+  .closing-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 1.5rem;
+  }
+
+  .button {
+    min-height: 48px;
+    padding: 0 1.08rem;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    transition:
+      transform 0.18s ease,
+      box-shadow 0.18s ease,
+      background 0.18s ease,
+      border-color 0.18s ease;
+  }
+
+  .button:hover {
+    transform: translateY(-1px);
+  }
+
+  .button-primary {
+    background: var(--accent);
+    color: #081122;
+    box-shadow: 0 10px 24px rgba(145, 169, 255, 0.18);
+  }
+
+  .button-secondary {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    color: var(--text);
+  }
+
+  .hero-showcase {
+    position: relative;
+    margin: 0;
+    min-width: 0;
+  }
+
+  .hero-showcase-glow {
+    position: absolute;
+    inset: 6% -4% 2% 4%;
+    border-radius: 34px;
+    background:
+      radial-gradient(circle at 40% 45%, rgba(16, 185, 129, 0.18), transparent 38%),
+      radial-gradient(circle at 80% 30%, rgba(145, 169, 255, 0.15), transparent 35%);
+    filter: blur(24px);
+    opacity: 0.95;
+    pointer-events: none;
+  }
+
+  .hero-showcase-frame {
+    position: relative;
+    z-index: 1;
+    width: min(100%, 860px);
+    margin-left: auto;
+    border-radius: 28px;
+    padding: 0.55rem;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.025)),
+      rgba(7, 16, 31, 0.72);
+    box-shadow:
+      0 30px 90px rgba(0, 0, 0, 0.34),
+      0 0 0 1px rgba(145, 169, 255, 0.04) inset;
+  }
+
+  .hero-showcase-frame img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
+    border-radius: 22px;
+    background: rgba(6, 16, 29, 0.45);
+  }
+
+  .hero-copy,
+  .problem-card,
+  .metric-card,
+  .dashboard-gallery,
+  .dashboard-page-card,
+  .technical-copy,
+  .workflow-card,
+  .finding-card,
+  .value-shell,
+  .closing-card {
+    border: 1px solid var(--line);
+    background: var(--panel);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(14px);
+  }
+.hero-copy {
+  border-radius: 30px;
+  padding: 2rem;
+  background:
+    radial-gradient(circle at 14% 14%, rgba(145, 169, 255, 0.13), transparent 36%),
+    rgba(18, 29, 50, 0.76);
+  box-shadow:
+    0 22px 60px rgba(0, 0, 0, 0.26),
+    0 0 0 1px rgba(145, 169, 255, 0.04) inset;
+}
+  .section {
+    padding: 3.8rem 0;
+  }
+
+  .problem-card {
+    border-radius: 30px;
+    padding: 2rem;
+    max-width: 980px;
+    margin: 0 auto 1.1rem;
+  }
+
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+
+  .metric-card {
+    border-radius: 22px;
+    padding: 1.1rem;
+    text-align: center;
+    background: rgba(20, 31, 54, 0.78);
+  }
+
+  .metric-card strong {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-size: 2rem;
+    line-height: 1;
+    color: #f8fbff;
+    letter-spacing: -0.04em;
+  }
+
+  .metric-card span {
+    color: var(--muted);
+    font-size: 0.94rem;
+  }
+
+  .section-heading {
+    max-width: 860px;
+    margin: 0 auto 1.4rem;
+    text-align: center;
+  }
+
+  .dashboard-gallery {
+    display: grid;
+    grid-template-columns: minmax(0, 1.45fr) minmax(300px, 0.55fr);
+    gap: 1rem;
+    border-radius: 30px;
+    padding: 1rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .gallery-main {
+    position: relative;
+    min-width: 0;
+  }
+
+  .gallery-image-wrap {
+    margin: 0;
+    height: 100%;
+    border-radius: 22px;
+    overflow: hidden;
+    background: rgba(8, 17, 34, 0.8);
+  }
+
+  .gallery-image-wrap img {
+    width: 100%;
+    height: 100%;
+    max-height: 570px;
+    object-fit: contain;
+    background: rgba(6, 16, 29, 0.35);
+  }
+
+  .gallery-arrow {
+    position: absolute;
+    top: 50%;
+    z-index: 3;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 999px;
+    background: rgba(7, 16, 31, 0.82);
+    color: var(--text);
+    cursor: pointer;
+    font-size: 1.2rem;
+    backdrop-filter: blur(12px);
+  }
+
+  .gallery-arrow-left {
+    left: 0.75rem;
+  }
+
+  .gallery-arrow-right {
+    right: 0.75rem;
+  }
+
+  .gallery-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.6rem;
+  }
+
+  .gallery-content h3 {
+    font-size: 1.55rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .insight-box {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 20px;
+    border: 1px solid rgba(16, 185, 129, 0.22);
+    background: var(--green-soft);
+  }
+
+  .insight-box span {
+    display: block;
+    margin-bottom: 0.4rem;
+    color: #a7f3d0;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 800;
+  }
+
+  .insight-box strong {
+    display: block;
+    line-height: 1.35;
+  }
+
+  .gallery-thumbs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+  }
+
+  .gallery-thumb {
+    width: 42px;
+    height: 42px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--text);
+    font-weight: 800;
+    cursor: pointer;
+  }
+
+  .gallery-thumb.is-active {
+    background: var(--accent);
+    color: #081122;
+    border-color: transparent;
+  }
+
+  .dashboard-page-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+
+  .dashboard-page-card {
+    border-radius: 24px;
+    padding: 1.1rem;
+    background: rgba(18, 29, 50, 0.78);
+  }
+
+  .dashboard-page-card span,
+  .finding-card span {
+    display: inline-flex;
+    margin-bottom: 0.7rem;
+    color: var(--accent-soft);
+    font-weight: 800;
+    font-size: 0.82rem;
+  }
+
+  .dashboard-page-card h3 {
+    margin-bottom: 0.7rem;
+  }
+
+  .dashboard-question {
+    color: #f0f5ff;
+    font-weight: 700;
+    font-size: 0.95rem;
+  }
+
+  .technical-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(420px, 1.1fr);
+    gap: 1.1rem;
+    align-items: start;
+  }
+
+  .technical-copy,
+  .workflow-card {
+    border-radius: 30px;
+    padding: 1.6rem;
+  }
+
+  .workflow-card {
+    background: rgba(18, 29, 50, 0.82);
+  }
+
+  .workflow-step {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 1rem;
+    padding: 0.95rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .workflow-step:last-child {
+    border-bottom: none;
+  }
+
+  .workflow-step > span {
+    width: 42px;
+    height: 42px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(145, 169, 255, 0.1);
+    color: var(--accent-soft);
+    font-weight: 900;
+  }
+
+  .workflow-step h3 {
+    margin-bottom: 0.35rem;
+  }
+
+  .workflow-step p {
+    margin: 0;
+  }
+
+  .findings-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+
+  .finding-card {
+    border-radius: 24px;
+    padding: 1.25rem;
+    background: rgba(18, 29, 50, 0.8);
+  }
+
+  .finding-card h3 {
+    margin-bottom: 0.65rem;
+  }
+
+  .value-shell {
+    border-radius: 30px;
+    padding: 1.6rem;
+    margin-bottom: 1.1rem;
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 1.4rem;
+    align-items: start;
+  }
+
+  .value-list {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .value-list > div {
+    padding: 1rem;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .value-list h3 {
+    margin-bottom: 0.4rem;
+  }
+
+  .value-list p {
+    margin: 0;
+  }
+
+  .closing-card {
+    border-radius: 30px;
+    padding: 1.7rem;
+    background:
+      radial-gradient(circle at 78% 20%, rgba(16, 185, 129, 0.1), transparent 34%),
+      rgba(18, 29, 50, 0.86);
+  }
+
+  .closing-card p {
+    max-width: 880px;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0);
+    transition:
+      opacity 0.72s var(--ease-out),
+      transform 0.72s var(--ease-out);
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, transform;
+  }
+
+  .reveal-left {
+    transform: translate3d(-36px, 0, 0);
+  }
+
+  .reveal-right {
+    transform: translate3d(36px, 0, 0);
+  }
+
+  .reveal-scale {
+    transform: translate3d(0, 28px, 0) scale(0.985);
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  @media (max-width: 1120px) {
+    .project-hero {
+      min-height: auto;
+    }
+
+    .hero-layout,
+    .dashboard-gallery,
+    .technical-grid,
+    .value-shell {
+      grid-template-columns: 1fr;
+    }
+
+    h1 {
+      max-width: 14ch;
+    }
+
+    .hero-showcase-frame {
+      width: 100%;
+      margin-left: 0;
+    }
+
+    .dashboard-page-grid,
+    .findings-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .metrics-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 720px) {
+    .nav {
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 0.9rem 0;
+    }
+.hero-copy {
+  border-radius: 24px;
+  padding: 1.2rem;
+}
+    .nav-links {
+      flex-wrap: wrap;
+      gap: 0.9rem;
+    }
+
+    .project-hero {
+      padding-top: 2rem;
+    }
+
+    h1 {
+      font-size: clamp(2.35rem, 12vw, 3.35rem);
+      max-width: 11ch;
+    }
+
+    .hero-metrics {
+      grid-template-columns: 1fr;
+    }
+
+    .problem-card,
+    .technical-copy,
+    .workflow-card,
+    .value-shell,
+    .closing-card {
+      padding: 1.15rem;
+      border-radius: 24px;
+    }
+
+    .dashboard-page-grid,
+    .findings-grid,
+    .metrics-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .gallery-arrow {
+      display: none;
+    }
+
+    .gallery-content {
+      padding: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    .reveal,
+    .reveal-left,
+    .reveal-right,
+    .reveal-scale {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+
+    .button {
+      transition: none;
+    }
+  }
+</style>

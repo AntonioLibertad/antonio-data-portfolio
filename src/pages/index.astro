@@ -34,6 +34,27 @@ type FeaturedProject = {
 
 const featuredProjects: FeaturedProject[] = [
   {
+    href: "/projects/service-request-workflow-control-prioritisation",
+    image: "/images/projects/ba-workflow/ba-workflow-powerbi-executive-overview.png",
+    imageAlt: "Preview of the Service Request Workflow Control & Prioritisation Power BI dashboard",
+    eyebrow: "Business Analysis / Workflow Control / Process Improvement",
+    badge: "New BA workflow case",
+    title: "Service Request Workflow Control & Prioritisation",
+    description:
+      "A Business Analyst case showing how fragmented internal service request intake can be translated into structured requirements, validation rules, workflow controls, KPI reporting, and prioritised management action.",
+    highlights: [
+      "AS-IS / TO-BE workflow",
+      "Requirements + UAT logic",
+      "Power BI action prioritisation",
+    ],
+    tracks: ["business-analyst", "data-analyst-bi"],
+    priorityByTrack: {
+      "business-analyst": 1,
+      "data-analyst-bi": 5,
+    },
+    cta: "Open BA workflow case study",
+  },
+  {
     href: "/projects/diagnostic-lab-performance-sla-analytics",
     image: "/images/projects/diagnostic-lab/diagnostic-lab-overview.png",
     imageAlt: "Preview of the Diagnostic Lab Performance & SLA Analytics Power BI dashboard",
@@ -50,7 +71,7 @@ const featuredProjects: FeaturedProject[] = [
     tracks: ["data-analyst-bi", "business-analyst"],
     priorityByTrack: {
   "data-analyst-bi": 1,
-  "business-analyst": 2,
+  "business-analyst": 3,
 },
     cta: "Open diagnostic lab case study",
   },
@@ -71,7 +92,7 @@ const featuredProjects: FeaturedProject[] = [
     tracks: ["data-analyst-bi", "business-analyst", "fpa-controlling"],
     priorityByTrack: {
   "data-analyst-bi": 3,
-  "business-analyst": 4,
+  "business-analyst": 6,
   "fpa-controlling": 3,
 },
     cta: "Open commercial case study",
@@ -93,8 +114,8 @@ const featuredProjects: FeaturedProject[] = [
     ],
     tracks: ["data-analyst-bi", "business-analyst", "fpa-controlling"],
     priorityByTrack: {
-  "data-analyst-bi": 6,
-  "business-analyst": 6,
+  "data-analyst-bi": 7,
+  "business-analyst": 8,
   "fpa-controlling": 1,
 },
     cta: "Open FP&A planning case study",
@@ -115,8 +136,8 @@ const featuredProjects: FeaturedProject[] = [
     ],
     tracks: ["data-analyst-bi", "business-analyst", "fpa-controlling"],
     priorityByTrack: {
-  "data-analyst-bi": 5,
-  "business-analyst": 3,
+  "data-analyst-bi": 6,
+  "business-analyst": 4,
   "fpa-controlling": 4,
 },
     cta: "Open manufacturing controlling case study",
@@ -137,8 +158,8 @@ const featuredProjects: FeaturedProject[] = [
     ],
     tracks: ["data-analyst-bi", "business-analyst", "fpa-controlling"],
     priorityByTrack: {
-  "data-analyst-bi": 7,
-  "business-analyst": 5,
+  "data-analyst-bi": 8,
+  "business-analyst": 7,
   "fpa-controlling": 2,
 },
     cta: "Open finance case study",
@@ -160,7 +181,7 @@ const featuredProjects: FeaturedProject[] = [
     tracks: ["data-analyst-bi", "business-analyst"],
     priorityByTrack: {
   "data-analyst-bi": 2,
-  "business-analyst": 7,
+  "business-analyst": 9,
 },
     cta: "Open product analytics case study",
   },
@@ -181,7 +202,7 @@ const featuredProjects: FeaturedProject[] = [
     tracks: ["data-analyst-bi", "business-analyst", "data-science-ai"],
     priorityByTrack: {
   "data-analyst-bi": 4,
-  "business-analyst": 1,
+  "business-analyst": 2,
   "data-science-ai": 3,
 },
     cta: "Jump to flagship project",
@@ -202,7 +223,7 @@ const featuredProjects: FeaturedProject[] = [
     ],
     tracks: ["business-analyst", "data-science-ai"],
     priorityByTrack: {
-  "business-analyst": 8,
+  "business-analyst": 10,
   "data-science-ai": 1,
 },
     cta: "Open AI reliability case study",
@@ -223,7 +244,7 @@ const featuredProjects: FeaturedProject[] = [
     ],
     tracks: ["business-analyst", "data-science-ai"],
     priorityByTrack: {
-  "business-analyst": 4,
+  "business-analyst": 5,
   "data-science-ai": 2,
 },
     cta: "Open GenAI case study",
@@ -871,56 +892,76 @@ const filterOptions: { key: ProjectFilter; label: string; count: number }[] = [
         if (window.innerWidth <= 1080) return 2;
         return 3;
       }
-function sortProjectCardsForActiveFilter() {
-  if (!projectTrack) return;
+      function sortProjectCardsForActiveFilter() {
+        if (!projectTrack) return;
 
-  const cards = Array.from(projectTrack.querySelectorAll(".project-carousel-card-link"));
+        const cards = Array.from(projectTrack.querySelectorAll(".project-carousel-card-link"));
 
-  const priorityDatasetKeys = {
-    "data-analyst-bi": "priorityDataAnalystBi",
-    "business-analyst": "priorityBusinessAnalyst",
-    "fpa-controlling": "priorityFpaControlling",
-    "data-science-ai": "priorityDataScienceAi",
-  };
+        const priorityDatasetKeys = {
+          "data-analyst-bi": "priorityDataAnalystBi",
+          "business-analyst": "priorityBusinessAnalyst",
+          "fpa-controlling": "priorityFpaControlling",
+          "data-science-ai": "priorityDataScienceAi",
+        };
 
-  const sortedCards = [...cards].sort((a, b) => {
-    const originalA = Number(a.dataset.originalIndex || 999);
-    const originalB = Number(b.dataset.originalIndex || 999);
+        const sortedCards = [...cards].sort((a, b) => {
+          const originalA = Number(a.dataset.originalIndex || 999);
+          const originalB = Number(b.dataset.originalIndex || 999);
 
-    if (activeProjectFilter === "all") {
-      return originalA - originalB;
-    }
+          if (activeProjectFilter === "all") {
+            return originalA - originalB;
+          }
 
-    const priorityKey = priorityDatasetKeys[activeProjectFilter];
+          const priorityKey = priorityDatasetKeys[activeProjectFilter];
+          const priorityA = Number(a.dataset[priorityKey] || 999);
+          const priorityB = Number(b.dataset[priorityKey] || 999);
 
-    const priorityA = Number(a.dataset[priorityKey] || 999);
-    const priorityB = Number(b.dataset[priorityKey] || 999);
+          if (priorityA !== priorityB) {
+            return priorityA - priorityB;
+          }
 
-    if (priorityA !== priorityB) {
-      return priorityA - priorityB;
-    }
+          return originalA - originalB;
+        });
 
-    return originalA - originalB;
-  });
+        sortedCards.forEach((card) => {
+          projectTrack.appendChild(card);
+        });
+      }
 
-  sortedCards.forEach((card) => {
-    projectTrack.appendChild(card);
-  });
-}
+      function updateFeaturedProjectCardStyle() {
+        if (!projectTrack) return;
+
+        const allCards = Array.from(projectTrack.querySelectorAll(".project-carousel-card-link"));
+        const visibleCards = allCards.filter((card) => !card.classList.contains("is-hidden"));
+
+        allCards.forEach((card) => {
+          card.querySelector(".project-carousel-card")?.classList.remove("project-carousel-card--featured");
+        });
+
+        visibleCards[0]
+          ?.querySelector(".project-carousel-card")
+          ?.classList.add("project-carousel-card--featured");
+      }
+
       function updateProjectCardsVisibility() {
-  if (!projectTrack) return;
+        if (!projectTrack) return;
 
-  const cards = Array.from(projectTrack.querySelectorAll(".project-carousel-card-link"));
+        sortProjectCardsForActiveFilter();
 
-  cards.forEach((card) => {
-    const tracks = (card.dataset.projectTracks || "").split(" ").filter(Boolean);
-    const shouldShow = activeProjectFilter === "all" || tracks.includes(activeProjectFilter);
-    card.classList.toggle("is-hidden", !shouldShow);
-  });
+        const cards = Array.from(projectTrack.querySelectorAll(".project-carousel-card-link"));
 
-  projectCurrentPage = 0;
-  updateProjectCarousel();
-}
+        cards.forEach((card) => {
+          const tracks = (card.dataset.projectTracks || "").split(" ").filter(Boolean);
+          const shouldShow = activeProjectFilter === "all" || tracks.includes(activeProjectFilter);
+
+          card.classList.toggle("is-hidden", !shouldShow);
+        });
+
+        updateFeaturedProjectCardStyle();
+
+        projectCurrentPage = 0;
+        updateProjectCarousel();
+      }
 
       function updateProjectFilterButtons() {
         projectFilterButtons.forEach((button) => {

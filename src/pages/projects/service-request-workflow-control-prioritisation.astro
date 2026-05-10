@@ -1,0 +1,1513 @@
+---
+const pageTitle = "Service Request Workflow Control & Prioritisation | Antonio González Martín";
+const pageDescription =
+  "Business Analyst case study turning fragmented internal service requests into a controlled workflow with requirements, validation rules, Power BI reporting, and action prioritisation.";
+
+const projectTags = [
+  "Business Analyst",
+  "Workflow Control",
+  "Requirements",
+  "Process Improvement",
+  "Power BI",
+  "Deneb",
+];
+
+const heroStats = [
+  {
+    label: "Requests simulated",
+    value: "2,400",
+    note: "Synthetic internal service request workflow",
+  },
+  {
+    label: "SLA pressure",
+    value: "26.2%",
+    note: "Requests at risk or already breached",
+  },
+  {
+    label: "Clarification rate",
+    value: "27.7%",
+    note: "Requests requiring additional information",
+  },
+  {
+    label: "Open backlog",
+    value: "236",
+    note: "Unresolved requests still active",
+  },
+];
+
+const powerBiPages = [
+  {
+    title: "Executive Workflow Control Overview",
+    image: "/images/projects/ba-workflow/ba-workflow-powerbi-executive-overview.png",
+    alt: "Power BI executive overview showing backlog, SLA pressure, intake friction and ageing buckets",
+    eyebrow: "Power BI · Page 1",
+    summary:
+      "Shows where workflow pressure is coming from: backlog, SLA risk, breached requests, clarification loops, incomplete intake and ageing debt.",
+    insight:
+      "The problem is not only request volume. Several request types concentrate SLA pressure while intake friction remains visible across the workflow.",
+  },
+  {
+    title: "Workflow Root Cause Diagnosis",
+    image: "/images/projects/ba-workflow/ba-workflow-powerbi-root-cause-diagnosis.png",
+    alt: "Power BI root cause diagnosis showing the chain from incomplete intake to SLA pressure",
+    eyebrow: "Power BI · Page 2",
+    summary:
+      "Connects incomplete intake, clarification loops, ownership delay and SLA pressure into one operational cause-and-effect view.",
+    insight:
+      "The workflow loses control before execution starts: weak intake quality creates clarification work, delays ownership and increases SLA pressure.",
+  },
+  {
+    title: "Workflow Action Prioritisation",
+    image: "/images/projects/ba-workflow/ba-workflow-powerbi-action-prioritisation.png",
+    alt: "Power BI action prioritisation matrix using impact versus effort logic",
+    eyebrow: "Power BI · Page 3",
+    summary:
+      "Turns the diagnosis into a management decision: what to stabilise first, what to strengthen second, and what to avoid for now.",
+    insight:
+      "The first move is not to rebuild the workflow. Stabilise intake control, blocked reasons and early SLA escalation before heavier redesign.",
+  },
+];
+
+const processVisuals = [
+  {
+    title: "AS-IS Service Request Workflow",
+    image: "/images/projects/ba-workflow/ba-workflow-as-is-process.png",
+    alt: "AS-IS workflow diagram showing fragmented intake, manual triage, clarification loops and late reporting",
+    eyebrow: "Process diagnosis",
+    summary:
+      "The AS-IS view shows how fragmented intake creates manual triage pressure, invisible rework, delayed ownership and unreliable reporting.",
+  },
+  {
+    title: "TO-BE Service Request Workflow",
+    image: "/images/projects/ba-workflow/ba-workflow-to-be-process.png",
+    alt: "TO-BE workflow diagram showing structured intake, validation, routing, ownership, closure evidence and reporting-ready status",
+    eyebrow: "Future-state workflow",
+    summary:
+      "The TO-BE view moves control earlier: requests are validated, routed, owned, tracked and closed with reporting-ready evidence.",
+  },
+];
+
+const workbookScreens = [
+  {
+    title: "Scope Definition",
+    image: "/images/projects/ba-workflow/ba-workflow-excel-scope-definition.png",
+    alt: "Excel scope definition sheet for the service request workflow case",
+    summary:
+      "Frames the business problem, project purpose, scope boundaries and what the workflow redesign is expected to control.",
+  },
+  {
+    title: "Pain Point Catalogue",
+    image: "/images/projects/ba-workflow/ba-workflow-excel-pain-point-catalogue.png",
+    alt: "Excel pain point catalogue identifying workflow issues and operational impact",
+    summary:
+      "Connects real process pain points with operational impact: fragmented intake, hidden rework, ownership delay and reporting weakness.",
+  },
+  {
+    title: "Requirements Catalogue",
+    image: "/images/projects/ba-workflow/ba-workflow-excel-requirements-catalogue.png",
+    alt: "Excel requirements catalogue translating pain points into business and reporting requirements",
+    summary:
+      "Translates workflow problems into structured requirements with priority, rationale, related rules and acceptance references.",
+  },
+  {
+    title: "Validation Rules",
+    image: "/images/projects/ba-workflow/ba-workflow-excel-validation-rules.png",
+    alt: "Excel validation rules sheet defining mandatory fields and workflow checks",
+    summary:
+      "Defines how the workflow should prevent poor-quality submissions from moving forward without the information needed for control.",
+  },
+  {
+    title: "Acceptance Criteria",
+    image: "/images/projects/ba-workflow/ba-workflow-excel-acceptance-criteria.png",
+    alt: "Excel acceptance criteria sheet using Given When Then workflow validation",
+    summary:
+      "Turns requirements into observable behaviour that business users and IT can validate together before rollout.",
+  },
+  {
+    title: "Risk & Control Matrix",
+    image: "/images/projects/ba-workflow/ba-workflow-excel-risk-control-matrix.png",
+    alt: "Excel risk and control matrix for workflow adoption, data quality and process control risks",
+    summary:
+      "Identifies adoption, control and reporting risks, then defines practical controls to keep the redesigned workflow usable and trusted.",
+  },
+];
+
+const metrics = [
+  {
+    label: "SLA breach requests",
+    value: "484",
+    meaning: "The issue already affects service reliability, not just visibility.",
+  },
+  {
+    label: "Clarification required",
+    value: "665",
+    meaning: "A large share of requests create extra work before they can move forward.",
+  },
+  {
+    label: "Incomplete mandatory fields",
+    value: "512",
+    meaning: "The intake process is not collecting enough information at the point of submission.",
+  },
+  {
+    label: "Duplicate flagged",
+    value: "136",
+    meaning: "Some backlog pressure is avoidable work rather than true new demand.",
+  },
+];
+
+const actionSequence = [
+  {
+    phase: "First wave",
+    title: "Stabilise control",
+    actions: ["Mandatory fields", "Blocked reasons", "SLA alerts"],
+    outcome: "Reduce rework before execution starts.",
+    tone: "green",
+  },
+  {
+    phase: "Second wave",
+    title: "Strengthen ownership",
+    actions: ["Routing rules", "Owner model", "Approval visibility"],
+    outcome: "Improve accountability once intake is stable.",
+    tone: "copper",
+  },
+  {
+    phase: "Avoid for now",
+    title: "Do not overbuild",
+    actions: ["Complex approvals", "Full rebuild"],
+    outcome: "Avoid adding complexity before basic controls are proven.",
+    tone: "red",
+  },
+];
+
+const projectEvidence = [
+  "AS-IS and TO-BE workflow mapping",
+  "Pain point catalogue and requirements catalogue",
+  "Business and validation rules",
+  "User stories and acceptance criteria",
+  "UAT-ready test logic",
+  "Risk and control matrix",
+  "Power BI executive reporting layer",
+  "Impact vs effort prioritisation matrix",
+];
+
+const skills = [
+  "Business analysis",
+  "Requirements translation",
+  "Workflow design",
+  "Process control",
+  "KPI definition",
+  "Power BI data modelling",
+  "DAX measures",
+  "Deneb / Vega visuals",
+  "Analytics storytelling",
+  "Management decision support",
+];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={pageDescription} />
+    <title>{pageTitle}</title>
+  </head>
+
+  <body>
+    <header class="site-header">
+      <div class="container nav">
+        <a href="/" class="brand">Antonio González Martín</a>
+
+        <nav class="nav-links">
+          <a href="/#about">About</a>
+          <a href="/#projects">Projects</a>
+          <a href="/#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="project-hero">
+        <div class="container">
+          <a class="back-link" href="/#projects">← Back to selected work</a>
+
+          <div class="hero-grid">
+            <div class="hero-copy">
+              <p class="eyebrow">Business Analyst · Workflow Control · Power BI</p>
+
+              <h1>Service Request Workflow Control & Prioritisation</h1>
+
+              <p class="hero-lead">
+                A Business Analyst case showing how fragmented internal service requests can be
+                turned into a controlled workflow with requirements, validation rules, operational
+                KPIs and management-ready prioritisation.
+              </p>
+
+              <div class="tag-row">
+                {projectTags.map((tag) => <span>{tag}</span>)}
+              </div>
+
+              <div class="hero-actions">
+                <a href="#powerbi" class="button button-primary">View dashboard pages</a>
+                <a href="#workflow-design" class="button button-secondary">Explore BA design</a>
+              </div>
+            </div>
+
+            <div class="hero-card">
+              <div class="hero-card-topline">
+                <span>Case thesis</span>
+              </div>
+
+              <h2>The business problem was not only backlog. It was loss of control before execution.</h2>
+
+              <p>
+                Requests entered through emails, Teams, partial trackers and incomplete forms.
+                Management could see work piling up, but not clearly separate real demand from
+                avoidable rework, clarification loops, delayed ownership and late SLA escalation.
+              </p>
+
+              <div class="hero-card-readout">
+                <strong>Management question</strong>
+                <span>
+                  Where should the organisation intervene first to reduce workflow pressure without
+                  making the process unnecessarily heavy?
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="stats-grid">
+            {heroStats.map((stat) => (
+              <article class="stat-card">
+                <span>{stat.label}</span>
+                <strong>{stat.value}</strong>
+                <p>{stat.note}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="section business-problem">
+        <div class="container two-column">
+          <div>
+            <p class="section-label">Business problem</p>
+            <h2>Fragmented intake was creating invisible operational pressure.</h2>
+          </div>
+
+          <div class="problem-copy">
+            <p>
+              The organisation was not simply dealing with a high number of service requests. The
+              bigger issue was that control arrived too late. Requests could enter the workflow with
+              incomplete information, unclear ownership or missing evidence, which created
+              clarification loops and delayed escalation.
+            </p>
+
+            <p>
+              The case was designed to show how a Business Analyst would structure that problem:
+              diagnose the current process, define requirements and controls, build a reporting layer
+              and help management decide which improvements should come first.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section narrative-strip">
+        <div class="container">
+          <div class="strip-grid">
+            <article>
+              <span>01</span>
+              <h3>Diagnose the workflow</h3>
+              <p>Map where intake, triage, clarification, ownership and reporting break down.</p>
+            </article>
+
+            <article>
+              <span>02</span>
+              <h3>Translate pain into requirements</h3>
+              <p>Define business rules, validation logic, user stories and acceptance criteria.</p>
+            </article>
+
+            <article>
+              <span>03</span>
+              <h3>Build decision visibility</h3>
+              <p>Create Power BI reporting that shows backlog, SLA pressure and root causes.</p>
+            </article>
+
+            <article>
+              <span>04</span>
+              <h3>Prioritise action</h3>
+              <p>Sequence fixes by business impact, implementation effort and process maturity.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="workflow-design" class="section">
+        <div class="container">
+          <div class="section-heading">
+            <p class="section-label">Workflow design</p>
+            <h2>From AS-IS process friction to TO-BE workflow control.</h2>
+            <p>
+              The process visuals explain the case before any dashboard appears: the AS-IS workflow
+              shows where control arrives too late, while the TO-BE workflow moves validation,
+              routing, ownership and reporting discipline earlier in the process.
+            </p>
+          </div>
+
+          <div class="process-grid">
+            {processVisuals.map((visual) => (
+              <article class="image-story-card">
+                <div class="image-story-copy">
+                  <span>{visual.eyebrow}</span>
+                  <h3>{visual.title}</h3>
+                  <p>{visual.summary}</p>
+                </div>
+
+                <button
+                  class="image-button"
+                  type="button"
+                  data-full-image={visual.image}
+                  data-full-title={visual.title}
+                  aria-label={`Open ${visual.title} image`}
+                >
+                  <img src={visual.image} alt={visual.alt} loading="lazy" />
+                </button>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="section ba-workbook-section">
+        <div class="container">
+          <div class="section-heading">
+            <p class="section-label">Business Analyst workbook</p>
+            <h2>The dashboard is backed by requirements, rules and validation logic.</h2>
+            <p>
+              The Excel workbook acts as the BA foundation of the case. It documents the problem,
+              the controls needed to make the workflow reliable, and the acceptance logic needed to
+              validate the future process.
+            </p>
+          </div>
+
+          <div class="workbook-grid">
+            {workbookScreens.map((screen) => (
+              <article class="workbook-card">
+                <button
+                  class="workbook-image-button"
+                  type="button"
+                  data-full-image={screen.image}
+                  data-full-title={screen.title}
+                  aria-label={`Open ${screen.title} workbook screenshot`}
+                >
+                  <img src={screen.image} alt={screen.alt} loading="lazy" />
+                </button>
+
+                <div class="workbook-card-copy">
+                  <h3>{screen.title}</h3>
+                  <p>{screen.summary}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="section metrics-section">
+        <div class="container">
+          <div class="section-heading">
+            <p class="section-label">Generated operating data</p>
+            <h2>The synthetic dataset was calibrated to create a realistic workflow control problem.</h2>
+            <p>
+              The data simulates internal service requests, status events, ownership assignment,
+              clarification loops, SLA targets, risk flags, breach flags and ageing buckets.
+            </p>
+          </div>
+
+          <div class="metrics-grid">
+            {metrics.map((metric) => (
+              <article class="metric-card">
+                <span>{metric.label}</span>
+                <strong>{metric.value}</strong>
+                <p>{metric.meaning}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="powerbi" class="section powerbi-section">
+        <div class="container">
+          <div class="section-heading">
+            <p class="section-label">Power BI decision layer</p>
+            <h2>Three dashboard pages: overview, root cause and action prioritisation.</h2>
+            <p>
+              The Power BI report is designed as a management story. It does not stop at showing
+              KPIs; it moves from pressure diagnosis to root cause explanation and action sequencing.
+            </p>
+          </div>
+
+          <div class="dashboard-stack">
+            {powerBiPages.map((page, index) => (
+              <article class={`dashboard-card ${index % 2 === 1 ? "dashboard-card-reverse" : ""}`}>
+                <div class="dashboard-copy">
+                  <span>{page.eyebrow}</span>
+                  <h3>{page.title}</h3>
+                  <p>{page.summary}</p>
+
+                  <div class="insight-box">
+                    <strong>Key insight</strong>
+                    <p>{page.insight}</p>
+                  </div>
+                </div>
+
+                <button
+                  class="dashboard-image-button"
+                  type="button"
+                  data-full-image={page.image}
+                  data-full-title={page.title}
+                  aria-label={`Open ${page.title} dashboard screenshot`}
+                >
+                  <img src={page.image} alt={page.alt} loading="lazy" />
+                </button>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="section action-section">
+        <div class="container">
+          <div class="section-heading">
+            <p class="section-label">Management recommendation</p>
+            <h2>The recommendation is not to rebuild first. Stabilise control first.</h2>
+            <p>
+              The action prioritisation page translates the diagnosis into a realistic rollout
+              sequence: start with lightweight controls, strengthen ownership once intake discipline
+              is stable, and avoid heavy redesign before the basics are proven.
+            </p>
+          </div>
+
+          <div class="action-grid">
+            {actionSequence.map((item) => (
+              <article class={`action-card action-card-${item.tone}`}>
+                <span>{item.phase}</span>
+                <h3>{item.title}</h3>
+
+                <ul>
+                  {item.actions.map((action) => <li>{action}</li>)}
+                </ul>
+
+                <p>{item.outcome}</p>
+              </article>
+            ))}
+          </div>
+
+          <div class="management-decision">
+            <span>Management decision</span>
+            <p>
+              Do not rebuild the workflow first. Stabilise where control is currently lost: required
+              information, blocked reasons and early SLA escalation. Routing and ownership changes
+              should follow once intake discipline is working.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section evidence-section">
+        <div class="container evidence-grid">
+          <div>
+            <p class="section-label">What this project demonstrates</p>
+            <h2>A complete Business Analyst case, not only a reporting exercise.</h2>
+            <p>
+              The case is designed to show end-to-end business analysis thinking: understanding the
+              operational problem, structuring requirements, defining controls, building reporting
+              visibility and translating findings into action.
+            </p>
+          </div>
+
+          <div class="evidence-lists">
+            <div class="evidence-card">
+              <h3>Project evidence</h3>
+              <ul>
+                {projectEvidence.map((item) => <li>{item}</li>)}
+              </ul>
+            </div>
+
+            <div class="evidence-card">
+              <h3>Skills shown</h3>
+              <ul>
+                {skills.map((item) => <li>{item}</li>)}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section closing-section">
+        <div class="container closing-card">
+          <p class="section-label">Case conclusion</p>
+          <h2>The workflow problem was not just backlog. It was control arriving too late.</h2>
+          <p>
+            This project shows how a Business Analyst can move an organisation from fragmented
+            request intake to controlled workflow execution, reliable reporting and prioritised
+            process improvement.
+          </p>
+
+          <div class="closing-actions">
+            <a class="button button-primary" href="/#projects">Back to projects</a>
+            <a class="button button-secondary" href="mailto:antonio.business444@gmail.com">
+              Contact me
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="image-modal" id="image-modal" aria-hidden="true">
+      <div class="image-modal-backdrop" data-close-modal></div>
+
+      <div class="image-modal-panel" role="dialog" aria-modal="true" aria-labelledby="image-modal-title">
+        <button class="image-modal-close" type="button" data-close-modal aria-label="Close image">
+          ×
+        </button>
+
+        <div class="image-modal-header">
+          <span>Preview</span>
+          <h2 id="image-modal-title">Project image</h2>
+        </div>
+
+        <img id="image-modal-img" src="" alt="" />
+      </div>
+    </div>
+
+    <script>
+      const modal = document.getElementById("image-modal");
+      const modalImg = document.getElementById("image-modal-img");
+      const modalTitle = document.getElementById("image-modal-title");
+
+      const openButtons = document.querySelectorAll("[data-full-image]");
+      const closeButtons = document.querySelectorAll("[data-close-modal]");
+
+      function openModal(src, title) {
+        if (!modal || !modalImg || !modalTitle) return;
+
+        modalImg.setAttribute("src", src);
+        modalImg.setAttribute("alt", title);
+        modalTitle.textContent = title;
+        modal.setAttribute("aria-hidden", "false");
+        document.body.classList.add("modal-open");
+      }
+
+      function closeModal() {
+        if (!modal || !modalImg) return;
+
+        modal.setAttribute("aria-hidden", "true");
+        modalImg.setAttribute("src", "");
+        document.body.classList.remove("modal-open");
+      }
+
+      openButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const src = button.getAttribute("data-full-image");
+          const title = button.getAttribute("data-full-title") || "Project image";
+
+          if (src) openModal(src, title);
+        });
+      });
+
+      closeButtons.forEach((button) => {
+        button.addEventListener("click", closeModal);
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") closeModal();
+      });
+    </script>
+  </body>
+</html>
+
+<style>
+  :root {
+    --bg: #f6f3ee;
+    --bg-soft: #efe8dd;
+    --panel: #ffffff;
+    --panel-muted: #f8f5ef;
+    --border: #d8cec0;
+    --border-strong: #c9b9a7;
+    --text: #1f2933;
+    --text-soft: #5f6b76;
+    --muted: #8a7f73;
+    --copper: #b87333;
+    --amber: #c98a2e;
+    --burgundy: #a84c4c;
+    --olive: #7a8b55;
+    --violet: #8b6f91;
+    --shadow: 0 22px 60px rgba(31, 41, 51, 0.1);
+    --shadow-soft: 0 14px 36px rgba(31, 41, 51, 0.08);
+    --radius-xl: 28px;
+    --radius-lg: 22px;
+    --radius-md: 16px;
+    --max-width: 1180px;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background: var(--bg);
+  }
+
+  body {
+    margin: 0;
+    font-family:
+      Inter,
+      ui-sans-serif,
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      sans-serif;
+    color: var(--text);
+    background:
+      radial-gradient(circle at top left, rgba(201, 138, 46, 0.12), transparent 34rem),
+      linear-gradient(180deg, #f8f5ef 0%, var(--bg) 42%, #f3eee6 100%);
+  }
+
+  body.modal-open {
+    overflow: hidden;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  button {
+    font: inherit;
+  }
+
+  .container {
+    width: min(var(--max-width), calc(100% - 40px));
+    margin: 0 auto;
+  }
+
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: rgba(246, 243, 238, 0.88);
+    border-bottom: 1px solid rgba(216, 206, 192, 0.72);
+    backdrop-filter: blur(18px);
+  }
+
+  .nav {
+    min-height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .brand {
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--text);
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    color: var(--text-soft);
+    font-size: 0.94rem;
+  }
+
+  .nav-links a {
+    transition:
+      color 180ms ease,
+      transform 180ms ease;
+  }
+
+  .nav-links a:hover {
+    color: var(--text);
+    transform: translateY(-1px);
+  }
+
+  .project-hero {
+    padding: 42px 0 70px;
+  }
+
+  .back-link {
+    display: inline-flex;
+    margin-bottom: 24px;
+    color: var(--text-soft);
+    font-size: 0.95rem;
+  }
+
+  .back-link:hover {
+    color: var(--copper);
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.16fr) minmax(330px, 0.84fr);
+    gap: 28px;
+    align-items: stretch;
+  }
+
+  .hero-copy,
+  .hero-card,
+  .closing-card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    background: rgba(255, 255, 255, 0.82);
+    box-shadow: var(--shadow);
+  }
+
+  .hero-copy {
+    position: relative;
+    overflow: hidden;
+    padding: 42px;
+  }
+
+  .hero-copy::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 14% 18%, rgba(122, 139, 85, 0.14), transparent 20rem),
+      radial-gradient(circle at 84% 82%, rgba(184, 115, 51, 0.12), transparent 18rem);
+    pointer-events: none;
+  }
+
+  .hero-copy > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .eyebrow,
+  .section-label {
+    margin: 0 0 12px;
+    color: var(--copper);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  h1,
+  h2,
+  h3,
+  p {
+    margin-top: 0;
+  }
+
+  h1 {
+    max-width: 850px;
+    margin-bottom: 20px;
+    font-size: clamp(2.7rem, 7vw, 5.75rem);
+    line-height: 0.94;
+    letter-spacing: -0.075em;
+  }
+
+  .hero-lead {
+    max-width: 760px;
+    margin-bottom: 24px;
+    color: var(--text-soft);
+    font-size: clamp(1.04rem, 1.6vw, 1.24rem);
+    line-height: 1.7;
+  }
+
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+  }
+
+  .tag-row span {
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.72);
+    color: var(--text-soft);
+    font-size: 0.84rem;
+    font-weight: 700;
+  }
+
+  .hero-actions,
+  .closing-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0 18px;
+    border-radius: 999px;
+    font-weight: 800;
+    font-size: 0.94rem;
+    transition:
+      transform 180ms ease,
+      box-shadow 180ms ease,
+      background 180ms ease;
+  }
+
+  .button:hover {
+    transform: translateY(-2px);
+  }
+
+  .button-primary {
+    background: var(--text);
+    color: #fff;
+    box-shadow: 0 16px 30px rgba(31, 41, 51, 0.18);
+  }
+
+  .button-secondary {
+    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.74);
+    color: var(--text);
+  }
+
+  .hero-card {
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 22px;
+  }
+
+  .hero-card-topline {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .hero-card-topline span {
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: var(--bg-soft);
+    color: var(--copper);
+    font-size: 0.76rem;
+    font-weight: 850;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .hero-card h2 {
+    margin-bottom: 0;
+    font-size: clamp(1.55rem, 2.4vw, 2.35rem);
+    line-height: 1.08;
+    letter-spacing: -0.055em;
+  }
+
+  .hero-card p {
+    color: var(--text-soft);
+    line-height: 1.72;
+  }
+
+  .hero-card-readout {
+    padding: 18px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--panel-muted);
+  }
+
+  .hero-card-readout strong,
+  .hero-card-readout span {
+    display: block;
+  }
+
+  .hero-card-readout strong {
+    margin-bottom: 6px;
+    color: var(--text);
+  }
+
+  .hero-card-readout span {
+    color: var(--text-soft);
+    line-height: 1.55;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: 18px;
+  }
+
+  .stat-card,
+  .metric-card {
+    padding: 20px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: rgba(255, 255, 255, 0.82);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .stat-card span,
+  .metric-card span {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--muted);
+    font-size: 0.82rem;
+    font-weight: 800;
+  }
+
+  .stat-card strong,
+  .metric-card strong {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--copper);
+    font-size: 2rem;
+    line-height: 1;
+    letter-spacing: -0.04em;
+  }
+
+  .stat-card p,
+  .metric-card p {
+    margin: 0;
+    color: var(--text-soft);
+    font-size: 0.92rem;
+    line-height: 1.52;
+  }
+
+  .section {
+    padding: 70px 0;
+  }
+
+  .two-column {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 44px;
+    align-items: start;
+  }
+
+  .section h2 {
+    margin-bottom: 16px;
+    font-size: clamp(2rem, 4vw, 3.45rem);
+    line-height: 1;
+    letter-spacing: -0.07em;
+  }
+
+  .problem-copy p,
+  .section-heading p,
+  .evidence-grid p,
+  .closing-card p {
+    color: var(--text-soft);
+    line-height: 1.75;
+    font-size: 1.02rem;
+  }
+
+  .narrative-strip {
+    padding-top: 0;
+  }
+
+  .strip-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .strip-grid article {
+    padding: 22px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--panel);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .strip-grid span {
+    display: inline-flex;
+    margin-bottom: 14px;
+    color: var(--copper);
+    font-size: 0.78rem;
+    font-weight: 900;
+  }
+
+  .strip-grid h3 {
+    margin-bottom: 10px;
+    font-size: 1.02rem;
+  }
+
+  .strip-grid p {
+    margin: 0;
+    color: var(--text-soft);
+    font-size: 0.92rem;
+    line-height: 1.55;
+  }
+
+  .section-heading {
+    max-width: 850px;
+    margin-bottom: 30px;
+  }
+
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+  }
+
+  .image-story-card,
+  .workbook-card,
+  .dashboard-card,
+  .evidence-card,
+  .management-decision {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    background: var(--panel);
+    box-shadow: var(--shadow-soft);
+    overflow: hidden;
+  }
+
+  .image-story-copy {
+    padding: 24px 24px 18px;
+  }
+
+  .image-story-copy span,
+  .dashboard-copy span,
+  .management-decision span,
+  .action-card span {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--copper);
+    font-size: 0.76rem;
+    font-weight: 850;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+  }
+
+  .image-story-copy h3,
+  .dashboard-copy h3,
+  .workbook-card h3,
+  .evidence-card h3,
+  .action-card h3 {
+    margin-bottom: 10px;
+    font-size: 1.25rem;
+    letter-spacing: -0.035em;
+  }
+
+  .image-story-copy p,
+  .workbook-card p,
+  .dashboard-copy p,
+  .management-decision p,
+  .action-card p {
+    color: var(--text-soft);
+    line-height: 1.64;
+  }
+
+  .image-button,
+  .workbook-image-button,
+  .dashboard-image-button {
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: zoom-in;
+    overflow: hidden;
+  }
+
+  .image-button img,
+  .workbook-image-button img,
+  .dashboard-image-button img {
+    width: 100%;
+    transition:
+      transform 260ms ease,
+      filter 260ms ease;
+  }
+
+  .image-button:hover img,
+  .workbook-image-button:hover img,
+  .dashboard-image-button:hover img {
+    transform: scale(1.018);
+    filter: saturate(1.04) contrast(1.02);
+  }
+
+  .ba-workbook-section,
+  .powerbi-section,
+  .evidence-section {
+    background: rgba(255, 255, 255, 0.26);
+    border-top: 1px solid rgba(216, 206, 192, 0.45);
+    border-bottom: 1px solid rgba(216, 206, 192, 0.45);
+  }
+
+  .workbook-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .workbook-card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .workbook-image-button {
+    aspect-ratio: 16 / 9;
+    background: #ece7de;
+  }
+
+  .workbook-image-button img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .workbook-card-copy {
+    padding: 18px;
+  }
+
+  .workbook-card-copy h3 {
+    font-size: 1.02rem;
+  }
+
+  .workbook-card-copy p {
+    margin: 0;
+    font-size: 0.92rem;
+  }
+
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .dashboard-stack {
+    display: grid;
+    gap: 28px;
+  }
+
+  .dashboard-card {
+    display: grid;
+    grid-template-columns: 0.88fr 1.12fr;
+    gap: 0;
+    align-items: stretch;
+  }
+
+  .dashboard-card-reverse {
+    grid-template-columns: 1.12fr 0.88fr;
+  }
+
+  .dashboard-card-reverse .dashboard-copy {
+    order: 2;
+  }
+
+  .dashboard-copy {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .dashboard-copy h3 {
+    font-size: clamp(1.6rem, 2.2vw, 2.25rem);
+  }
+
+  .dashboard-image-button {
+    min-height: 330px;
+    background: var(--bg-soft);
+  }
+
+  .dashboard-image-button img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .insight-box {
+    margin-top: 16px;
+    padding: 16px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--panel-muted);
+  }
+
+  .insight-box strong {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--text);
+  }
+
+  .insight-box p {
+    margin: 0;
+    font-size: 0.95rem;
+  }
+
+  .action-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .action-card {
+    padding: 24px;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-soft);
+    color: #fff;
+  }
+
+  .action-card span,
+  .action-card h3,
+  .action-card p,
+  .action-card li {
+    color: #fff;
+  }
+
+  .action-card span {
+    opacity: 0.88;
+  }
+
+  .action-card ul {
+    margin: 16px 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .action-card li {
+    margin-bottom: 6px;
+    font-weight: 750;
+  }
+
+  .action-card p {
+    margin: 0;
+    opacity: 0.9;
+  }
+
+  .action-card-green {
+    background: var(--olive);
+  }
+
+  .action-card-copper {
+    background: var(--copper);
+  }
+
+  .action-card-red {
+    background: var(--burgundy);
+  }
+
+  .management-decision {
+    margin-top: 18px;
+    padding: 24px;
+    background: var(--bg-soft);
+  }
+
+  .management-decision p {
+    max-width: 900px;
+    margin: 0;
+    font-size: 1.04rem;
+  }
+
+  .evidence-grid {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 38px;
+    align-items: start;
+  }
+
+  .evidence-lists {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .evidence-card {
+    padding: 24px;
+  }
+
+  .evidence-card ul {
+    margin: 0;
+    padding-left: 18px;
+    color: var(--text-soft);
+    line-height: 1.8;
+  }
+
+  .closing-section {
+    padding-bottom: 100px;
+  }
+
+  .closing-card {
+    padding: 42px;
+    text-align: center;
+  }
+
+  .closing-card h2 {
+    max-width: 850px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .closing-card p {
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .closing-actions {
+    justify-content: center;
+    margin-top: 24px;
+  }
+
+  .image-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 80;
+    display: none;
+    padding: 32px;
+  }
+
+  .image-modal[aria-hidden="false"] {
+    display: grid;
+    place-items: center;
+  }
+
+  .image-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(31, 41, 51, 0.74);
+    backdrop-filter: blur(14px);
+  }
+
+  .image-modal-panel {
+    position: relative;
+    z-index: 1;
+    width: min(1180px, 96vw);
+    max-height: 92vh;
+    padding: 18px;
+    border: 1px solid rgba(216, 206, 192, 0.5);
+    border-radius: 24px;
+    background: #fff;
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.34);
+    overflow: auto;
+  }
+
+  .image-modal-header {
+    padding: 6px 48px 16px 6px;
+  }
+
+  .image-modal-header span {
+    display: block;
+    margin-bottom: 4px;
+    color: var(--copper);
+    font-size: 0.72rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  .image-modal-header h2 {
+    margin: 0;
+    font-size: 1.35rem;
+    letter-spacing: -0.035em;
+  }
+
+  .image-modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 38px;
+    height: 38px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--panel-muted);
+    color: var(--text);
+    font-size: 1.45rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .image-modal-panel img {
+    width: 100%;
+    border-radius: 16px;
+    background: var(--bg-soft);
+  }
+
+  @media (max-width: 980px) {
+    .hero-grid,
+    .two-column,
+    .dashboard-card,
+    .dashboard-card-reverse,
+    .evidence-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .dashboard-card-reverse .dashboard-copy {
+      order: 0;
+    }
+
+    .stats-grid,
+    .strip-grid,
+    .metrics-grid,
+    .workbook-grid,
+    .action-grid,
+    .process-grid,
+    .evidence-lists {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .hero-copy,
+    .hero-card,
+    .closing-card {
+      padding: 28px;
+    }
+  }
+
+  @media (max-width: 680px) {
+    .container {
+      width: min(100% - 28px, var(--max-width));
+    }
+
+    .nav {
+      min-height: 64px;
+    }
+
+    .nav-links {
+      display: none;
+    }
+
+    .project-hero {
+      padding-top: 28px;
+    }
+
+    .hero-copy,
+    .hero-card,
+    .closing-card {
+      padding: 22px;
+      border-radius: 22px;
+    }
+
+    h1 {
+      font-size: clamp(2.45rem, 18vw, 4rem);
+    }
+
+    .section {
+      padding: 48px 0;
+    }
+
+    .stats-grid,
+    .strip-grid,
+    .metrics-grid,
+    .workbook-grid,
+    .action-grid,
+    .process-grid,
+    .evidence-lists {
+      grid-template-columns: 1fr;
+    }
+
+    .dashboard-image-button {
+      min-height: 220px;
+    }
+
+    .image-modal {
+      padding: 12px;
+    }
+  }
+</style>

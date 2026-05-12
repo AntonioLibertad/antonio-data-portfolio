@@ -588,15 +588,15 @@ const skills = [
       const openButtons = document.querySelectorAll("[data-full-image]");
       const closeButtons = document.querySelectorAll("[data-close-modal]");
 
-      function openModal(src, title) {
-        if (!modal || !modalImg || !modalTitle) return;
+   function openModal(src: string, imageTitle: string) {
+  if (!modal || !modalImg || !modalTitle) return;
 
-        modalImg.setAttribute("src", src);
-        modalImg.setAttribute("alt", title);
-        modalTitle.textContent = title;
-        modal.setAttribute("aria-hidden", "false");
-        document.body.classList.add("modal-open");
-      }
+  modalImg.setAttribute("src", src);
+  modalImg.setAttribute("alt", imageTitle);
+  modalTitle.textContent = imageTitle;
+  modal.setAttribute("aria-hidden", "false");
+  document.body.classList.add("modal-open");
+}
 
       function closeModal() {
         if (!modal || !modalImg) return;

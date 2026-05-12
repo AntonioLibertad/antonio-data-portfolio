@@ -3,25 +3,19 @@ const project = {
   title: "Claims Risk Scoring & Triage Model",
   eyebrow: "Applied ML / Insurance Analytics / Human-in-the-Loop AI",
   subtitle:
-    "A claims risk scoring system that moves from an intake-only baseline model to an enriched, explainable, controlled-pilot-ready triage workflow.",
+    "A claims triage model that moves from a useful-but-not-ready baseline to an enriched, explainable, controlled-pilot-ready review workflow.",
   description:
-    "Built around a realistic insurance claims problem: the first model had useful signal but was not deployment-ready. Instead of forcing it into production, the workflow simulates shadow-mode learning, enriches the data with LLM-style text signals, document quality, provider history and early lifecycle indicators, then optimizes a Gradient Boosting model for controlled human review.",
+    "Built a claims risk scoring workflow that first identifies when an intake-only model is not ready for deployment, then improves it through enriched operational signals, threshold optimization, explainability, watchlist design and controlled pilot governance.",
   heroImage:
     "/images/projects/claims-risk-scoring-triage/01_model_readiness_journey.png",
 };
 
 const gallery = [
   {
-    src: "/images/projects/claims-risk-scoring-triage/01_model_readiness_journey.png",
-    title: "Model readiness journey",
-    description:
-      "The first intake-only model was useful but not deployment-ready. The enriched model reaches controlled pilot criteria.",
-  },
-  {
     src: "/images/projects/claims-risk-scoring-triage/03_enriched_feature_architecture.png",
     title: "Enriched feature architecture",
     description:
-      "LLM-style text signals, document quality, provider history and early lifecycle signals improve risk separation.",
+      "LLM-style text signals, document quality, provider history and early lifecycle indicators improve risk separation.",
   },
   {
     src: "/images/projects/claims-risk-scoring-triage/02_final_triage_policy.png",
@@ -42,6 +36,25 @@ const finalMetrics = [
   { label: "Precision", value: "75.1%", tone: "green" },
   { label: "Recall", value: "78.1%", tone: "green" },
   { label: "Review queue", value: "28.9%", tone: "cyan" },
+];
+
+const beforeAfter = [
+  {
+    stage: "Intake-only model",
+    precision: "50.2%",
+    recall: "72.0%",
+    queue: "39.8%",
+    decision: "Not ready",
+    tone: "red",
+  },
+  {
+    stage: "Enriched optimized model",
+    precision: "75.1%",
+    recall: "78.1%",
+    queue: "28.9%",
+    decision: "Controlled pilot ready",
+    tone: "green",
+  },
 ];
 
 const phases = [
@@ -83,24 +96,19 @@ const stack = [
   "Human-in-the-Loop AI",
 ];
 
-const outputs = [
-  "Synthetic claims dataset with realistic operational risk patterns",
-  "Data validation and leakage-safe modelling dataset",
-  "Baseline model, threshold analysis and hybrid policy testing",
-  "Enriched feature layer with text, document, provider and early lifecycle signals",
-  "Optimized Gradient Boosting model selected by business-aware criteria",
-  "Case-level explanations for claim reviewers",
-  "Watchlist policy for near-threshold claims",
-  "Controlled pilot monitoring plan and model readiness report",
+const proofPoints = [
+  "Built an end-to-end ML triage workflow, not an isolated notebook.",
+  "Controlled for leakage by separating intake data from downstream claim outcomes.",
+  "Translated model scores into an operational review policy with capacity constraints.",
+  "Improved model readiness through richer business signals rather than model complexity alone.",
+  "Added case-level explanations so reviewers can inspect and challenge recommendations.",
+  "Defined monitoring, pause criteria and governance boundaries before pilot rollout.",
 ];
 
 const files = [
   "reports/final_model_readiness_report.md",
-  "reports/controlled_pilot_monitoring_plan.md",
   "reports/gradient_boosting_optimization_report.md",
   "reports/case_level_explainability_report.md",
-  "reports/watchlist_policy_report.md",
-  "data/processed/final_claim_triage_explanations_with_watchlist.csv",
 ];
 ---
 
@@ -135,6 +143,13 @@ const files = [
 
               <p class="hero-description">{project.description}</p>
 
+              <div class="hero-problem">
+                <span>Business tension</span>
+                <p>
+                  The business was not blocked by model accuracy alone. It was blocked by whether the review queue would be useful, manageable and safe enough for human reviewers.
+                </p>
+              </div>
+
               <div class="hero-actions">
                 <a href="#readiness" class="primary-button">View model journey</a>
                 <a href="#gallery" class="secondary-button">View visuals</a>
@@ -160,7 +175,7 @@ const files = [
           <h2>Controlled pilot ready, not automated decision-making.</h2>
           <p>
             The optimized Gradient Boosting model meets the target operating criteria for a controlled
-            human-in-the-loop pilot. The model prioritizes review; it does not approve, reject or settle claims.
+            human-in-the-loop rollout. The model prioritizes review; it does not approve, reject or settle claims.
           </p>
         </div>
 
@@ -170,6 +185,37 @@ const files = [
               <span>{metric.label}</span>
               <strong>{metric.value}</strong>
             </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="section compact-section">
+        <div class="section-heading wide">
+          <p class="section-kicker">Before vs after enrichment</p>
+          <h2>The project became valuable when the first model was treated as a readiness signal, not a success story.</h2>
+          <p>
+            The first model could capture risk, but only by creating a broad and inefficient review queue.
+            The enriched version improved both risk capture and operational efficiency.
+          </p>
+        </div>
+
+        <div class="comparison-table">
+          <div class="comparison-row comparison-header">
+            <span>Stage</span>
+            <span>Precision</span>
+            <span>Recall</span>
+            <span>Queue</span>
+            <span>Decision</span>
+          </div>
+
+          {beforeAfter.map((row) => (
+            <div class={`comparison-row ${row.tone}`}>
+              <strong>{row.stage}</strong>
+              <span>{row.precision}</span>
+              <span>{row.recall}</span>
+              <span>{row.queue}</span>
+              <em>{row.decision}</em>
+            </div>
           ))}
         </div>
       </section>
@@ -233,7 +279,7 @@ const files = [
           <p class="section-kicker">Deployment boundary</p>
           <h2>The model supports triage. It does not make final claim decisions.</h2>
           <p>
-            The final system is approved only as a controlled pilot for priority human review support.
+            The final system is approved only as a review-support layer for a governed human-in-the-loop pilot.
             Human reviewers retain final decision authority.
           </p>
           <ul>
@@ -294,12 +340,12 @@ const files = [
           <p class="section-kicker">Portfolio visuals</p>
           <h2>The visual evidence of the project journey.</h2>
           <p>
-            These visuals are designed to explain the business journey quickly: model readiness, enriched
-            architecture, final policy and case-level explainability.
+            The hero image already shows the readiness journey. These visuals explain how the enriched
+            model works, how the operating policy is structured and how a reviewer can understand a case.
           </p>
         </div>
 
-        <div class="gallery-grid">
+        <div class="gallery-grid three">
           {gallery.map((item) => (
             <article class="gallery-card">
               <button
@@ -349,12 +395,16 @@ const files = [
 
       <section class="section">
         <div class="section-heading wide">
-          <p class="section-kicker">Project outputs</p>
-          <h2>What the project produces.</h2>
+          <p class="section-kicker">What this project proves</p>
+          <h2>The value is the full applied Data Science decision journey.</h2>
+          <p>
+            This is not positioned as a perfect model or an autonomous AI system. It is positioned as a realistic
+            ML workflow where model performance, operational capacity and governance all matter.
+          </p>
         </div>
 
         <div class="outputs-grid">
-          {outputs.map((output) => (
+          {proofPoints.map((output) => (
             <div class="output-item">
               <span>✓</span>
               <p>{output}</p>
@@ -374,7 +424,7 @@ const files = [
           </p>
           <p>
             The explanations are not causal proof. They are operational context for a human reviewer during
-            a controlled pilot.
+            a controlled rollout.
           </p>
         </div>
 
@@ -394,8 +444,12 @@ const files = [
 
       <section class="section files-section">
         <div class="section-heading wide">
-          <p class="section-kicker">Key files</p>
-          <h2>Evidence available in the repository.</h2>
+          <p class="section-kicker">Repository evidence</p>
+          <h2>Three files that document the decision.</h2>
+          <p>
+            The full repository includes datasets, scripts and reports. These are the three most important
+            evidence files for understanding the final recommendation.
+          </p>
         </div>
 
         <div class="file-list">
@@ -412,9 +466,9 @@ const files = [
             The strongest signal is not only the model performance. It is the full readiness journey.
           </h2>
           <p>
-            This project demonstrates how to move from a weak-but-promising model to a controlled pilot:
+            This project demonstrates how to move from a weak-but-promising model to a governed review-support rollout:
             identify the limitation, enrich the data, re-train, optimize thresholds, add explanations,
-            define monitoring, and keep humans in control.
+            define monitoring and keep humans in control.
           </p>
         </div>
       </section>
@@ -529,7 +583,7 @@ const files = [
 
   .hero-grid {
     display: grid;
-    grid-template-columns: 0.95fr 1.05fr;
+    grid-template-columns: 0.94fr 1.06fr;
     gap: 40px;
     align-items: center;
   }
@@ -572,7 +626,31 @@ const files = [
     margin-top: 24px;
     color: #9ca3af;
     font-size: 16px;
-    line-height: 1.75;
+    line-height: 1.7;
+  }
+
+  .hero-problem {
+    margin-top: 22px;
+    border: 1px solid rgba(103, 232, 249, 0.24);
+    border-radius: 22px;
+    padding: 18px 20px;
+    background: rgba(8, 32, 52, 0.46);
+  }
+
+  .hero-problem span {
+    display: block;
+    margin-bottom: 8px;
+    color: #67e8f9;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .hero-problem p {
+    margin: 0;
+    color: #d1d5db;
+    line-height: 1.6;
   }
 
   .hero-tags,
@@ -652,6 +730,10 @@ const files = [
     padding: 82px 0;
   }
 
+  .compact-section {
+    padding-top: 40px;
+  }
+
   .section-heading {
     max-width: 760px;
     margin-bottom: 34px;
@@ -716,6 +798,61 @@ const files = [
 
   .metric-card.cyan strong {
     color: #67e8f9;
+  }
+
+  .comparison-table {
+    overflow: hidden;
+    border: 1px solid rgba(148, 163, 184, 0.22);
+    border-radius: 28px;
+    background: rgba(13, 26, 43, 0.72);
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.24);
+  }
+
+  .comparison-row {
+    display: grid;
+    grid-template-columns: 1.6fr repeat(3, 0.75fr) 1.25fr;
+    gap: 16px;
+    align-items: center;
+    padding: 22px 26px;
+    border-top: 1px solid rgba(148, 163, 184, 0.14);
+  }
+
+  .comparison-row:first-child {
+    border-top: 0;
+  }
+
+  .comparison-header {
+    background: rgba(2, 6, 23, 0.28);
+    color: #94a3b8;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .comparison-row strong {
+    font-size: 18px;
+  }
+
+  .comparison-row span {
+    color: #e5e7eb;
+    font-size: 20px;
+    font-weight: 900;
+  }
+
+  .comparison-row em {
+    font-style: normal;
+    font-weight: 900;
+  }
+
+  .comparison-row.red span,
+  .comparison-row.red em {
+    color: #fb7185;
+  }
+
+  .comparison-row.green span,
+  .comparison-row.green em {
+    color: #34d399;
   }
 
   .phase-grid {
@@ -929,8 +1066,11 @@ const files = [
 
   .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
     gap: 24px;
+  }
+
+  .gallery-grid.three {
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .gallery-card {
@@ -1096,11 +1236,16 @@ const files = [
     line-height: 1;
   }
 
+  @media (max-width: 1080px) {
+    .gallery-grid.three {
+      grid-template-columns: 1fr;
+    }
+  }
+
   @media (max-width: 980px) {
     .hero-grid,
     .split-section,
     .phase-grid,
-    .gallery-grid,
     .outputs-grid {
       grid-template-columns: 1fr;
     }
@@ -1108,6 +1253,15 @@ const files = [
     .metric-grid,
     .policy-grid {
       grid-template-columns: repeat(2, 1fr);
+    }
+
+    .comparison-row {
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    .comparison-header {
+      display: none;
     }
 
     .hero-section {

@@ -130,7 +130,7 @@ const files = [
           <a class="back-link" href="/">← Back to portfolio</a>
 
           <div class="hero-grid">
-            <div class="hero-copy">
+            <div class="hero-copy reveal-static">
               <p class="eyebrow">{project.eyebrow}</p>
               <h1>{project.title}</h1>
               <p class="hero-subtitle">{project.subtitle}</p>
@@ -157,7 +157,7 @@ const files = [
             </div>
 
             <button
-              class="hero-image-card"
+              class="hero-image-card reveal-static"
               type="button"
               data-full-image={project.heroImage}
               data-image-title="Model readiness journey"
@@ -528,6 +528,35 @@ const files = [
           closeModal();
         }
       });
+
+      const revealTargets = document.querySelectorAll(
+        ".section, .final-section, .metric-card, .phase-card, .story-card, .policy-card, .gallery-card, .output-item, .decision-band, .summary-band, .comparison-table"
+      );
+
+      revealTargets.forEach((element, index) => {
+        element.classList.add("reveal-on-scroll");
+        element.setAttribute(
+          "style",
+          `${element.getAttribute("style") || ""}; --reveal-delay: ${Math.min(index * 28, 220)}ms;`
+        );
+      });
+
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          threshold: 0.12,
+          rootMargin: "0px 0px -8% 0px",
+        }
+      );
+
+      revealTargets.forEach((element) => revealObserver.observe(element));
     </script>
   </body>
 </html>
@@ -535,6 +564,10 @@ const files = [
 <style>
   :global(*) {
     box-sizing: border-box;
+  }
+
+  :global(html) {
+    scroll-behavior: smooth;
   }
 
   :global(body) {
@@ -574,11 +607,12 @@ const files = [
     color: #94a3b8;
     text-decoration: none;
     font-size: 14px;
-    transition: color 180ms ease;
+    transition: color 180ms ease, transform 180ms ease;
   }
 
   .back-link:hover {
     color: #67e8f9;
+    transform: translateX(-3px);
   }
 
   .hero-grid {
@@ -630,6 +664,8 @@ const files = [
   }
 
   .hero-problem {
+    position: relative;
+    overflow: hidden;
     margin-top: 22px;
     border: 1px solid rgba(103, 232, 249, 0.24);
     border-radius: 22px;
@@ -669,6 +705,19 @@ const files = [
     color: #cbd5e1;
     font-size: 13px;
     font-weight: 700;
+    transition:
+      transform 220ms ease,
+      border-color 220ms ease,
+      color 220ms ease,
+      background 220ms ease;
+  }
+
+  .hero-tags span:hover,
+  .stack-list span:hover {
+    transform: translateY(-2px);
+    border-color: rgba(103, 232, 249, 0.55);
+    color: #e0f2fe;
+    background: rgba(8, 47, 73, 0.42);
   }
 
   .hero-actions {
@@ -689,6 +738,11 @@ const files = [
     text-decoration: none;
     font-size: 14px;
     font-weight: 800;
+    transition:
+      transform 220ms ease,
+      box-shadow 220ms ease,
+      border-color 220ms ease,
+      background 220ms ease;
   }
 
   .primary-button {
@@ -700,6 +754,20 @@ const files = [
     border: 1px solid rgba(103, 232, 249, 0.55);
     color: #67e8f9;
     background: rgba(15, 23, 42, 0.45);
+  }
+
+  .primary-button:hover,
+  .secondary-button:hover {
+    transform: translateY(-2px);
+  }
+
+  .primary-button:hover {
+    box-shadow: 0 18px 44px rgba(56, 189, 248, 0.2);
+  }
+
+  .secondary-button:hover {
+    border-color: rgba(103, 232, 249, 0.9);
+    background: rgba(8, 47, 73, 0.38);
   }
 
   .hero-image-card,
@@ -717,6 +785,16 @@ const files = [
     border-radius: 28px;
     background: rgba(8, 18, 32, 0.8);
     box-shadow: 0 30px 90px rgba(0, 0, 0, 0.45);
+    transition:
+      transform 300ms ease,
+      border-color 300ms ease,
+      box-shadow 300ms ease;
+  }
+
+  .hero-image-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(103, 232, 249, 0.48);
+    box-shadow: 0 34px 100px rgba(0, 0, 0, 0.5);
   }
 
   .hero-image-card img,
@@ -724,6 +802,17 @@ const files = [
     display: block;
     width: 100%;
     height: auto;
+    transition:
+      transform 500ms cubic-bezier(0.16, 1, 0.3, 1),
+      opacity 300ms ease,
+      filter 300ms ease;
+  }
+
+  .hero-image-card:hover img,
+  .gallery-image:hover img {
+    transform: scale(1.025);
+    opacity: 0.96;
+    filter: saturate(1.08);
   }
 
   .section {
@@ -784,8 +873,15 @@ const files = [
   }
 
   .metric-card strong {
+    display: inline-block;
     font-size: clamp(32px, 4vw, 48px);
     line-height: 1;
+    transition: transform 220ms ease, text-shadow 220ms ease;
+  }
+
+  .metric-card:hover strong {
+    transform: translateY(-1px);
+    text-shadow: 0 0 22px rgba(103, 232, 249, 0.18);
   }
 
   .metric-card.green strong {
@@ -815,6 +911,12 @@ const files = [
     align-items: center;
     padding: 22px 26px;
     border-top: 1px solid rgba(148, 163, 184, 0.14);
+    transition: background 220ms ease, transform 220ms ease;
+  }
+
+  .comparison-row:not(.comparison-header):hover {
+    background: rgba(8, 32, 52, 0.42);
+    transform: translateX(3px);
   }
 
   .comparison-row:first-child {
@@ -866,10 +968,50 @@ const files = [
   .policy-card,
   .gallery-card,
   .file-list,
+  .final-section,
+  .metric-card,
+  .output-item,
+  .comparison-table {
+    transition:
+      transform 260ms ease,
+      border-color 260ms ease,
+      box-shadow 260ms ease,
+      background 260ms ease;
+  }
+
+  .phase-card,
+  .story-card,
+  .policy-card,
+  .gallery-card,
+  .file-list,
   .final-section {
     border: 1px solid rgba(148, 163, 184, 0.22);
     background: rgba(13, 26, 43, 0.72);
     box-shadow: 0 24px 80px rgba(0, 0, 0, 0.26);
+  }
+
+  .phase-card,
+  .story-card,
+  .policy-card,
+  .gallery-card {
+    will-change: transform;
+  }
+
+  .phase-card:hover,
+  .story-card:hover,
+  .policy-card:hover,
+  .gallery-card:hover,
+  .comparison-table:hover {
+    transform: translateY(-5px);
+    border-color: rgba(103, 232, 249, 0.42);
+    box-shadow: 0 30px 95px rgba(0, 0, 0, 0.38);
+  }
+
+  .metric-card:hover,
+  .output-item:hover {
+    transform: translateY(-4px);
+    border-color: rgba(103, 232, 249, 0.35);
+    background: rgba(13, 35, 56, 0.74);
   }
 
   .phase-card {
@@ -942,11 +1084,36 @@ const files = [
 
   .decision-band,
   .summary-band {
+    position: relative;
+    overflow: hidden;
     margin-top: 24px;
     border: 1px solid rgba(103, 232, 249, 0.38);
     border-radius: 22px;
     padding: 24px 28px;
     background: rgba(8, 32, 52, 0.72);
+  }
+
+  .decision-band::before,
+  .summary-band::before,
+  .hero-problem::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      120deg,
+      transparent 0%,
+      rgba(103, 232, 249, 0.08) 45%,
+      transparent 70%
+    );
+    transform: translateX(-120%);
+    transition: transform 900ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .decision-band:hover::before,
+  .summary-band:hover::before,
+  .hero-problem:hover::before {
+    transform: translateX(120%);
   }
 
   .decision-band span,
@@ -1031,6 +1198,12 @@ const files = [
     margin-top: 18px;
     font-size: 32px;
     letter-spacing: -0.03em;
+    transition: transform 220ms ease, text-shadow 220ms ease;
+  }
+
+  .policy-card:hover strong {
+    transform: translateY(-1px);
+    text-shadow: 0 0 22px rgba(103, 232, 249, 0.18);
   }
 
   .policy-card small {
@@ -1044,6 +1217,10 @@ const files = [
     border-color: rgba(52, 211, 153, 0.5);
   }
 
+  .policy-card.green:hover {
+    border-color: rgba(52, 211, 153, 0.78);
+  }
+
   .policy-card.green strong {
     color: #34d399;
   }
@@ -1052,12 +1229,20 @@ const files = [
     border-color: rgba(251, 191, 36, 0.55);
   }
 
+  .policy-card.yellow:hover {
+    border-color: rgba(251, 191, 36, 0.78);
+  }
+
   .policy-card.yellow strong {
     color: #fbbf24;
   }
 
   .policy-card.blue {
     border-color: rgba(56, 189, 248, 0.55);
+  }
+
+  .policy-card.blue:hover {
+    border-color: rgba(56, 189, 248, 0.78);
   }
 
   .policy-card.blue strong {
@@ -1081,15 +1266,6 @@ const files = [
   .gallery-image {
     overflow: hidden;
     border-bottom: 1px solid rgba(148, 163, 184, 0.18);
-  }
-
-  .gallery-image img {
-    transition: transform 250ms ease, opacity 250ms ease;
-  }
-
-  .gallery-image:hover img {
-    transform: scale(1.025);
-    opacity: 0.92;
   }
 
   .gallery-copy {
@@ -1119,6 +1295,16 @@ const files = [
     background: rgba(15, 23, 42, 0.48);
     color: #cbd5e1;
     font-weight: 700;
+    transition:
+      transform 220ms ease,
+      border-color 220ms ease,
+      background 220ms ease;
+  }
+
+  .workflow-list span:hover {
+    transform: translateX(4px);
+    border-color: rgba(103, 232, 249, 0.34);
+    background: rgba(8, 47, 73, 0.34);
   }
 
   .outputs-grid {
@@ -1164,6 +1350,18 @@ const files = [
     color: #93c5fd;
     font-size: 13px;
     overflow-x: auto;
+    transition:
+      transform 220ms ease,
+      border-color 220ms ease,
+      color 220ms ease,
+      background 220ms ease;
+  }
+
+  .file-list code:hover {
+    transform: translateX(4px);
+    border-color: rgba(147, 197, 253, 0.38);
+    color: #bfdbfe;
+    background: rgba(15, 23, 42, 0.72);
   }
 
   .final-section {
@@ -1236,6 +1434,60 @@ const files = [
     line-height: 1;
   }
 
+  @keyframes heroFadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(22px);
+      filter: blur(8px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+  }
+
+  @keyframes softGlow {
+    0% {
+      box-shadow: 0 28px 90px rgba(0, 0, 0, 0.45);
+    }
+
+    50% {
+      box-shadow: 0 34px 105px rgba(56, 189, 248, 0.13);
+    }
+
+    100% {
+      box-shadow: 0 28px 90px rgba(0, 0, 0, 0.45);
+    }
+  }
+
+  .reveal-static {
+    animation: heroFadeUp 850ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .hero-image-card.reveal-static {
+    animation:
+      heroFadeUp 950ms cubic-bezier(0.16, 1, 0.3, 1) 120ms both,
+      softGlow 7s ease-in-out 1.2s infinite;
+  }
+
+  .reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(26px);
+    filter: blur(8px);
+    transition:
+      opacity 760ms cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0ms),
+      transform 760ms cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0ms),
+      filter 760ms cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0ms);
+  }
+
+  .reveal-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+
   @media (max-width: 1080px) {
     .gallery-grid.three {
       grid-template-columns: 1fr;
@@ -1296,6 +1548,23 @@ const files = [
     .primary-button,
     .secondary-button {
       width: 100%;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 1ms !important;
+      animation-iteration-count: 1 !important;
+      scroll-behavior: auto !important;
+      transition-duration: 1ms !important;
+    }
+
+    .reveal-on-scroll {
+      opacity: 1;
+      transform: none;
+      filter: none;
     }
   }
 </style>

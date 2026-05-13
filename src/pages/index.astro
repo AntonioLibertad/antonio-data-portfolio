@@ -800,33 +800,46 @@ const filterOptions: { key: ProjectFilter; label: string; count: number }[] = [
 
     <script is:inline>
 
-      const resumeDropdown = document.querySelector(".resume-dropdown");
-      const resumeButton = document.querySelector(".resume-dropdown-button");
+      
+  const resumeDropdown = document.querySelector(".resume-dropdown");
+  const resumeButton = document.querySelector(".resume-dropdown-button");
 
-      resumeButton?.addEventListener("click", () => {
-        const isOpen = resumeDropdown?.classList.toggle("is-open");
-        resumeButton.setAttribute("aria-expanded", String(Boolean(isOpen)));
-      });
+  if (resumeDropdown instanceof HTMLElement && resumeButton instanceof HTMLButtonElement) {
+    resumeButton.addEventListener("click", (event) => {
+      event.stopPropagation();
+
+      const isCurrentlyOpen = resumeDropdown.classList.contains("is-open");
+
+      if (isCurrentlyOpen) {
+        resumeDropdown.classList.remove("is-open");
+        resumeButton.setAttribute("aria-expanded", "false");
+        resumeButton.blur();
+      } else {
+        resumeDropdown.classList.add("is-open");
+        resumeButton.setAttribute("aria-expanded", "true");
+      }
+    });
 
     document.addEventListener("click", (event) => {
-  if (!resumeDropdown || !resumeButton) return;
+      const target = event.target;
 
-  const target = event.target;
+      if (!(target instanceof Node)) return;
 
-  if (!(target instanceof Node)) return;
+      if (!resumeDropdown.contains(target)) {
+        resumeDropdown.classList.remove("is-open");
+        resumeButton.setAttribute("aria-expanded", "false");
+      }
+    });
 
-  if (!resumeDropdown.contains(target)) {
-    resumeDropdown.classList.remove("is-open");
-    resumeButton.setAttribute("aria-expanded", "false");
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        resumeDropdown.classList.remove("is-open");
+        resumeButton.setAttribute("aria-expanded", "false");
+        resumeButton.blur();
+      }
+    });
   }
-});
 
-      document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape") {
-          resumeDropdown?.classList.remove("is-open");
-          resumeButton?.setAttribute("aria-expanded", "false");
-        }
-      });
 
       const galleryItems = [
         {
@@ -1252,6 +1265,25 @@ const filterOptions: { key: ProjectFilter; label: string; count: number }[] = [
     isolation: isolate;
   }
 
+
+
+  .about-section {
+    z-index: 20;
+    overflow: visible;
+  }
+
+  .about-section .container {
+    z-index: 25;
+  }
+
+  .projects-section {
+    z-index: 5;
+  }
+
+  .resume-dropdown {
+    z-index: 100;
+  }
+
   .about-section::before,
   .projects-section::before,
   .case-section::before,
@@ -1627,9 +1659,8 @@ const filterOptions: { key: ProjectFilter; label: string; count: number }[] = [
     transition: transform 0.18s ease;
   }
 
-  .resume-dropdown.is-open .resume-dropdown-chevron,
-  .resume-dropdown:hover .resume-dropdown-chevron,
-  .resume-dropdown:focus-within .resume-dropdown-chevron {
+  .resume-dropdown.is-open .resume-dropdown-chevron
+   {
     transform: rotate(180deg);
   }
 
@@ -1637,7 +1668,7 @@ const filterOptions: { key: ProjectFilter; label: string; count: number }[] = [
     position: absolute;
     top: calc(100% + 0.75rem);
     left: 0;
-    z-index: 50;
+    z-index: 9999;
     width: min(340px, calc(100vw - 2rem));
     display: grid;
     gap: 0.5rem;
@@ -1656,8 +1687,7 @@ const filterOptions: { key: ProjectFilter; label: string; count: number }[] = [
       transform 0.18s ease;
   }
 
-  .resume-dropdown:hover .resume-dropdown-menu,
-  .resume-dropdown:focus-within .resume-dropdown-menu,
+  
   .resume-dropdown.is-open .resume-dropdown-menu {
     opacity: 1;
     pointer-events: auto;
@@ -2957,8 +2987,7 @@ const filterOptions: { key: ProjectFilter; label: string; count: number }[] = [
       transform-origin: top center;
     }
 
-    .resume-dropdown:hover .resume-dropdown-menu,
-    .resume-dropdown:focus-within .resume-dropdown-menu,
+
     .resume-dropdown.is-open .resume-dropdown-menu {
       transform: translate(-50%, 0) scale(1);
     }

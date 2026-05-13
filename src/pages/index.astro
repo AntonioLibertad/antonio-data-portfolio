@@ -371,13 +371,39 @@ const filterOptions: { key: ProjectFilter; label: string; count: number }[] = [
             </p>
 
             <div class="about-actions">
-              <a
-                class="button button-primary"
-                href="/Antonio_Gonzalez_Martin_CV.pdf"
-                download="Antonio_Gonzalez_Martin_CV.pdf"
-              >
-                Download resume
-              </a>
+              <div class="resume-dropdown">
+                <button
+                  class="button button-primary resume-dropdown-button"
+                  type="button"
+                  aria-expanded="false"
+                  aria-haspopup="true"
+                >
+                  Download resume
+                  <span class="resume-dropdown-chevron" aria-hidden="true">▾</span>
+                </button>
+
+                <div class="resume-dropdown-menu" aria-label="Resume versions">
+                  <a href="/cv/ANTONIO%20Data%20AnalystCV.pdf" download>
+                    <strong>Data Analyst / BI</strong>
+                    <span>Reporting, dashboards, SQL, Power BI</span>
+                  </a>
+
+                  <a href="/cv/ANTONIO_Business%20Analyst.%20CV.pdf" download>
+                    <strong>Business Analyst</strong>
+                    <span>Processes, requirements, stakeholders</span>
+                  </a>
+
+                  <a href="/cv/ANTONIO_Data%20Scientist.%20CV.pdf" download>
+                    <strong>Data Science / AI</strong>
+                    <span>Python, ML, modelling, applied AI</span>
+                  </a>
+
+                  <a href="/cv/ANTONIO_FP%26A%20%20Controlling.%20CV.pdf" download>
+                    <strong>FP&A / Controlling</strong>
+                    <span>Planning, forecasting, finance analytics</span>
+                  </a>
+                </div>
+              </div>
 
               <a
                 class="button button-secondary reveal reveal-up"
@@ -773,6 +799,35 @@ const filterOptions: { key: ProjectFilter; label: string; count: number }[] = [
     </main>
 
     <script is:inline>
+
+      const resumeDropdown = document.querySelector(".resume-dropdown");
+      const resumeButton = document.querySelector(".resume-dropdown-button");
+
+      resumeButton?.addEventListener("click", () => {
+        const isOpen = resumeDropdown?.classList.toggle("is-open");
+        resumeButton.setAttribute("aria-expanded", String(Boolean(isOpen)));
+      });
+
+    document.addEventListener("click", (event) => {
+  if (!resumeDropdown || !resumeButton) return;
+
+  const target = event.target;
+
+  if (!(target instanceof Node)) return;
+
+  if (!resumeDropdown.contains(target)) {
+    resumeDropdown.classList.remove("is-open");
+    resumeButton.setAttribute("aria-expanded", "false");
+  }
+});
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          resumeDropdown?.classList.remove("is-open");
+          resumeButton?.setAttribute("aria-expanded", "false");
+        }
+      });
+
       const galleryItems = [
         {
           src: "/dashboard-overview.png",
@@ -1369,6 +1424,7 @@ const filterOptions: { key: ProjectFilter; label: string; count: number }[] = [
   .nav-links a:focus-visible,
   .brand:focus-visible,
   .button:focus-visible,
+  .resume-dropdown-menu a:focus-visible,
   .gallery-thumb:focus-visible,
   .gallery-arrow:focus-visible,
   .media-open-btn:focus-visible,
@@ -1549,6 +1605,95 @@ const filterOptions: { key: ProjectFilter; label: string; count: number }[] = [
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.16);
     color: var(--text);
+  }
+
+  .resume-dropdown {
+    position: relative;
+    display: inline-flex;
+  }
+
+  .resume-dropdown-button {
+    gap: 0.5rem;
+    border: 0;
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  .resume-dropdown-chevron {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.78rem;
+    line-height: 1;
+    transition: transform 0.18s ease;
+  }
+
+  .resume-dropdown.is-open .resume-dropdown-chevron,
+  .resume-dropdown:hover .resume-dropdown-chevron,
+  .resume-dropdown:focus-within .resume-dropdown-chevron {
+    transform: rotate(180deg);
+  }
+
+  .resume-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 0.75rem);
+    left: 0;
+    z-index: 50;
+    width: min(340px, calc(100vw - 2rem));
+    display: grid;
+    gap: 0.5rem;
+    padding: 0.65rem;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 22px;
+    background: rgba(7, 16, 31, 0.96);
+    box-shadow: 0 28px 80px rgba(0, 0, 0, 0.42);
+    backdrop-filter: blur(16px);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(8px) scale(0.98);
+    transform-origin: top left;
+    transition:
+      opacity 0.18s ease,
+      transform 0.18s ease;
+  }
+
+  .resume-dropdown:hover .resume-dropdown-menu,
+  .resume-dropdown:focus-within .resume-dropdown-menu,
+  .resume-dropdown.is-open .resume-dropdown-menu {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+  }
+
+  .resume-dropdown-menu a {
+    display: grid;
+    gap: 0.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 0.78rem 0.9rem;
+    background: rgba(255, 255, 255, 0.04);
+    transition:
+      transform 0.16s ease,
+      border-color 0.16s ease,
+      background 0.16s ease;
+  }
+
+  .resume-dropdown-menu a:hover,
+  .resume-dropdown-menu a:focus-visible {
+    transform: translateX(3px);
+    border-color: rgba(145, 169, 255, 0.28);
+    background: rgba(145, 169, 255, 0.08);
+  }
+
+  .resume-dropdown-menu strong {
+    color: var(--text);
+    font-size: 0.92rem;
+    line-height: 1.2;
+  }
+
+  .resume-dropdown-menu span {
+    color: var(--muted);
+    font-size: 0.78rem;
+    line-height: 1.35;
   }
 
   .section {
@@ -2798,4 +2943,25 @@ const filterOptions: { key: ProjectFilter; label: string; count: number }[] = [
       transition: none;
     }
   }
+
+  @media (max-width: 560px) {
+    .resume-dropdown,
+    .resume-dropdown-button {
+      width: 100%;
+    }
+
+    .resume-dropdown-menu {
+      left: 50%;
+      width: min(340px, calc(100vw - 2rem));
+      transform: translate(-50%, 8px) scale(0.98);
+      transform-origin: top center;
+    }
+
+    .resume-dropdown:hover .resume-dropdown-menu,
+    .resume-dropdown:focus-within .resume-dropdown-menu,
+    .resume-dropdown.is-open .resume-dropdown-menu {
+      transform: translate(-50%, 0) scale(1);
+    }
+  }
+
 </style>

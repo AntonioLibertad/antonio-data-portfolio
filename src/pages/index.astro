@@ -357,8 +357,30 @@ const filterOptions: { key: ProjectFilter; label: string; count: number }[] = [
 
       <section id="about" class="section about-section">
         <div class="container about-grid">
-          <div class="about-photo-card reveal reveal-left">
-            <img src="/profile.jpg" alt="Portrait of Antonio González Martín" loading="lazy" />
+          <div class="about-profile-column reveal reveal-left">
+            <div class="about-photo-card">
+              <img src="/profile.jpg" alt="Portrait of Antonio González Martín" loading="lazy" />
+            </div>
+
+            <div class="about-achievements profile-achievements">
+              <div class="achievement-header">
+                <span>Latest academic achievement</span>
+              </div>
+
+              <div class="achievement-grid">
+                <article class="achievement-card">
+                  <span>Master’s final grade</span>
+                  <strong>9.6<span>/10</span></strong>
+                  <p>Data Science & Business Analytics</p>
+                </article>
+
+                <article class="achievement-card">
+                  <span>Master’s thesis</span>
+                  <strong>10<span>/10</span></strong>
+                  <p>Applied analytics and decision-support focus</p>
+                </article>
+              </div>
+            </div>
           </div>
 
           <div class="about-copy reveal reveal-right">
@@ -371,13 +393,21 @@ const filterOptions: { key: ProjectFilter; label: string; count: number }[] = [
             </p>
 
             <p>
-              My background combines recent training in Data Science and Business Analytics with a
-              strong interest in solving real business problems through structured analytical work.
+              My background combines a recent Master’s in Data Science and Business Analytics with a
+              practical interest in how companies actually make decisions: what management needs to see,
+              which risks are hidden in the data, and where reporting or modelling can remove friction.
             </p>
 
             <p>
-              I am especially interested in projects where data is not only explored, but translated
-              into tools, decision-support systems, and outputs that companies can actually use.
+              I am especially interested in projects where data is not only explored, but translated into
+              tools, decision-support systems, and outputs that non-technical stakeholders can understand,
+              trust, and use in real workflows.
+            </p>
+
+            <p>
+              Across my portfolio, I focus on the space between business analysis, data analytics, and
+              applied Data Science: clarifying the problem first, validating the data, building the right
+              analytical layer, and communicating the result in a way that supports action.
             </p>
 
             <div class="about-actions">
@@ -1609,6 +1639,146 @@ const filterOptions: { key: ProjectFilter; label: string; count: number }[] = [
   .about-actions {
     margin-top: 1.35rem;
   }
+
+  .about-profile-column {
+    display: grid;
+    align-content: start;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .about-profile-column .about-photo-card {
+    width: 100%;
+  }
+
+  .about-achievements {
+    border: 1px solid rgba(145, 169, 255, 0.2);
+    border-radius: 22px;
+    padding: 0.85rem;
+    background:
+      radial-gradient(circle at 12% 20%, rgba(145, 169, 255, 0.12), transparent 14rem),
+      rgba(14, 24, 43, 0.58);
+    box-shadow: 0 18px 60px rgba(0, 0, 0, 0.18);
+  }
+
+  .profile-achievements {
+    margin-top: 0;
+  }
+
+  .achievement-header {
+    display: grid;
+    gap: 0.35rem;
+    margin-bottom: 0.7rem;
+  }
+
+  .achievement-header span {
+    color: var(--accent);
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .achievement-header p {
+    max-width: none;
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.78rem;
+    line-height: 1.4;
+    text-align: left;
+  }
+
+  .achievement-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.62rem;
+  }
+
+  .achievement-card {
+    position: relative;
+    overflow: hidden;
+    min-height: 76px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "label value"
+      "desc value";
+    column-gap: 0.9rem;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 18px;
+    padding: 0.72rem 0.82rem;
+    background: rgba(7, 17, 31, 0.56);
+    transition:
+      transform 0.18s ease,
+      border-color 0.18s ease,
+      background 0.18s ease,
+      box-shadow 0.18s ease;
+  }
+
+  .achievement-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(135deg, rgba(145, 169, 255, 0.08), transparent 52%);
+    opacity: 0;
+    transition: opacity 0.18s ease;
+  }
+
+  .achievement-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(145, 169, 255, 0.34);
+    background: rgba(17, 31, 54, 0.72);
+    box-shadow: 0 18px 46px rgba(0, 0, 0, 0.24);
+  }
+
+  .achievement-card:hover::before {
+    opacity: 1;
+  }
+
+  .achievement-card > span {
+    position: relative;
+    z-index: 1;
+    grid-area: label;
+    display: block;
+    margin: 0 0 0.28rem;
+    color: var(--muted);
+    font-size: 0.63rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .achievement-card strong {
+    position: relative;
+    z-index: 1;
+    grid-area: value;
+    display: block;
+    color: var(--text);
+    font-size: clamp(1.85rem, 2.8vw, 2.55rem);
+    line-height: 0.95;
+    letter-spacing: -0.045em;
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  .achievement-card strong span {
+    color: var(--accent);
+    font-size: 0.48em;
+    letter-spacing: -0.02em;
+  }
+
+  .achievement-card p {
+    position: relative;
+    z-index: 1;
+    grid-area: desc;
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.75rem;
+    line-height: 1.35;
+  }
+
 
   .contact-actions {
     justify-content: flex-start;
@@ -2928,8 +3098,17 @@ const filterOptions: { key: ProjectFilter; label: string; count: number }[] = [
       padding-right: 1rem;
     }
 
+    .about-profile-column {
+      max-width: 280px;
+      margin: 0 auto;
+    }
+
     .about-photo-card {
-      max-width: 220px;
+      max-width: 280px;
+    }
+
+    .achievement-grid {
+      grid-template-columns: 1fr;
     }
 
     .gallery-stage img {
@@ -2979,7 +3158,8 @@ const filterOptions: { key: ProjectFilter; label: string; count: number }[] = [
     .case-pipeline-copy,
     .case-pipeline-image-card,
     .case-gallery-shell,
-    .case-problem-strip {
+    .case-problem-strip,
+    .achievement-card {
       transition: none;
     }
   }
